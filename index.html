@@ -1,0 +1,2202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syntax Syndicate | Tech Community for Modern Learners</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        /* CSS will be placed here */
+        /* CSS Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Dark Theme Colors */
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #11111f;
+            --bg-tertiary: #1a1a2e;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0d0;
+            --text-tertiary: #8888aa;
+            --accent-primary: #00d9ff;
+            --accent-secondary: #9d00ff;
+            --accent-tertiary: #ff00aa;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --shadow-color: rgba(0, 217, 255, 0.1);
+            --gradient-primary: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            --gradient-secondary: linear-gradient(135deg, var(--accent-secondary), var(--accent-tertiary));
+            --font-primary: 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --transition-speed: 0.3s;
+            --border-radius: 12px;
+            --border-radius-lg: 20px;
+            --border-radius-sm: 8px;
+        }
+
+        .light-theme {
+            /* Light Theme Colors */
+            --bg-primary: #f8faff;
+            --bg-secondary: #ffffff;
+            --bg-tertiary: #f0f4ff;
+            --text-primary: #11111f;
+            --text-secondary: #444466;
+            --text-tertiary: #666688;
+            --accent-primary: #0066ff;
+            --accent-secondary: #7700ff;
+            --accent-tertiary: #ff0088;
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(0, 102, 255, 0.1);
+            --shadow-color: rgba(0, 102, 255, 0.1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color var(--transition-speed);
+        }
+
+        button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            color: inherit;
+        }
+
+        section {
+            padding: 5rem 1.5rem;
+            position: relative;
+        }
+
+        .container,
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.8rem;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all var(--transition-speed);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn i {
+            font-size: 1.1rem;
+        }
+
+        .btn-large {
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: 0 4px 20px rgba(0, 217, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 217, 255, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--gradient-secondary);
+            color: white;
+            box-shadow: 0 4px 20px rgba(157, 0, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(157, 0, 255, 0.4);
+        }
+
+        .btn-outline {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: rgba(0, 217, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .btn-neon {
+            background: transparent;
+            border: 2px solid var(--accent-primary);
+            color: var(--accent-primary);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-neon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            transition: left 0.5s ease;
+            z-index: -1;
+        }
+
+        .btn-neon:hover::before {
+            left: 0;
+        }
+
+        .btn-neon:hover {
+            color: white;
+        }
+
+        .neon-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .loading-content {
+            text-align: center;
+        }
+
+        .neon-loader {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .loader-circle {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            animation: pulse 1.5s infinite ease-in-out;
+        }
+
+        .loader-circle:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .loader-circle:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(0.8);
+                opacity: 0.5;
+            }
+
+            50% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+        }
+
+        .loading-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .loading-dots {
+            display: inline-block;
+            width: 30px;
+            text-align: left;
+            animation: dots 1.5s infinite;
+        }
+
+        @keyframes dots {
+
+            0%,
+            20% {
+                content: ".";
+            }
+
+            40% {
+                content: "..";
+            }
+
+            60%,
+            100% {
+                content: "...";
+            }
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 2rem;
+            z-index: 1000;
+            background: rgba(10, 10, 15, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all var(--transition-speed);
+        }
+
+        .light-theme .navbar {
+            background: rgba(248, 250, 255, 0.85);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.8rem;
+            font-weight: 800;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .logo-highlight {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-link {
+            font-weight: 600;
+            font-size: 1rem;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: width var(--transition-speed);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .theme-toggle {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            font-size: 1.2rem;
+            transition: all var(--transition-speed);
+        }
+
+        .theme-toggle:hover {
+            background: var(--accent-primary);
+            color: white;
+            transform: rotate(30deg);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 100px;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .particles-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--accent-primary);
+            border-radius: 50%;
+            opacity: 0.5;
+            filter: blur(1px);
+        }
+
+        .animated-lines {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .line {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+            opacity: 0.2;
+        }
+
+        .line-1 {
+            top: 20%;
+            width: 80%;
+            left: 10%;
+            animation: moveLine 20s linear infinite;
+        }
+
+        .line-2 {
+            top: 50%;
+            width: 60%;
+            left: 20%;
+            animation: moveLine 25s linear infinite reverse;
+        }
+
+        .line-3 {
+            top: 80%;
+            width: 70%;
+            left: 15%;
+            animation: moveLine 30s linear infinite;
+        }
+
+        @keyframes moveLine {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.3;
+        }
+
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            background: var(--accent-primary);
+            top: 10%;
+            left: 5%;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .shape-2 {
+            width: 200px;
+            height: 200px;
+            background: var(--accent-secondary);
+            top: 60%;
+            right: 10%;
+            animation: float 25s infinite ease-in-out reverse;
+        }
+
+        .shape-3 {
+            width: 150px;
+            height: 150px;
+            background: var(--accent-tertiary);
+            bottom: 20%;
+            left: 20%;
+            animation: float 30s infinite ease-in-out;
+        }
+
+        .shape-4 {
+            width: 250px;
+            height: 250px;
+            background: var(--accent-primary);
+            top: 30%;
+            right: 20%;
+            animation: float 35s infinite ease-in-out;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-30px) rotate(180deg);
+            }
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 900px;
+            padding: 2rem;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .badge-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .hero-headline {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .headline-part {
+            display: block;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+        }
+
+        .headline-sub {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+        }
+
+        .hero-subheading {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            line-height: 1.7;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-bottom: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, var(--accent-primary), transparent);
+            margin-bottom: 0.5rem;
+            animation: scrollLine 2s infinite;
+        }
+
+        @keyframes scrollLine {
+
+            0%,
+            100% {
+                height: 60px;
+                opacity: 1;
+            }
+
+            50% {
+                height: 80px;
+                opacity: 0.7;
+            }
+        }
+
+        /* About Section */
+        .about-section {
+            background-color: var(--bg-secondary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-badge {
+            display: inline-block;
+            background: var(--gradient-primary);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .section-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        .divider-line {
+            height: 1px;
+            flex: 1;
+            background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+        }
+
+        .divider-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-primary);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+
+        @media (max-width: 992px) {
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+        }
+
+        .about-description {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+        }
+
+        .about-features {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .feature {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: var(--border-radius);
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .feature-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-content p {
+            color: var(--text-tertiary);
+            line-height: 1.6;
+        }
+
+        .about-visual {
+            position: relative;
+            height: 400px;
+        }
+
+        .visual-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .floating-card {
+            position: absolute;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius);
+            backdrop-filter: blur(10px);
+            padding: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            width: 120px;
+            height: 120px;
+            z-index: 2;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: transform var(--transition-speed);
+        }
+
+        .floating-card:hover {
+            transform: translateY(-10px) scale(1.05);
+        }
+
+        .floating-card i {
+            font-size: 2rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .floating-card span {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .card-1 {
+            top: 10%;
+            left: 10%;
+            animation: floatCard 8s infinite ease-in-out;
+        }
+
+        .card-2 {
+            top: 10%;
+            right: 10%;
+            animation: floatCard 10s infinite ease-in-out reverse;
+        }
+
+        .card-3 {
+            bottom: 20%;
+            left: 20%;
+            animation: floatCard 12s infinite ease-in-out;
+        }
+
+        @keyframes floatCard {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .visual-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--accent-primary);
+            z-index: 1;
+            backdrop-filter: blur(10px);
+        }
+
+        .center-glow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            opacity: 0.1;
+            filter: blur(20px);
+            z-index: -1;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem 1.8rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius);
+            backdrop-filter: blur(10px);
+            transition: all var(--transition-speed);
+        }
+
+        .social-link:hover {
+            background: var(--accent-primary);
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        .social-link i {
+            font-size: 1.5rem;
+        }
+
+        /* Roadmap Hub Section */
+        .roadmap-section {
+            background-color: var(--bg-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .roadmap-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .roadmap-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            transition: all var(--transition-speed);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .roadmap-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: opacity var(--transition-speed);
+            z-index: -1;
+        }
+
+        .roadmap-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px var(--shadow-color);
+        }
+
+        .roadmap-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .roadmap-card:nth-child(2n)::before {
+            background: var(--gradient-secondary);
+        }
+
+        .roadmap-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .roadmap-card:nth-child(1) .roadmap-icon {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+        }
+
+        .roadmap-card:nth-child(2) .roadmap-icon {
+            background: linear-gradient(135deg, #48dbfb, #0abde3);
+        }
+
+        .roadmap-card:nth-child(3) .roadmap-icon {
+            background: linear-gradient(135deg, #1dd1a1, #10ac84);
+        }
+
+        .roadmap-card:nth-child(4) .roadmap-icon {
+            background: linear-gradient(135deg, #f368e0, #ff9ff3);
+        }
+
+        .roadmap-card:nth-child(5) .roadmap-icon {
+            background: linear-gradient(135deg, #ff9f43, #feca57);
+        }
+
+        .roadmap-title {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .roadmap-description {
+            color: var(--text-tertiary);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .roadmap-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .roadmap-level {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: rgba(0, 217, 255, 0.1);
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--accent-primary);
+        }
+
+        .roadmap-arrow {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--accent-primary);
+            transition: all var(--transition-speed);
+        }
+
+        .roadmap-card:hover .roadmap-arrow {
+            background: var(--accent-primary);
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .view-all {
+            text-align: center;
+        }
+
+        /* Community Section */
+        .community-section {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .community-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .community-title {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .community-text {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+
+        .community-actions {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-bottom: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .community-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .community-stat {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            text-align: left;
+            transition: transform var(--transition-speed);
+        }
+
+        .community-stat:hover {
+            transform: translateY(-5px);
+        }
+
+        .community-stat i {
+            font-size: 2.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .community-stat h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .community-stat p {
+            color: var(--text-tertiary);
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--bg-secondary);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 4rem 1.5rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-main {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .footer-main {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+        }
+
+        .footer-brand .logo {
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .footer-description {
+            color: var(--text-tertiary);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all var(--transition-speed);
+        }
+
+        .footer-social a:hover {
+            background: var(--accent-primary);
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        @media (max-width: 992px) {
+            .footer-links {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .footer-links {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .link-group h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .link-group a {
+            display: block;
+            color: var(--text-tertiary);
+            margin-bottom: 0.8rem;
+            transition: color var(--transition-speed);
+        }
+
+        .link-group a:hover {
+            color: var(--accent-primary);
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-bottom p {
+            color: var(--text-tertiary);
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom i {
+            color: #ff6b6b;
+            margin: 0 0.3rem;
+        }
+
+        .footer-extra {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-extra a {
+            color: var(--text-tertiary);
+            font-size: 0.9rem;
+            transition: color var(--transition-speed);
+        }
+
+        .footer-extra a:hover {
+            color: var(--accent-primary);
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 20px rgba(0, 217, 255, 0.3);
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all var(--transition-speed);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 217, 255, 0.4);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero-headline {
+                font-size: 2.8rem;
+            }
+
+            .headline-sub {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .community-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            .nav-links,
+            .nav-actions .btn-join {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-headline {
+                font-size: 2.3rem;
+            }
+
+            .headline-sub {
+                font-size: 1.7rem;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero-actions .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .hero-stats {
+                gap: 2rem;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .community-title {
+                font-size: 2.2rem;
+            }
+
+            .community-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .community-actions .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-headline {
+                font-size: 2rem;
+            }
+
+            .headline-sub {
+                font-size: 1.5rem;
+            }
+
+            .hero-subheading {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .community-title {
+                font-size: 2rem;
+            }
+
+            .community-text {
+                font-size: 1.1rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .zoom-in {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .zoom-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <div class="neon-loader">
+                <div class="loader-circle"></div>
+                <div class="loader-circle"></div>
+                <div class="loader-circle"></div>
+            </div>
+            <h2 class="loading-text">Initializing Syntax Syndicate<span class="loading-dots">...</span></h2>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <span class="logo-text">Syntax <span class="logo-highlight">Syndicate</span></span>
+            </div>
+
+            <div class="nav-links">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#roadmaps" class="nav-link">Roadmaps</a>
+                <a href="#community" class="nav-link">Community</a>
+            </div>
+
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <a href="#join" class="btn btn-neon btn-join">Join Now</a>
+            </div>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+        <div class="hero-background">
+            <div class="particles-container" id="particles"></div>
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+                <div class="shape shape-4"></div>
+            </div>
+            <div class="animated-lines">
+                <div class="line line-1"></div>
+                <div class="line line-2"></div>
+                <div class="line line-3"></div>
+            </div>
+        </div>
+
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-text">Tech Community</span>
+            </div>
+
+            <h1 class="hero-headline">
+                <span class="headline-part">Syntax Syndicate</span>
+                <span class="headline-sub">— Tech Community for Modern Learners</span>
+            </h1>
+
+            <p class="hero-subheading">
+                We provide study material, tech roadmaps, and trending tech content for college students.
+            </p>
+
+            <div class="hero-actions">
+                <a href="#roadmaps" class="btn btn-primary btn-large">
+                    <i class="fas fa-map-signs"></i>
+                    Explore Roadmaps
+                </a>
+                <a href="#join" class="btn btn-secondary btn-large">
+                    <i class="fas fa-users"></i>
+                    Join the Community
+                </a>
+            </div>
+
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-number" data-count="5000">0</div>
+                    <div class="stat-label">Active Members</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number" data-count="50">0</div>
+                    <div class="stat-label">Learning Paths</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number" data-count="24">0</div>
+                    <div class="stat-label">Tech Domains</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <div class="scroll-line"></div>
+            <span>Scroll to explore</span>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-badge">About Us</div>
+                <h2 class="section-title">About <span class="neon-text">Syntax Syndicate</span></h2>
+                <div class="section-divider">
+                    <div class="divider-line"></div>
+                    <div class="divider-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="divider-line"></div>
+                </div>
+            </div>
+
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="about-description">
+                        Syntax Syndicate is a community where we provide high-quality study material to college
+                        students.
+                        We also post trending tech content, updates, and career insights on Instagram, LinkedIn, and
+                        Threads.
+                    </p>
+
+                    <div class="about-features">
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h3>Study Material</h3>
+                                <p>Curated resources for college students across various tech domains.</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-road"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h3>Tech Roadmaps</h3>
+                                <p>Step-by-step learning paths for different tech careers.</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-bullhorn"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h3>Trending Content</h3>
+                                <p>Latest tech news, updates and insights on social media.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-visual">
+                    <div class="visual-container">
+                        <div class="floating-card card-1">
+                            <i class="fab fa-instagram"></i>
+                            <span>Instagram</span>
+                        </div>
+                        <div class="floating-card card-2">
+                            <i class="fab fa-linkedin"></i>
+                            <span>LinkedIn</span>
+                        </div>
+                        <div class="floating-card card-3">
+                            <i class="fab fa-twitter"></i>
+                            <span>Threads</span>
+                        </div>
+                        <div class="visual-center">
+                            <div class="center-glow"></div>
+                            <i class="fas fa-code-branch"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="social-links">
+                <a href="#" class="social-link">
+                    <i class="fab fa-instagram"></i>
+                    <span>Instagram</span>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fab fa-linkedin"></i>
+                    <span>LinkedIn</span>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fab fa-twitter"></i>
+                    <span>Threads</span>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fab fa-youtube"></i>
+                    <span>YouTube</span>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fab fa-discord"></i>
+                    <span>Discord</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmap Hub Section -->
+    <section class="roadmap-section" id="roadmaps">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-badge">Learning Paths</div>
+                <h2 class="section-title">Roadmap <span class="neon-text">Hub</span></h2>
+                <p class="section-subtitle">Interactive learning paths for tech careers</p>
+                <div class="section-divider">
+                    <div class="divider-line"></div>
+                    <div class="divider-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <div class="divider-line"></div>
+                </div>
+            </div>
+
+            <div class="roadmap-grid">
+                <!-- Roadmap cards will be generated by JavaScript -->
+            </div>
+
+            <div class="view-all">
+                <a href="#" class="btn btn-outline">
+                    <i class="fas fa-arrow-right"></i>
+                    View All Roadmaps
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community CTA Section -->
+    <section class="community-section" id="join">
+        <div class="section-container">
+            <div class="community-content">
+                <h2 class="community-title">Ready to join the <span class="neon-text">Syndicate</span>?</h2>
+                <p class="community-text">
+                    Connect with thousands of tech learners, access exclusive resources,
+                    and accelerate your career with our community.
+                </p>
+
+                <div class="community-actions">
+                    <a href="#" class="btn btn-primary btn-large">
+                        <i class="fas fa-user-plus"></i>
+                        Join Community
+                    </a>
+                    <a href="#" class="btn btn-outline btn-large">
+                        <i class="fas fa-envelope"></i>
+                        Subscribe to Newsletter
+                    </a>
+                </div>
+
+                <div class="community-stats">
+                    <div class="community-stat">
+                        <i class="fas fa-comments"></i>
+                        <div>
+                            <h3>Active Discussions</h3>
+                            <p>Daily tech talks and Q&A sessions</p>
+                        </div>
+                    </div>
+                    <div class="community-stat">
+                        <i class="fas fa-calendar-check"></i>
+                        <div>
+                            <h3>Weekly Events</h3>
+                            <p>Workshops, coding challenges & more</p>
+                        </div>
+                    </div>
+                    <div class="community-stat">
+                        <i class="fas fa-hands-helping"></i>
+                        <div>
+                            <h3>Mentorship</h3>
+                            <p>Guidance from industry professionals</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <span class="logo-text">Syntax <span class="logo-highlight">Syndicate</span></span>
+                    </div>
+                    <p class="footer-description">
+                        A tech community for modern learners providing study material,
+                        tech roadmaps, and trending tech content.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h3>Resources</h3>
+                        <a href="#">Study Materials</a>
+                        <a href="#">Tech Roadmaps</a>
+                        <a href="#">Blog & Articles</a>
+                        <a href="#">Coding Challenges</a>
+                    </div>
+
+                    <div class="link-group">
+                        <h3>Community</h3>
+                        <a href="#">Join Discord</a>
+                        <a href="#">Events</a>
+                        <a href="#">Mentorship Program</a>
+                        <a href="#">Contributors</a>
+                    </div>
+
+                    <div class="link-group">
+                        <h3>Company</h3>
+                        <a href="#">About Us</a>
+                        <a href="#">Contact</a>
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2023 Syntax Syndicate. All rights reserved. Designed with <i class="fas fa-heart"></i> for
+                    tech learners.</p>
+                <div class="footer-extra">
+                    <a href="#">Code of Conduct</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // JavaScript for Syntax Syndicate Landing Page
+
+        // DOM Elements
+        const loadingScreen = document.getElementById('loadingScreen');
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+        const backToTopBtn = document.getElementById('backToTop');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.querySelector('.nav-links');
+        const particlesContainer = document.getElementById('particles');
+        const roadmapGrid = document.querySelector('.roadmap-grid');
+
+        // Roadmap Data
+        const roadmaps = [
+            {
+                id: 1,
+                title: "Graphic Engineer Roadmap",
+                description: "Master design tools, UI/UX principles, and visual communication for a career in graphic engineering.",
+                icon: "fas fa-palette",
+                level: "Intermediate",
+                color: "#ff6b6b"
+            },
+            {
+                id: 2,
+                title: "DevOps Engineer Roadmap",
+                description: "Learn CI/CD, cloud infrastructure, containerization, and automation for DevOps roles.",
+                icon: "fas fa-server",
+                level: "Advanced",
+                color: "#48dbfb"
+            },
+            {
+                id: 3,
+                title: "Software Development Engineer (SDE) Roadmap",
+                description: "Comprehensive path covering algorithms, system design, and full-stack development.",
+                icon: "fas fa-laptop-code",
+                level: "Beginner to Advanced",
+                color: "#1dd1a1"
+            },
+            {
+                id: 4,
+                title: "Web Development Roadmap",
+                description: "From HTML/CSS basics to advanced JavaScript frameworks and modern web technologies.",
+                icon: "fas fa-code",
+                level: "Beginner",
+                color: "#f368e0"
+            },
+            {
+                id: 5,
+                title: "AI Architecture Roadmap",
+                description: "Explore machine learning, neural networks, and AI system design for AI architect roles.",
+                icon: "fas fa-brain",
+                level: "Advanced",
+                color: "#ff9f43"
+            }
+        ];
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function () {
+            // Simulate loading screen
+            setTimeout(() => {
+                loadingScreen.style.opacity = '0';
+                loadingScreen.style.visibility = 'hidden';
+            }, 1500);
+
+            // Create particles
+            createParticles();
+
+            // Generate roadmap cards
+            generateRoadmapCards();
+
+            // Initialize animations
+            initAnimations();
+
+            // Initialize counters
+            initCounters();
+
+            // Set up mobile menu
+            mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+
+            // Set up theme toggle
+            themeToggle.addEventListener('click', toggleTheme);
+
+            // Set up back to top button
+            window.addEventListener('scroll', handleScroll);
+            backToTopBtn.addEventListener('click', scrollToTop);
+
+            // Set up smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        // Close mobile menu if open
+                        if (navLinks.classList.contains('active')) {
+                            navLinks.classList.remove('active');
+                            mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                        }
+
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+
+                        // Update active nav link
+                        document.querySelectorAll('.nav-link').forEach(link => {
+                            link.classList.remove('active');
+                        });
+                        this.classList.add('active');
+                    }
+                });
+            });
+
+            // Handle nav link active state on scroll
+            window.addEventListener('scroll', updateActiveNavLink);
+        });
+
+        // Create animated particles in background
+        function createParticles() {
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+
+                // Random size
+                const size = Math.random() * 4 + 1;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+
+                // Random position
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+
+                // Random animation
+                const duration = Math.random() * 20 + 10;
+                const delay = Math.random() * 5;
+                particle.style.animation = `float ${duration}s infinite ease-in-out ${delay}s`;
+
+                // Random opacity
+                particle.style.opacity = Math.random() * 0.5 + 0.1;
+
+                // Random color based on theme
+                const colors = ['#00d9ff', '#9d00ff', '#ff00aa'];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.backgroundColor = color;
+
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Generate roadmap cards
+        function generateRoadmapCards() {
+            roadmapGrid.innerHTML = '';
+
+            roadmaps.forEach((roadmap, index) => {
+                const card = document.createElement('div');
+                card.className = 'roadmap-card fade-in';
+                card.style.animationDelay = `${index * 0.1}s`;
+
+                card.innerHTML = `
+            <div class="roadmap-icon">
+                <i class="${roadmap.icon}"></i>
+            </div>
+            <h3 class="roadmap-title">${roadmap.title}</h3>
+            <p class="roadmap-description">${roadmap.description}</p>
+            <div class="roadmap-meta">
+                <span class="roadmap-level">${roadmap.level}</span>
+                <div class="roadmap-arrow">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+            </div>
+        `;
+
+                card.addEventListener('click', function () {
+                    // In a real implementation, this would navigate to the roadmap page
+                    alert(`Navigating to ${roadmap.title} roadmap page`);
+                });
+
+                roadmapGrid.appendChild(card);
+            });
+        }
+
+        // Initialize animations on scroll
+        function initAnimations() {
+            const animatedElements = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .zoom-in');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            animatedElements.forEach(element => {
+                observer.observe(element);
+            });
+        }
+
+        // Initialize counter animations
+        function initCounters() {
+            const counters = document.querySelectorAll('.stat-number');
+
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-count');
+                const increment = target / 100;
+                let current = 0;
+
+                const updateCounter = () => {
+                    if (current < target) {
+                        current += increment;
+                        counter.textContent = Math.floor(current);
+                        setTimeout(updateCounter, 20);
+                    } else {
+                        counter.textContent = target;
+                    }
+                };
+
+                // Start counter when in view
+                const observer = new IntersectionObserver((entries) => {
+                    if (entries[0].isIntersecting) {
+                        updateCounter();
+                        observer.unobserve(counter);
+                    }
+                });
+
+                observer.observe(counter);
+            });
+        }
+
+        // Toggle mobile menu
+        function toggleMobileMenu() {
+            navLinks.classList.toggle('active');
+
+            if (navLinks.classList.contains('active')) {
+                mobileMenuBtn.innerHTML = '<i class="fas fa-times"></i>';
+                mobileMenuBtn.style.color = 'var(--accent-primary)';
+            } else {
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                mobileMenuBtn.style.color = '';
+            }
+        }
+
+        // Toggle theme between dark and light
+        function toggleTheme() {
+            document.body.classList.toggle('light-theme');
+
+            if (document.body.classList.contains('light-theme')) {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+                themeToggle.setAttribute('aria-label', 'Switch to dark theme');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+                themeToggle.setAttribute('aria-label', 'Switch to light theme');
+            }
+
+            // Update particles for new theme
+            updateParticlesForTheme();
+        }
+
+        // Update particles for current theme
+        function updateParticlesForTheme() {
+            const particles = document.querySelectorAll('.particle');
+            const isLightTheme = document.body.classList.contains('light-theme');
+
+            particles.forEach(particle => {
+                // Update particle colors based on theme
+                const colors = isLightTheme
+                    ? ['#0066ff', '#7700ff', '#ff0088']
+                    : ['#00d9ff', '#9d00ff', '#ff00aa'];
+
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.backgroundColor = color;
+            });
+        }
+
+        // Handle scroll events
+        function handleScroll() {
+            // Show/hide back to top button
+            if (window.scrollY > 500) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+
+            // Update navbar background on scroll
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(10, 10, 15, 0.95)';
+                navbar.style.backdropFilter = 'blur(10px)';
+
+                if (document.body.classList.contains('light-theme')) {
+                    navbar.style.background = 'rgba(248, 250, 255, 0.95)';
+                }
+            } else {
+                navbar.style.background = '';
+                navbar.style.backdropFilter = '';
+            }
+        }
+
+        // Update active nav link on scroll
+        function updateActiveNavLink() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            let currentSection = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.clientHeight;
+
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Add parallax effect to floating shapes
+        document.addEventListener('scroll', function () {
+            const shapes = document.querySelectorAll('.shape');
+            const scrollPosition = window.scrollY;
+
+            shapes.forEach((shape, index) => {
+                const speed = 0.2 + (index * 0.1);
+                const yPos = scrollPosition * speed;
+                shape.style.transform = `translateY(${yPos}px)`;
+            });
+        });
+
+        // Add hover effect to roadmap cards
+        document.addEventListener('DOMContentLoaded', function () {
+            const cards = document.querySelectorAll('.roadmap-card');
+
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function () {
+                    this.style.transform = 'translateY(-15px) scale(1.02)';
+                });
+
+                card.addEventListener('mouseleave', function () {
+                    this.style.transform = 'translateY(-10px) scale(1)';
+                });
+            });
+        });
+
+        // Add typing effect to loading text
+        function initTypingEffect() {
+            const loadingText = document.querySelector('.loading-text');
+            const text = "Initializing Syntax Syndicate";
+            let i = 0;
+
+            function typeWriter() {
+                if (i < text.length) {
+                    loadingText.textContent = text.substring(0, i + 1);
+                    i++;
+                    setTimeout(typeWriter, 100);
+                } else {
+                    // Add dots animation after text is typed
+                    const dots = document.querySelector('.loading-dots');
+                    dots.style.display = 'inline-block';
+                }
+            }
+
+            // Start typing effect after a short delay
+            setTimeout(typeWriter, 300);
+        }
+
+        // Call typing effect on page load
+        initTypingEffect();
+    </script>
+</body>
+
+</html>
