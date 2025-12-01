@@ -1,0 +1,1580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Development Roadmap - By Syntax Syndicate</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        :root {
+            --html: #e34f26;
+            --css: #1572b6;
+            --js: #f7df1e;
+            --react: #61dafb;
+            --node: #339933;
+            --python: #3776ab;
+            --php: #777bb4;
+            --java: #007396;
+            --database: #336791;
+            --sql: #4479a1;
+            --nosql: #4db33d;
+            --security: #ff6b6b;
+            --deploy: #0f9d58;
+            --dark-bg: #1a1a2e;
+            --darker-bg: #16213e;
+            --card-bg: #0f3460;
+            --accent: #6c63ff;
+            --text: #f0f0f0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--darker-bg) 100%);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--accent), #ff6584);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 5px 15px rgba(108, 99, 255, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .roadmap-container {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .tree-section {
+            flex: 2;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .resources-section {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        #tree {
+            width: 100%;
+            height: 70vh;
+            position: relative;
+        }
+        
+        .controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+        
+        .control-btn {
+            background: rgba(30, 30, 50, 0.8);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .control-btn:hover {
+            background: var(--accent);
+            transform: scale(1.1);
+        }
+        
+        /* Node styling */
+        .node {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .node circle {
+            stroke-width: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        .node text {
+            font-size: 14px;
+            font-weight: 500;
+            fill: white;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+        }
+        
+        .node:hover circle {
+            r: 12;
+            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
+        }
+        
+        .link {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.3);
+            stroke-width: 2px;
+        }
+        
+        /* Video Player Styling */
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .video-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .video-description {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+        
+        .video-controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .video-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .video-btn:hover {
+            background: #ff6584;
+            transform: translateY(-2px);
+        }
+        
+        /* Resources Styling */
+        .resources-content {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+        
+        .resources-content.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .resource-type {
+            margin-bottom: 2rem;
+        }
+        
+        .resource-type-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--accent);
+        }
+        
+        .resource-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 1.2rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .resource-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .resource-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .resource-description {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .resource-link {
+            display: inline-block;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+        
+        .resource-link:hover {
+            color: #ff6584;
+        }
+        
+        .no-resources {
+            text-align: center;
+            padding: 2rem;
+            opacity: 0.7;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Responsive design */
+        @media (max-width: 1100px) {
+            .roadmap-container {
+                flex-direction: column;
+            }
+            
+            .tree-section, .resources-section {
+                max-height: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            .tree-section, .resources-section {
+                padding: 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Web Development Roadmap - By Syntax Syndicate
+            </h1>
+            <p class="subtitle">A comprehensive guide to become a web developer. Click on any technology node to explore learning resources and videos.</p>
+        </header>
+        
+        <div class="roadmap-container">
+            <div class="tree-section">
+                <h2 class="section-title"><i class="fas fa-sitemap"></i> Learning Path</h2>
+                <div id="tree"></div>
+
+            </div>
+            
+            <div class="resources-section">
+                <h2 class="section-title"><i class="fas fa-book-open"></i> Learning Resources</h2>
+                <div class="resources-content active" id="web-dev-resources">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/8mAITcNt710" title="Web Development Full Course" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-title">
+                        <i class="fab fa-youtube"></i> Web Development Full Course - 10 Hours
+                    </div>
+                    <div class="video-description">
+                        Comprehensive web development course covering frontend, backend, and deployment. <strong>Channel: freeCodeCamp.org</strong>
+                    </div>
+                    
+                    <div class="video-controls">
+                        <button class="video-btn" onclick="openInNewTab('https://www.youtube.com/watch?v=8mAITcNt710')">
+                            <i class="fab fa-youtube"></i> Watch on YouTube
+                        </button>
+                    </div>
+                    
+                    <div class="resource-type">
+                        <h3 class="resource-type-title"><i class="fas fa-book"></i> Free Resources</h3>
+                        <div class="resource-card">
+                            <div class="resource-title">MDN Web Docs</div>
+                            <div class="resource-description">Comprehensive documentation for web technologies including HTML, CSS, and JavaScript.</div>
+                            <a href="https://developer.mozilla.org/en-US/" target="_blank" class="resource-link">Visit Website <i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                        <div class="resource-card">
+                            <div class="resource-title">freeCodeCamp Curriculum</div>
+                            <div class="resource-description">Free interactive coding lessons and projects for web development.</div>
+                            <a href="https://www.freecodecamp.org/learn" target="_blank" class="resource-link">Start Learning <i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Other resource sections will be populated by JavaScript -->
+                <div class="no-resources" id="no-resources">
+                    <i class="fas fa-info-circle fa-2x"></i>
+                    <p>Select a technology node to view learning resources</p>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Web Development Roadmap &copy; 2025 | An interactive learning guide for aspiring developers</p>
+        </footer>
+    </div>
+
+    <script>
+        // Roadmap data structure
+        const roadmapData = {
+            name: "Web Development",
+            description: "The complete path to becoming a web developer",
+            color: "#6c63ff",
+            videos: [
+                {
+                    title: "Web Development Full Course - 10 Hours",
+                    embedUrl: "https://www.youtube.com/embed/8mAITcNt710",
+                    youtubeUrl: "https://www.youtube.com/watch?v=8mAITcNt710",
+                    channel: "freeCodeCamp.org",
+                    description: "Comprehensive web development course covering frontend, backend, and deployment."
+                }
+            ],
+            articles: [
+                {
+                    title: "MDN Web Docs",
+                    url: "https://developer.mozilla.org/en-US/",
+                    description: "Comprehensive documentation for web technologies including HTML, CSS, and JavaScript."
+                },
+                {
+                    title: "freeCodeCamp Curriculum",
+                    url: "https://www.freecodecamp.org/learn",
+                    description: "Free interactive coding lessons and projects for web development."
+                }
+            ],
+            children: [
+                {
+                    name: "Frontend Basics",
+                    description: "The foundational technologies of the web",
+                    color: "#e34f26",
+                    children: [
+                        {
+                            name: "HTML",
+                            description: "HyperText Markup Language - the structure of web pages",
+                            color: "#e34f26",
+                            videos: [
+                                {
+                                    title: "HTML Tutorial for Beginners | Complete HTML with Notes & Code",
+                                    embedUrl: 'https://www.youtube.com/embed/HcOc7P5BMi4?si=2-DqO0MX9HYG_pKy',
+                                    youtubeUrl: "https://www.youtube.com/watch?v=pQN-pnXPaVg",
+                                    channel: "Apna College",
+                                    description: "Learn the basics of HTML5 and web development in this video tutorial."
+                                }
+                            ],
+                            articles: [
+                                {
+                                    title: "HTML Notes by Syntax Syndicate",
+                                    url: "https://syntax-syndicate-ltd.github.io/html-css-notes/",
+                                    description: "Master HTML and CSS with our comprehensive, beginner-friendly notes. Step-by-step tutorials, examples, and best practices to kickstart your web development journey."
+                                },
+                                {
+                                    title: "MDN Web Docs - HTML",
+                                    url: "https://developer.mozilla.org/en-US/docs/Web/HTML",
+                                    description: "Mozilla's official HTML documentation with guides and references."
+                                },
+                                {
+                                    title: "HTML Tutorial - W3Schools",
+                                    url: "https://www.w3schools.com/html/",
+                                    description: "Comprehensive HTML reference and tutorials with examples."
+                                }
+                            ]
+                        },
+                        {
+                            name: "CSS",
+                            description: "Cascading Style Sheets - styling web pages",
+                            color: "#1572b6",
+                            videos: [
+                                {
+                                    title: "CSS Tutorial for Beginners | Complete CSS with Project, Notes & Code",
+                                    embedUrl: "https://www.youtube.com/embed/ESnrn1kAD4E?si=tmIm_jOWJDu_V1lr",
+                                    youtubeUrl: "https://youtu.be/ESnrn1kAD4E?si=UDus0t8Xf4RlDKlw",
+                                    channel: "Apna College",
+                                    description: "Complete CSS course with examples and best practices."
+                                }
+                            ],
+                            articles: [
+                                {
+                                    title: "CSS Tricks - Complete Guide to Flexbox",
+                                    url: "https://css-tricks.com/snippets/css/a-guide-to-flexbox/",
+                                    description: "The most popular Flexbox guide online with visual examples."
+                                },
+                                {
+                                    title: "MDN Web Docs - CSS",
+                                    url: "https://developer.mozilla.org/en-US/docs/Web/CSS",
+                                    description: "Official CSS documentation from Mozilla with tutorials."
+                                }
+                            ],
+                            children: [
+                                {
+    name: "Tailwind CSS",
+    description: "Utility-first CSS framework for rapidly building modern, responsive UIs.",
+    color: "#38bdf8",
+    videos: [
+        {
+            title: "Tailwind CSS Tutorial for Beginners | Full Course with Projects",
+            embedUrl: "https://www.youtube.com/embed/lCxcTsOHrjo?si=ZC9iL2V-3RfVDpRS",
+            youtubeUrl: "https://youtu.be/lCxcTsOHrjo?si=ZC9iL2V-3RfVDpRS",
+            channel: "Traversy Media",
+            description: "A complete beginner-friendly guide to Tailwind CSS with live projects and setup walkthrough."
+        },
+        {
+            title: "Tailwind CSS Crash Course 2024 | Responsive Design & Components",
+            embedUrl: "https://www.youtube.com/embed/ft30zcMlFao?si=Y6yKRQ9PRjCQYtyY",
+            youtubeUrl: "https://youtu.be/ft30zcMlFao?si=Y6yKRQ9PRjCQYtyY",
+            channel: "Kevin Powell",
+            description: "Learn how to use Tailwind CSS utilities to build responsive and clean layouts effectively."
+        }
+    ],
+    articles: [
+        {
+            title: "Tailwind CSS Documentation",
+            url: "https://tailwindcss.com/docs",
+            description: "Official Tailwind CSS documentation with setup guide, core concepts, and customization options."
+        },
+        {
+            title: "Tailwind CSS Cheat Sheet",
+            url: "https://nerdcave.com/tailwind-cheat-sheet",
+            description: "A complete list of Tailwind CSS utility classes for quick reference."
+        },
+        {
+            title: "Tailwind CSS Best Practices",
+            url: "https://blog.logrocket.com/tailwind-css-best-practices/",
+            description: "Learn how to write cleaner, scalable, and efficient Tailwind CSS code for production."
+        }
+    ]
+}
+,
+                      {
+    name: "Bootstrap",
+    description: "Powerful front-end framework for developing responsive, mobile-first websites using prebuilt components and a grid system.",
+    color: "#7952b3",
+    videos: [
+        {
+            title: "Bootstrap 5 Tutorial for Beginners | Complete Course with Projects",
+            embedUrl: "https://www.youtube.com/embed/-qfEOE4vtxE?si=JH97kQhNfDE5xOrM",
+            youtubeUrl: "https://youtu.be/-qfEOE4vtxE?si=JH97kQhNfDE5xOrM",
+            channel: "freeCodeCamp.org",
+            description: "A full Bootstrap 5 course that covers the grid system, components, utilities, and responsive layouts through projects."
+        },
+        {
+            title: "Bootstrap 5 Crash Course | Build a Responsive Website",
+            embedUrl: "https://www.youtube.com/embed/4sosXZsdy-s?si=O2qT4VCW0RAQcfq1",
+            youtubeUrl: "https://youtu.be/4sosXZsdy-s?si=O2qT4VCW0RAQcfq1",
+            channel: "Traversy Media",
+            description: "Learn Bootstrap 5 fundamentals and build a modern responsive landing page step-by-step."
+        }
+    ],
+    articles: [
+        {
+            title: "Bootstrap Official Documentation",
+            url: "https://getbootstrap.com/docs/",
+            description: "Comprehensive documentation covering Bootstrap’s layout system, components, utilities, and customization options."
+        },
+        {
+            title: "Bootstrap Grid System Explained",
+            url: "https://www.w3schools.com/bootstrap5/bootstrap_grid_basic.php",
+            description: "Beginner-friendly guide to understanding and using the Bootstrap 12-column grid layout."
+        }
+    ]
+}
+
+                            ]
+                        },
+                        {
+                            name: "JavaScript",
+                            description: "The programming language of the web",
+                            color: "#f7df1e",
+                            videos: [
+                                {
+                                    title: "JavaScript Full Course ❤️ | Variables & Data Types",
+                                    embedUrl: "https://www.youtube.com/embed/ajdRvxDWH4w?si=hnV1rfJAKvL7k39I",
+                                    youtubeUrl: "https://youtu.be/ajdRvxDWH4w?si=hnV1rfJAKvL7k39I",
+                                    channel: "Apna College",
+                                    description: "Clear JavaScript fundamentals explained with examples."
+                                },
+                                {
+                                    title: "Learn JavaScript - Full Course for Beginners",
+                                    embedUrl: "https://www.youtube.com/embed/PkZNo7MFNFg",
+                                    youtubeUrl: "https://www.youtube.com/watch?v=PkZNo7MFNFg",
+                                    channel: "freeCodeCamp.org",
+                                    description: "Comprehensive JavaScript course for beginners with projects."
+                                }
+                            ],
+                            articles: [
+                                {
+                                    title: "JavaScript.info - The Modern JavaScript Tutorial",
+                                    url: "https://javascript.info/",
+                                    description: "Modern and comprehensive JavaScript tutorial from basics to advanced."
+                                },
+                                {
+                                    title: "MDN Web Docs - JavaScript",
+                                    url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+                                    description: "Official JavaScript documentation with guides and references."
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    name: "Version Control",
+                    description: "Modern tools for building interactive user interfaces",
+                    color: "#61dafb",
+                    children: [
+                        {
+                            name: "Git & GitHub ",
+                            description: "A version control system and code hosting platform",
+                            color: "#61dafb",
+                            videos: [
+                                {
+                                    title: "Complete Git and GitHub Tutorial for Beginners",
+                                    embedUrl: "https://www.youtube.com/embed/Ez8F0nW6S-w?si=xcU2-gor1DQoydhl",
+                                    youtubeUrl: "https://youtu.be/Ez8F0nW6S-w?si=zA2J4SATjxsfb3bo",
+                                    channel: "Apna College",
+                                    description: "Learn React fundamentals of the version control using git and github."
+                                }
+                            ],
+                            articles: [
+                                {
+                                    title: "git notes by syntax syndicate",
+                                    url: "https://git-notes-by-syntax-syndicate-vyo8.vercel.app/",
+                                    description: "Learn version control from scratch with interactive lessons, hands-on exercises, and real-world examples. Perfect for beginners and pros alike."
+                                },
+                            ]
+                        }
+                    ]
+                },
+                {
+    name: "Frontend Frameworks",
+    description: "Modern tools for building interactive user interfaces",
+    color: "#61dafb",
+    children: [
+        {
+            name: "React",
+            description: "A JavaScript library for building user interfaces",
+            color: "#61dafb",
+            videos: [
+                {
+                    title: "React JS Full Course 2024 | Beginner to Advanced",
+                    embedUrl: "https://www.youtube.com/embed/SqcY0GlETPk",
+                    youtubeUrl: "https://www.youtube.com/watch?v=SqcY0GlETPk",
+                    channel: "freeCodeCamp.org",
+                    description: "A complete modern React course covering hooks, components, and projects."
+                },
+                {
+                    title: "React JS Tutorial for Beginners",
+                    embedUrl: "https://www.youtube.com/embed/bMknfKXIFA8",
+                    youtubeUrl: "https://www.youtube.com/watch?v=bMknfKXIFA8",
+                    channel: "Programming with Mosh",
+                    description: "Best React beginner tutorial with clear concepts and a professional approach."
+                },
+                {
+                    title: "React JS Crash Course (with Project)",
+                    embedUrl: "https://www.youtube.com/embed/w7ejDZ8SWv8",
+                    youtubeUrl: "https://www.youtube.com/watch?v=w7ejDZ8SWv8",
+                    channel: "Traversy Media",
+                    description: "A practical React crash course covering all fundamentals in one video."
+                }
+            ],
+            articles: [
+                {
+                    title: "React Official Tutorial",
+                    url: "https://react.dev/learn",
+                    description: "Official React documentation and interactive tutorial from Meta."
+                },
+                {
+                    title: "React Patterns",
+                    url: "https://reactpatterns.com/",
+                    description: "Collection of React design patterns and best practices."
+                }
+            ]
+        },
+        {
+            name: "Next.js",
+            description: "The React framework for production",
+            color: "#000000",
+            videos: [
+                {
+                    title: "Next.js 14 Full Course 2024 | App Router, SSR, API Routes",
+                    embedUrl: "https://www.youtube.com/embed/Y6KDk5iyrYE",
+                    youtubeUrl: "https://www.youtube.com/watch?v=Y6KDk5iyrYE",
+                    channel: "freeCodeCamp.org",
+                    description: "Complete Next.js 14 course covering the latest app router and features."
+                },
+                {
+                    title: "Next.js Crash Course | Build and Deploy a Next App",
+                    embedUrl: "https://www.youtube.com/embed/mTz0GXj8NN0",
+                    youtubeUrl: "https://www.youtube.com/watch?v=mTz0GXj8NN0",
+                    channel: "Traversy Media",
+                    description: "A fast-paced practical crash course to get started with Next.js."
+                },
+                {
+                    title: "Next.js 14 Crash Course | Modern Full-Stack App",
+                    embedUrl: "https://www.youtube.com/embed/bqAdzPjXWzQ",
+                    youtubeUrl: "https://www.youtube.com/watch?v=bqAdzPjXWzQ",
+                    channel: "Hitesh Choudhary",
+                    description: "Modern and concise explanation of Next.js 14 with full project."
+                }
+            ],
+            articles: [
+                {
+                    title: "Next.js Official Docs",
+                    url: "https://nextjs.org/docs",
+                    description: "Official documentation for Next.js framework."
+                },
+                {
+                    title: "Next.js Learn Course",
+                    url: "https://nextjs.org/learn",
+                    description: "Interactive and official step-by-step Next.js learning course."
+                }
+            ]
+        },
+        {
+            name: "Vue.js",
+            description: "The Progressive JavaScript Framework",
+            color: "#41b883",
+            videos: [
+                {
+                    title: "Vue JS 3 Tutorial for Beginners",
+                    embedUrl: "https://www.youtube.com/embed/FXpIoQ_rT_c",
+                    youtubeUrl: "https://www.youtube.com/watch?v=FXpIoQ_rT_c",
+                    channel: "The Net Ninja",
+                    description: "Complete Vue 3 tutorial series for beginners with detailed examples."
+                },
+                {
+                    title: "Vue JS Crash Course",
+                    embedUrl: "https://www.youtube.com/embed/qZXt1Aom3Cs",
+                    youtubeUrl: "https://www.youtube.com/watch?v=qZXt1Aom3Cs",
+                    channel: "Traversy Media",
+                    description: "Fast-paced crash course for learning Vue fundamentals."
+                },
+                {
+                    title: "Vue 3 Composition API Explained",
+                    embedUrl: "https://www.youtube.com/embed/ZqgiuPt5QZo",
+                    youtubeUrl: "https://www.youtube.com/watch?v=ZqgiuPt5QZo",
+                    channel: "freeCodeCamp.org",
+                    description: "Comprehensive Vue 3 Composition API course for modern Vue development."
+                }
+            ],
+            articles: [
+                {
+                    title: "Vue.js Guide",
+                    url: "https://vuejs.org/guide/introduction.html",
+                    description: "Official Vue.js documentation and guide."
+                },
+                {
+                    title: "Vue Mastery",
+                    url: "https://www.vuemastery.com/courses/",
+                    description: "High-quality Vue.js courses and tutorials."
+                }
+            ]
+        }
+    
+
+                    ]
+                },
+          {
+    name: "Backend Development",
+    description: "Server-side programming and APIs",
+    color: "#339933",
+    children: [
+        {
+            name: "Node.js",
+            description: "JavaScript runtime built on Chrome's V8 engine",
+            color: "#339933",
+            videos: [
+                {
+                    title: "Node.js Crash Course",
+                    embedUrl: "https://www.youtube.com/embed/fBNz5xF-Kx4",
+                    youtubeUrl: "https://www.youtube.com/watch?v=fBNz5xF-Kx4",
+                    channel: "Traversy Media",
+                    description: "Learn Node.js fundamentals with Express and build a simple API."
+                },
+                {
+                    title: "Node.js and Express.js - Full Course",
+                    embedUrl: "https://www.youtube.com/embed/Oe421EPjeBE",
+                    youtubeUrl: "https://www.youtube.com/watch?v=Oe421EPjeBE",
+                    channel: "freeCodeCamp.org",
+                    description: "Complete Node.js and Express course with multiple projects."
+                }
+            ],
+            articles: [
+                {
+                    title: "Node.js Official Docs",
+                    url: "https://nodejs.org/en/docs/",
+                    description: "Official Node.js documentation with guides and API references."
+                },
+                {
+                    title: "The Node Beginner Book",
+                    url: "https://www.nodebeginner.org/",
+                    description: "Free book for Node.js beginners with practical examples."
+                }
+            ]
+        },
+        {
+            name: "Python",
+            description: "Versatile programming language with Django and Flask frameworks",
+            color: "#3776ab",
+videos: [
+    {
+        title: "Python Tutorial for Beginners | Complete Python with Project, Notes & Code",
+        embedUrl: "https://www.youtube.com/embed/_uQrJ0TkZlc?si=xyz123",
+        youtubeUrl: "https://youtu.be/_uQrJ0TkZlc?si=xyz123",
+        channel: "Programming with Mosh",
+        description: "Complete Python course covering basics to advanced concepts with real projects."
+    },
+    {
+        title: "Python Full Course for Beginners | Learn Python in 12 Hours",
+        embedUrl: "https://www.youtube.com/embed/XKHEtdqhLK8?si=abc456",
+        youtubeUrl: "https://youtu.be/XKHEtdqhLK8?si=abc456",
+        channel: "Bro Code",
+        description: "Step-by-step Python tutorial covering syntax, data types, OOP, and more."
+    }
+],
+articles: [
+    {
+        title: "Python Official Documentation",
+        url: "https://docs.python.org/3/",
+        description: "The official Python documentation with detailed language references."
+    },
+    {
+        title: "Real Python - Tutorials",
+        url: "https://realpython.com/",
+        description: "High-quality Python tutorials and guides for all levels of learners."
+    },
+    {
+        title: "W3Schools - Python Tutorial",
+        url: "https://www.w3schools.com/python/",
+        description: "Beginner-friendly Python tutorials with examples and exercises."
+    }
+],
+
+            children: [
+                {
+                    name: "Django",
+                    description: "High-level Python web framework that encourages rapid development",
+                    color: "#092E20",
+                    videos: [
+                        {
+                            title: "Django Full Course in Hindi (2024)",
+                            embedUrl: "https://www.youtube.com/embed/JxzZxdht-XY?si=PeVUKUoZ3zFvzZ2-",
+                            youtubeUrl: "https://youtu.be/JxzZxdht-XY?si=PeVUKUoZ3zFvzZ2-",
+                            channel: "CodeWithHarry",
+                            description: "Complete Django course in Hindi — from setup to deployment."
+                        }
+                    ],
+                    articles: [
+                        {
+                            title: "Django Official Documentation",
+                            url: "https://docs.djangoproject.com/en/stable/",
+                            description: "Comprehensive documentation for Django framework."
+                        },
+                        {
+                            title: "Django Tutorial Series (W3Schools)",
+                            url: "https://www.w3schools.com/django/",
+                            description: "Beginner-friendly Django tutorials and examples."
+                        }
+                    ]
+                },
+                {
+                    name: "Flask",
+                    description: "Lightweight Python microframework for web development",
+                    color: "#000000",
+                    videos: [
+                        {
+                            title: "Flask Full Course in Hindi",
+                            embedUrl: "https://www.youtube.com/embed/Z1RJmh_OqeA",
+                            youtubeUrl: "https://www.youtube.com/watch?v=Z1RJmh_OqeA",
+                            channel: "CodeWithHarry",
+                            description: "Complete Flask web development course in Hindi."
+                        },
+                        {
+                            title: "Flask Tutorial for Beginners in Hindi",
+                            embedUrl: "https://www.youtube.com/embed/6plVs_ytIH8",
+                            youtubeUrl: "https://www.youtube.com/watch?v=6plVs_ytIH8",
+                            channel: "Thapa Technical",
+                            description: "Learn Flask basics and APIs step-by-step in Hindi."
+                        },
+                        {
+                            title: "Flask Project Tutorial in Hindi",
+                            embedUrl: "https://www.youtube.com/embed/X1b5iQNsN6Y",
+                            youtubeUrl: "https://www.youtube.com/watch?v=X1b5iQNsN6Y",
+                            channel: "Hitesh Choudhary",
+                            description: "Build a complete Flask project with frontend integration in Hindi."
+                        }
+                    ],
+                    articles: [
+                        {
+                            title: "Flask Official Documentation",
+                            url: "https://flask.palletsprojects.com/en/stable/",
+                            description: "Official Flask documentation with examples and API reference."
+                        },
+                        {
+                            title: "The Flask Mega-Tutorial",
+                            url: "https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world",
+                            description: "In-depth Flask tutorial series by Miguel Grinberg."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            name: "PHP",
+            description: "Popular server-side scripting language",
+            color: "#777bb4",
+            videos: [
+                {
+                    title: "PHP Programming Language Tutorial - Full Course",
+                    embedUrl: "https://www.youtube.com/embed/OK_JCtrrv-c",
+                    youtubeUrl: "https://www.youtube.com/watch?v=OK_JCtrrv-c",
+                    channel: "freeCodeCamp.org",
+                    description: "Complete PHP course for beginners."
+                },
+                {
+                    title: "PHP For Beginners",
+                    embedUrl: "https://www.youtube.com/embed/BUCiSSyIGGU",
+                    youtubeUrl: "https://www.youtube.com/watch?v=BUCiSSyIGGU",
+                    channel: "Traversy Media",
+                    description: "Modern PHP tutorial with MySQL."
+                }
+            ],
+            articles: [
+                {
+                    title: "PHP The Right Way",
+                    url: "https://phptherightway.com/",
+                    description: "Modern PHP best practices guide."
+                },
+                {
+                    title: "Laravel Documentation",
+                    url: "https://laravel.com/docs",
+                    description: "Official Laravel PHP framework documentation."
+                }
+            ]
+        }
+    ]
+}
+,
+                {
+                    name: "Databases",
+                    description: "Storing and managing application data",
+                    color: "#336791",
+                    children: [
+                        {
+                            name: "SQL Databases",
+                            description: "Structured Query Language databases",
+                            color: "#4479a1",
+                            children: [
+                                {
+                                    name: "MySQL",
+                                    description: "Popular open-source relational database",
+                                    color: "#4479a1",
+                                    videos: [
+                                        {
+                                            title: "MySQL Tutorial for Beginners",
+                                            embedUrl: "https://www.youtube.com/embed/7S_tz1z_5bA",
+                                            youtubeUrl: "https://www.youtube.com/watch?v=7S_tz1z_5bA",
+                                            channel: "Programming with Mosh",
+                                            description: "Complete MySQL course from scratch."
+                                        },
+                                        {
+                                            title: "MySQL Crash Course",
+                                            embedUrl: "https://www.youtube.com/embed/9ylj9NR0Lcg",
+                                            youtubeUrl: "https://www.youtube.com/watch?v=9ylj9NR0Lcg",
+                                            channel: "Traversy Media",
+                                            description: "Learn MySQL in 1 hour."
+                                        }
+                                    ],
+                                    articles: [
+                                        {
+                                            title: "MySQL Tutorial",
+                                            url: "https://www.mysqltutorial.org/",
+                                            description: "Comprehensive MySQL tutorial website."
+                                        },
+                                        {
+                                            title: "W3Schools MySQL Tutorial",
+                                            url: "https://www.w3schools.com/mysql/",
+                                            description: "MySQL tutorial with examples."
+                                        }
+                                    ]
+                                },
+                                {
+                                    name: "PostgreSQL",
+                                    description: "Powerful open-source object-relational database",
+                                    color: "#336791",
+                                    videos: [
+                                        {
+                                            title: "PostgreSQL Tutorial for Beginners",
+                                            embedUrl: "https://www.youtube.com/embed/qw--VYLpxG4",
+                                            youtubeUrl: "https://www.youtube.com/watch?v=qw--VYLpxG4",
+                                            channel: "freeCodeCamp.org",
+                                            description: "Full PostgreSQL course for beginners."
+                                        },
+                                        {
+                                            title: "Learn PostgreSQL Tutorial - Full Course for Beginners",
+                                            embedUrl: "https://www.youtube.com/embed/BLH3s5eTL4Y",
+                                            youtubeUrl: "https://www.youtube.com/watch?v=BLH3s5eTL4Y",
+                                            channel: "Amigoscode",
+                                            description: "Comprehensive PostgreSQL tutorial."
+                                        }
+                                    ],
+                                    articles: [
+                                        {
+                                            title: "PostgreSQL Tutorial",
+                                            url: "https://www.postgresqltutorial.com/",
+                                            description: "Complete PostgreSQL tutorial."
+                                        },
+                                        {
+                                            title: "PostgreSQL Exercises",
+                                            url: "https://pgexercises.com/",
+                                            description: "Practice PostgreSQL with exercises."
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            name: "NoSQL Databases",
+                            description: "Non-relational databases",
+                            color: "#4db33d",
+                            children: [
+                                {
+                                    name: "MongoDB",
+                                    description: "Document-based NoSQL database",
+                                    color: "#4db33d",
+                                    videos: [
+                                        {
+                                            title: "MongoDB Crash Course",
+                                            embedUrl: "https://www.youtube.com/embed/-56x56UppqQ",
+                                            youtubeUrl: "https://www.youtube.com/watch?v=-56x56UppqQ",
+                                            channel: "Traversy Media",
+                                            description: "Learn MongoDB fundamentals."
+                                        },
+                                        {
+                                            title: "MongoDB Full Course",
+                                            embedUrl: "https://www.youtube.com/embed/ExcRbA7fy_A",
+                                            youtubeUrl: "https://www.youtube.com/watch?v=ExcRbA7fy_A",
+                                            channel: "Amigoscode",
+                                            description: "Complete MongoDB tutorial."
+                                        }
+                                    ],
+                                    articles: [
+                                        {
+                                            title: "MongoDB University",
+                                            url: "https://university.mongodb.com/",
+                                            description: "Free MongoDB courses and certifications."
+                                        },
+                                        {
+                                            title: "MongoDB Manual",
+                                            url: "https://docs.mongodb.com/manual/",
+                                            description: "Official MongoDB documentation."
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    name: "Security & Authentication",
+                    description: "Protecting applications and user data",
+                    color: "#ff6b6b",
+                    children: [
+                        {
+                            name: "JWT Authentication",
+                            description: "JSON Web Tokens for secure authentication",
+                            color: "#ff6b6b",
+                            videos: [
+                                {
+                                    title: "JWT Authentication Tutorial",
+                                    embedUrl: "https://www.youtube.com/embed/7Q17ubqLfaM",
+                                    youtubeUrl: "https://www.youtube.com/watch?v=7Q17ubqLfaM",
+                                    channel: "Web Dev Simplified",
+                                    description: "Learn JWT authentication in depth."
+                                },
+                                {
+                                    title: "JWT in 100 Seconds",
+                                    embedUrl: "https://www.youtube.com/embed/UBUNrFtufWo",
+                                    youtubeUrl: "https://www.youtube.com/watch?v=UBUNrFtufWo",
+                                    channel: "Fireship",
+                                    description: "Quick explanation of JWT."
+                                }
+                            ],
+                            articles: [
+                                {
+                                    title: "JWT.io Introduction",
+                                    url: "https://jwt.io/introduction/",
+                                    description: "Official JWT introduction and documentation."
+                                },
+                                {
+                                    title: "Auth0 JWT Handbook",
+                                    url: "https://auth0.com/resources/ebooks/jwt-handbook",
+                                    description: "Free ebook on JWT best practices."
+                                }
+                            ]
+                        },
+                        {
+                            name: "OAuth",
+                            description: "Open standard for access delegation",
+                            color: "#eb5424",
+                            videos: [
+                                {
+                                    title: "OAuth 2.0 and OpenID Connect",
+                                    embedUrl: "https://www.youtube.com/embed/996OiexHze0",
+                                    youtubeUrl: "https://www.youtube.com/watch?v=996OiexHze0",
+                                    channel: "OktaDev",
+                                    description: "Learn OAuth 2.0 and OpenID Connect."
+                                },
+                                {
+                                    title: "What is OAuth really all about?",
+                                    embedUrl: "https://www.youtube.com/embed/3pZ3Nh8tgTE",
+                                    youtubeUrl: "https://www.youtube.com/watch?v=3pZ3Nh8tgTE",
+                                    channel: "Java Brains",
+                                    description: "OAuth explained with simple examples."
+                                }
+                            ],
+                            articles: [
+                                {
+                                    title: "OAuth 2.0 Simplified",
+                                    url: "https://aaronparecki.com/oauth-2-simplified/",
+                                    description: "Simple explanation of OAuth 2.0."
+                                },
+                                {
+                                    title: "OAuth.net",
+                                    url: "https://oauth.net/2/",
+                                    description: "Official OAuth 2.0 documentation."
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+    name: "Deployment & Hosting",
+    description: "Making your applications available to users",
+    color: "#0f9d58",
+    children: [
+        {
+            name: "Docker",
+            description: "Containerization platform",
+            color: "#2496ed",
+            videos: [
+                {
+                    title: "Docker Tutorial for Beginners",
+                    embedUrl: "https://www.youtube.com/embed/3c-iBn73dDE",
+                    youtubeUrl: "https://www.youtube.com/watch?v=3c-iBn73dDE",
+                    channel: "TechWorld with Nana",
+                    description: "Complete Docker course for beginners."
+                },
+                {
+                    title: "Learn Docker in 12 Minutes",
+                    embedUrl: "https://www.youtube.com/embed/YFl2mCHdv24",
+                    youtubeUrl: "https://www.youtube.com/watch?v=YFl2mCHdv24",
+                    channel: "Web Dev Simplified",
+                    description: "Quick Docker introduction."
+                }
+            ],
+            articles: [
+                {
+                    title: "Docker Getting Started",
+                    url: "https://docs.docker.com/get-started/",
+                    description: "Official Docker getting started guide."
+                },
+                {
+                    title: "Docker Curriculum",
+                    url: "https://docker-curriculum.com/",
+                    description: "Comprehensive Docker tutorial."
+                }
+            ]
+        },
+        {
+            name: "AWS",
+            description: "Amazon Web Services cloud platform",
+            color: "#ff9900",
+            videos: [
+                {
+                    title: "AWS Tutorial for Beginners",
+                    embedUrl: "https://www.youtube.com/embed/ubCNZRNjhyo",
+                    youtubeUrl: "https://www.youtube.com/watch?v=ubCNZRNjhyo",
+                    channel: "Academind",
+                    description: "Introduction to AWS core services."
+                },
+                {
+                    title: "AWS Full Course",
+                    embedUrl: "https://www.youtube.com/embed/k1RI5locZE4",
+                    youtubeUrl: "https://www.youtube.com/watch?v=k1RI5locZE4",
+                    channel: "edureka!",
+                    description: "Comprehensive AWS tutorial."
+                }
+            ],
+            articles: [
+                {
+                    title: "AWS Documentation",
+                    url: "https://docs.aws.amazon.com/",
+                    description: "Official AWS documentation."
+                },
+                {
+                    title: "AWS Free Tier",
+                    url: "https://aws.amazon.com/free/",
+                    description: "AWS free tier services for learning."
+                }
+            ]
+        },
+        {
+            name: "Serverless",
+            description: "Deploy applications without managing servers",
+            color: "#6f42c1",
+            children: [
+                {
+                    name: "Render",
+                    description: "Cloud platform for web apps and static sites",
+                    color: "#24c1e0",
+                    videos: [
+                        {
+                            title: "Deploy Node JS API on Render Free in Hindi",
+                            embedUrl: "https://www.youtube.com/embed/Pe74JuUUB1I",
+                            youtubeUrl: "https://www.youtube.com/watch?v=Pe74JuUUB1I",
+                            channel: "CodeWithHarry",
+                            description: "Step-by-step guide to deploy Node.js API on Render in Hindi."
+                        },
+                        {
+                            title: "Deploy MERN Stack on Render Free in Hindi",
+                            embedUrl: "https://www.youtube.com/embed/qTss24rzbcs",
+                            youtubeUrl: "https://www.youtube.com/watch?v=qTss24rzbcs",
+                            channel: "CodeWithHarry",
+                            description: "Deploy full MERN stack on Render with frontend and backend."
+                        }
+                    ],
+                    articles: [
+                        {
+                            title: "Render Docs",
+                            url: "https://render.com/docs",
+                            description: "Official documentation for deploying apps on Render."
+                        }
+                    ]
+                },
+                {
+                    name: "Netlify",
+                    description: "Deploy static sites and frontend apps easily",
+                    color: "#00c7b7",
+                    videos: [
+                        {
+                            title: "Deploy React JS Website on Netlify Free (Hindi)",
+                            embedUrl: "https://www.youtube.com/embed/ftUa9OJFEoM",
+                            youtubeUrl: "https://www.youtube.com/watch?v=ftUa9OJFEoM",
+                            channel: "CodeWithHarry",
+                            description: "Comprehensive tutorial to deploy React apps on Netlify in Hindi."
+                        }
+                    ],
+                    articles: [
+                        {
+                            title: "Netlify Docs",
+                            url: "https://docs.netlify.com/",
+                            description: "Official documentation for Netlify deployment."
+                        }
+                    ]
+                },
+                {
+                    name: "Vercel",
+                    description: "Deploy frontend frameworks and serverless functions",
+                    color: "#000000",
+                    videos: [
+                        {
+                            title: "Deploy Node JS API on Vercel Free in Hindi",
+                            embedUrl: "https://www.youtube.com/embed/9Dzu26vE42Y",
+                            youtubeUrl: "https://www.youtube.com/watch?v=9Dzu26vE42Y",
+                            channel: "CodeWithHarry",
+                            description: "Step-by-step guide to deploy Node.js API on Vercel in Hindi."
+                        },
+                        {
+                            title: "Node.js Express Deployment on Vercel in 10 Minutes",
+                            embedUrl: "https://www.youtube.com/embed/uy8k7AYaAuc",
+                            youtubeUrl: "https://www.youtube.com/watch?v=uy8k7AYaAuc",
+                            channel: "CodeWithHarry",
+                            description: "Quick tutorial to deploy Node.js Express app on Vercel."
+                        }
+                    ],
+                    articles: [
+                        {
+                            title: "Vercel Docs",
+                            url: "https://vercel.com/docs",
+                            description: "Official documentation for deploying apps on Vercel."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+
+            ]
+        };
+
+        // Track current video for each node
+        const currentVideos = {};
+        
+        // Initialize the roadmap functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set up the tree visualization
+            const margin = { top: 20, right: 120, bottom: 20, left: 120 };
+            const width = document.getElementById('tree').clientWidth - margin.right - margin.left;
+            const height = document.getElementById('tree').clientHeight - margin.top - margin.bottom;
+            
+            const svg = d3.select("#tree")
+                .append("svg")
+                .attr("width", width + margin.right + margin.left)
+                .attr("height", height + margin.top + margin.bottom)
+                .append("g")
+                .attr("transform", `translate(${margin.left},${margin.top})`);
+            
+            // Create zoom behavior
+            const zoom = d3.zoom()
+                .scaleExtent([0.1, 2])
+                .on("zoom", (event) => {
+                    svg.attr("transform", event.transform);
+                });
+            
+            d3.select("#tree svg").call(zoom);
+            
+            // Create tree layout
+            const treeLayout = d3.tree().size([height, width]);
+            
+            // Convert hierarchical data to d3 hierarchy
+            const root = d3.hierarchy(roadmapData);
+            root.x0 = height / 2;
+            root.y0 = 0;
+            
+            // Collapse all nodes by default except the first level
+            root.children.forEach(collapse);
+            
+            update(root);
+            
+            // Collapse the node and all its children
+            function collapse(node) {
+                if (node.children) {
+                    node._children = node.children;
+                    node._children.forEach(collapse);
+                    node.children = null;
+                }
+            }
+            
+            function update(source) {
+                // Compute the new tree layout
+                const treeData = treeLayout(root);
+                
+                // Get nodes and links
+                const nodes = treeData.descendants();
+                const links = treeData.descendants().slice(1);
+                
+                // Normalize for fixed-depth
+                nodes.forEach(d => { d.y = d.depth * 180 });
+                
+                // ****************** Nodes section ******************
+                const node = svg.selectAll("g.node")
+                    .data(nodes, d => d.data.name);
+                
+                // Enter any new nodes at the parent's previous position
+                const nodeEnter = node.enter().append("g")
+                    .attr("class", "node")
+                    .attr("transform", d => `translate(${source.y0},${source.x0})`)
+                    .on("click", click);
+                
+                // Add Circle for the nodes
+                nodeEnter.append("circle")
+                    .attr("class", "node")
+                    .attr("r", 8)
+                    .style("fill", d => d.data.color || "#6c63ff")
+                    .style("stroke", "#fff")
+                    .style("stroke-width", "2px");
+                
+                // Add labels for the nodes
+                nodeEnter.append("text")
+                    .attr("dy", ".35em")
+                    .attr("x", d => d.children || d._children ? -13 : 13)
+                    .attr("text-anchor", d => d.children || d._children ? "end" : "start")
+                    .text(d => d.data.name);
+                
+                // UPDATE
+                const nodeUpdate = nodeEnter.merge(node);
+                
+                // Transition to the proper position for the node
+                nodeUpdate.transition()
+                    .duration(500)
+                    .attr("transform", d => `translate(${d.y},${d.x})`);
+                
+                // Remove any exiting nodes
+                const nodeExit = node.exit().transition()
+                    .duration(500)
+                    .attr("transform", d => `translate(${source.y},${source.x})`)
+                    .remove();
+                
+                // ****************** Links section ******************
+                const link = svg.selectAll("path.link")
+                    .data(links, d => d.data.name);
+                
+                // Enter any new links at the parent's previous position
+                const linkEnter = link.enter().insert("path", "g")
+                    .attr("class", "link")
+                    .attr("d", d => {
+                        const o = { x: source.x0, y: source.y0 };
+                        return diagonal(o, o);
+                    });
+                
+                // UPDATE
+                const linkUpdate = linkEnter.merge(link);
+                
+                // Transition back to the parent element position
+                linkUpdate.transition()
+                    .duration(500)
+                    .attr("d", d => diagonal(d, d.parent));
+                
+                // Remove any exiting links
+                const linkExit = link.exit().transition()
+                    .duration(500)
+                    .attr("d", d => {
+                        const o = { x: source.x, y: source.y };
+                        return diagonal(o, o);
+                    })
+                    .remove();
+                
+                // Store the old positions for transition
+                nodes.forEach(d => {
+                    d.x0 = d.x;
+                    d.y0 = d.y;
+                });
+                
+                // Creates a curved (diagonal) path from parent to the child nodes
+                function diagonal(s, d) {
+                    return `M ${s.y} ${s.x}
+                            C ${(s.y + d.y) / 2} ${s.x},
+                              ${(s.y + d.y) / 2} ${d.x},
+                              ${d.y} ${d.x}`;
+                }
+                
+                // Toggle children on click
+                function click(event, d) {
+                    if (d.children) {
+                        d._children = d.children;
+                        d.children = null;
+                    } else {
+                        d.children = d._children;
+                        d._children = null;
+                    }
+                    update(d);
+                    
+                    // Update resources panel
+                    updateResourcesPanel(d.data);
+                }
+            }
+            
+            // Update resources panel with node data
+            function updateResourcesPanel(nodeData) {
+                const resourcesContent = document.querySelector('.resources-content');
+                const noResources = document.getElementById('no-resources');
+                
+                // Hide the no resources message
+                noResources.style.display = 'none';
+                
+                // Initialize current video index if not set
+                if (currentVideos[nodeData.name] === undefined) {
+                    currentVideos[nodeData.name] = 0;
+                }
+                
+                // If resources exist for this node
+                if (nodeData.videos && nodeData.articles) {
+                    const currentVideoIndex = currentVideos[nodeData.name];
+                    const video = nodeData.videos[currentVideoIndex];
+                    
+                    // Create HTML for resources
+                    let resourcesHTML = `
+                        <div class="video-container">
+                            <iframe src="${video.embedUrl}" title="${video.title}" allowfullscreen></iframe>
+                        </div>
+                        <div class="video-title">
+                            <i class="fab fa-youtube"></i> ${video.title}
+                        </div>
+                        <div class="video-description">
+                            ${video.description} <strong>Channel: ${video.channel}</strong>
+                        </div>
+                        
+                        <div class="video-controls">
+                            <button class="video-btn" onclick="openInNewTab('${video.youtubeUrl}')">
+                                <i class="fab fa-youtube"></i> Watch on YouTube
+                            </button>
+                        </div>
+                        
+                        <div class="resource-type">
+                            <h3 class="resource-type-title"><i class="fas fa-book"></i> Free Resources</h3>
+                    `;
+                    
+                    // Add article resources
+                    nodeData.articles.forEach(article => {
+                        resourcesHTML += `
+                            <div class="resource-card">
+                                <div class="resource-title">${article.title}</div>
+                                <div class="resource-description">${article.description}</div>
+                                <a href="${article.url}" target="_blank" class="resource-link">Visit Website <i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        `;
+                    });
+                    
+                    resourcesHTML += `</div>`;
+                    
+                    // Update resources section
+                    resourcesContent.innerHTML = resourcesHTML;
+                    resourcesContent.classList.add('active');
+                } else {
+                    // Show message if no resources available
+                    noResources.style.display = 'block';
+                    resourcesContent.classList.remove('active');
+                }
+            }
+            
+            // Control buttons functionality
+            document.getElementById('zoom-in').addEventListener('click', () => {
+                d3.select('#tree svg').transition().call(
+                    d3.zoom().scaleBy, 1.3
+                );
+            });
+            
+            document.getElementById('zoom-out').addEventListener('click', () => {
+                d3.select('#tree svg').transition().call(
+                    d3.zoom().scaleBy, 1/1.3
+                );
+            });
+            
+            document.getElementById('reset-view').addEventListener('click', () => {
+                d3.select('#tree svg').transition().call(
+                    d3.zoom().transform, d3.zoomIdentity
+                );
+            });
+        });
+        
+        // Function to play next video for a node
+        function playNextVideo(nodeName) {
+            // Find the node in the data
+            let targetNode = null;
+            function findNode(node, name) {
+                if (node.name === name) {
+                    targetNode = node;
+                    return;
+                }
+                if (node.children) {
+                    node.children.forEach(child => findNode(child, name));
+                }
+            }
+            findNode(roadmapData, nodeName);
+            
+            if (targetNode && targetNode.videos) {
+                currentVideos[nodeName] = (currentVideos[nodeName] + 1) % targetNode.videos.length;
+                
+                // Update resources panel
+                updateResourcesPanel(targetNode);
+            }
+        }
+        
+        // Function to open video in new tab
+        function openInNewTab(url) {
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AI Architect Roadmap</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --primary-color:#06b6d4;
+    --secondary-color:#4f46e5;
+    --accent-color:#f59e0b;
+    --text-color-dark:#1f2937;
+    --text-color-muted:#6b7280;
+    --bg-light:#f9fafb;
+    --bg-dark:#ffffff;
+    --timeline-line:#e5e7eb;
+    --shadow:0 10px 15px -3px rgba(0,0,0,0.08),0 4px 6px -2px rgba(0,0,0,0.05);
+    --border-radius:16px;
+}
+
+*{box-sizing:border-box}
+body{
+    font-family:'Inter',sans-serif;
+    margin:0;
+    padding:0;
+    background-color:var(--bg-light);
+    color:var(--text-color-dark);
+    line-height:1.6;
+    overflow-x:hidden;
+}
+
+/* Layout */
+.container{
+    max-width:1200px;
+    margin:32px auto;
+    padding:0 20px;
+    width:100%;
+}
+
+/* Header */
+header{
+    text-align:center;
+    margin-bottom:40px;
+    padding:36px;
+    background-color:var(--bg-dark);
+    border-radius:var(--border-radius);
+    box-shadow:var(--shadow);
+}
+header h1{ color:var(--secondary-color); font-weight:800; margin-bottom:8px; font-size:clamp(1.8rem,5vw,2.8rem); }
+header p{ font-size:clamp(1rem,2.5vw,1.2rem); color:var(--text-color-muted); max-width:800px; margin:0 auto; }
+
+/* Links default */
+.timeline-content a{
+    color:var(--primary-color);
+    text-decoration:none;
+    font-weight:600;
+    border-bottom:2px solid var(--primary-color);
+    padding-bottom:1px;
+    transition:color .18s ease-in-out,border-bottom .18s ease-in-out;
+    border-radius:1px;
+}
+.timeline-content a:hover{ color:var(--secondary-color); border-bottom-color:var(--secondary-color); }
+
+/* Timeline base */
+.timeline{ position:relative; padding:20px 0; }
+.timeline::before{
+    content:''; position:absolute; left:50%; width:3px; height:100%; background:var(--timeline-line); transform:translateX(-50%);
+}
+.timeline-item{
+    display:flex; justify-content:space-between; align-items:flex-start; gap:20px; margin-bottom:60px; position:relative;
+}
+.timeline-item:nth-child(even){ flex-direction:row-reverse; }
+.timeline-content-wrapper{ width:47%; padding:10px; position:relative; text-align:left; }
+
+/* Badge */
+.timeline-badge{
+    width:50px; height:50px; background:var(--secondary-color); border-radius:50%;
+    position:absolute; top:-5px; left:50%; transform:translateX(-50%); z-index:10;
+    display:flex; align-items:center; justify-content:center; color:#fff;
+    font-size:clamp(1rem,2vw,1.2rem); font-weight:700; box-shadow:0 0 0 8px var(--bg-light);
+}
+.timeline-item:nth-child(even) .timeline-badge{ background:var(--primary-color); }
+
+/* Card */
+.timeline-content{
+    background-color:var(--bg-dark); padding:28px; border-radius:var(--border-radius);
+    box-shadow:var(--shadow); border-top:5px solid var(--secondary-color); transition:transform .22s ease; word-break:break-word;
+}
+.timeline-item:nth-child(even) .timeline-content{ border-top:5px solid var(--primary-color); }
+.timeline-content:hover{ transform:translateY(-3px); }
+
+.timeline-content h3{ margin-top:0; color:var(--secondary-color); font-size:clamp(1.3rem,3vw,1.8rem); font-weight:700; margin-bottom:10px; border-bottom:1px solid #e5e7eb; padding-bottom:10px; }
+.timeline-item:nth-child(even) .timeline-content h3{ color:var(--primary-color); }
+.timeline-content h4{ color:var(--accent-color); font-size:clamp(1rem,2vw,1.1rem); margin-top:20px; margin-bottom:8px; font-weight:700; }
+.timeline-content p strong{ color:var(--text-color-dark); }
+
+/* =========================
+   Lists + link-list handling
+   ========================= */
+
+/* Basic list reset */
+.timeline-content ul{ list-style:none; padding:0; margin:0; }
+
+/* Each li stacks content (sentence) then link-list */
+.timeline-content ul li{
+    display:block;
+    padding:10px 0;
+    border-bottom:1px dashed #f3f4f6;
+    font-size:clamp(0.95rem,1.5vw,1rem);
+    line-height:1.45;
+    word-break:break-word;
+}
+.timeline-content ul li:last-child{ border-bottom:none; }
+
+/* Arrow marker */
+.timeline-content ul li::before{
+    content:'→';
+    color:var(--accent-color);
+    font-weight:700;
+    margin-right:10px;
+    font-size:1.05rem;
+    display:inline-block;
+    width:20px;
+    vertical-align:top;
+}
+
+/* The main inline sentence stays inline; we'll push links into .link-list below */
+.timeline-content ul li .li-text{
+    display:inline;       /* keeps the sentence inline with the arrow */
+}
+
+/* .link-list: the block under the bullet that holds one or more links */
+.link-list{
+    margin-top:8px;
+    margin-left:28px;     /* indent under the arrow */
+    display:block;
+}
+
+/* each link inside link-list is a block so they stack
+   we add a visual comma after each link except the last one */
+.link-list a{
+    display:inline-block;
+    margin:4px 0 0 0;
+    padding-bottom:2px;
+    font-size:inherit;
+    text-decoration:none;
+    color:var(--primary-color);
+    border-bottom:2px solid var(--primary-color);
+}
+.link-list a:hover{ color:var(--secondary-color); border-bottom-color:var(--secondary-color); }
+
+/* add comma after each link except the last link in the .link-list */
+.link-list a::after{
+    content:","; 
+    margin-left:4px;
+}
+.link-list a:last-of-type::after{
+    content:"";
+}
+
+/* If you want links stacked vertically, make them display:block (uncomment)
+   .link-list a{ display:block; } */
+
+/* support small helper text under links */
+.link-list .link-meta{
+    display:block;
+    color:var(--text-color-muted);
+    font-size:0.9em;
+    margin-top:4px;
+}
+
+/* =========================
+   Appendix & grid
+   ========================= */
+.appendix{ margin-top:72px; padding:44px; background-color:var(--bg-dark); border-radius:var(--border-radius); box-shadow:var(--shadow); border-top:8px solid var(--primary-color); }
+.appendix h2{ text-align:center; color:var(--text-color-dark); margin-bottom:32px; font-size:clamp(1.6rem,4vw,2.2rem); font-weight:800; }
+.grid-3{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:24px; }
+.grid-item{ background:var(--bg-light); padding:22px; border-radius:12px; border-left:5px solid var(--accent-color); box-shadow:0 2px 4px rgba(0,0,0,0.05); }
+.grid-item h3{ color:var(--secondary-color); margin-top:0; border-bottom:1px solid #e0e7ff; padding-bottom:10px; font-weight:700; font-size:clamp(1.05rem,2.5vw,1.2rem); }
+
+/* quick-start */
+.quick-start{ margin-top:36px; padding-top:24px; border-top:2px solid var(--timeline-line); }
+.quick-start ol{ padding-left:20px }
+.quick-start ol li{ margin-bottom:14px; font-weight:500; font-size:clamp(0.95rem,1.8vw,1rem); }
+.quick-start ol li::marker{ color:var(--primary-color); font-weight:bold; }
+
+/* Responsive: make centerline balanced on wide screens */
+@media (min-width:1400px){
+    .container{ max-width:1360px; padding:0 28px; }
+    .timeline-content-wrapper{ width:46%; }
+    .timeline::before{ left:56%; transform:translateX(-50%); }
+    .timeline-badge{ left:56%; transform:translateX(-50%); }
+    .timeline-content{ padding:30px; }
+}
+@media (min-width:1025px) and (max-width:1399px){
+    .timeline-content-wrapper{ width:47%; }
+    .timeline::before{ left:57%; transform:translateX(-50%); }
+    .timeline-badge{ left:57%; transform:translateX(-50%); }
+}
+@media (max-width:1024px){
+    .container{ max-width:920px; padding:0 20px; }
+    .timeline-item{ gap:14px; }
+    .timeline-content-wrapper{ width:100%; }
+    .timeline::before{ left:50%; transform:translateX(-50%); }
+    .timeline-badge{ left:50%; transform:translateX(-50%); }
+}
+@media (max-width:768px){
+    .timeline{ padding-left:28px; }
+    .timeline-item{ flex-direction:column!important; margin-bottom:36px; }
+    .timeline::before{ left:24px; height:100%; transform:none; }
+    .timeline-badge{ left:24px; transform:none; top:8px; }
+    .timeline-content-wrapper{ width:100%; padding-left:54px; }
+    .timeline-content{ padding:22px 18px; border-radius:12px; }
+    .link-list{ margin-left:34px; }
+}
+@media (max-width:480px){
+    .container{ padding:0 14px; margin:20px auto; }
+    .timeline::before{ left:20px; }
+    .timeline-badge{ left:20px; top:6px; transform:none; width:40px; height:40px; }
+    .timeline-content-wrapper{ padding-left:50px; }
+    .timeline-content{ padding:18px 14px; border-radius:12px; }
+    .link-list{ margin-left:30px; }
+}
+@media (max-width:320px){
+    .container{ padding:0 10px; }
+    .timeline-content{ padding:14px 12px; }
+    .timeline-badge{ width:36px; height:36px; font-size:0.85rem; }
+    .link-list{ margin-left:26px; font-size:0.92em; }
+}
+@media (max-height:500px) and (orientation:landscape){
+    header{ padding:20px; margin-bottom:24px; }
+    .timeline-item{ margin-bottom:36px; }
+    .appendix{ margin-top:40px; padding:28px; }
+}
+@media print{
+    body{ background-color:white; }
+    .timeline-content:hover{ transform:none; }
+    .timeline-content{ box-shadow:none; border:1px solid #e5e7eb; page-break-inside:avoid; }
+    .timeline-item{ page-break-inside:avoid; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>AI Architect Roadmap</h1>
+	<h1>-Syntax Syndicate</h1>
+        <p>A comprehensive, step-wise journey covering ML Engineering, MLOps, Generative AI, and Scalable Platforms (14 Months).</p>
+    </header>
+
+    <section class="timeline">
+        <!-- Phase 0 -->
+        <div class="timeline-item">
+            <div class="timeline-badge">0</div>
+            <div class="timeline-content-wrapper">
+                <div class="timeline-content">
+                    <h3>Phase 0: Setup & Foundations</h3>
+                    <p><strong>Duration:</strong> 2 Weeks</p>
+                    <h4>Action Items</h4>
+                    <ul>
+                        <li>
+                            <span class="li-text">Pick your stack:</span>
+                            <div class="link-list">
+                                <a href="https://pytorch.org/docs" target="_blank">Python + PyTorch</a>
+                                <a href="https://fastapi.tiangolo.com/" target="_blank">FastAPI</a>
+                                <a href="https://www.postgresql.org/" target="_blank">PostgreSQL</a>
+                                <a href="https://docs.docker.com/" target="_blank">Docker</a>
+                                <span class="link-meta">GitHub Actions</span>
+                            </div>
+                        </li>
+
+                        <li>
+                            <span class="li-text">Study systems design for data/ML (focus on latency, throughput, SLOs, and cost per request).</span>
+                            <div class="link-list">
+                                <a href="https://sre.google/sre-book/" target="_blank">[Resource: SRE Principles]</a>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <h4>Video Resource: ML System Design</h4>
+                    <ul>
+                        <li>
+                            <span class="li-text">Watch the full course to grasp high-level architecture:</span>
+                            <div class="link-list">
+                                <a href="https://www.youtube.com/watch?v=F2FmTdLtb_4" target="_blank">System Design Concepts Course and Interview Prep (freeCodeCamp)</a>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <h4>Deliverable</h4>
+                    <ul>
+                        <li>
+                            <span class="li-text">Repo template with linting, tests, Makefile, and</span>
+                            <div class="link-list">
+                                <a href="https://code.visualstudio.com/docs/devcontainers/containers" target="_blank">DevContainer setup</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phase 1 -->
+        <div class="timeline-item">
+            <div class="timeline-badge">1</div>
+            <div class="timeline-content-wrapper">
+                <div class="timeline-content">
+                    <h3>Phase 1: Core ML Engineering</h3>
+                    <p><strong>Duration:</strong> 0 – 2 Months</p>
+                    <h4>Action Items</h4>
+                    <ul>
+                        <li>
+                            <span class="li-text">Refresh math: linear algebra, probability/statistics, optimization.</span>
+                            <div class="link-list">
+                                <a href="https://www.khanacademy.org/math" target="_blank">Khan Academy</a>
+                            </div>
+                        </li>
+
+                        <li>
+                            <span class="li-text">Implement logistic regression, decision tree, and gradient boosting from scratch (using NumPy).</span>
+                            <div class="link-list">
+                                <a href="https://www.dataindependent.com/machine-learning/implement-ml-algorithms-from-scratch-with-numpy/" target="_blank">ML From Scratch</a>
+                            </div>
+                        </li>
+
+                        <li>
+                            <span class="li-text">Master core libraries: scikit-learn,</span>
+                            <div class="link-list">
+                                <a href="https://www.pytorchlightning.ai/documentation/index.html" target="_blank">PyTorch Lightning</a>
+                            </div>
+                        </li>
+
+                        <li>
+                            <span class="li-text">Set up experiment tracking with</span>
+                            <div class="link-list">
+                                <a href="https://mlflow.org/docs/latest/index.html" target="_blank">MLflow</a>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <h4>Video Resource: ML From Scratch</h4>
+                    <ul>
+                        <li>
+                            <span class="li-text">Deep dive into implementation with this tutorial:</span>
+                            <div class="link-list">
+                                <a href="https://www.youtube.com/watch?v=3giTXZbyf1Q" target="_blank">Logistic Regression FROM SCRATCH in Python</a>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <h4>Project 1: Tabular ML Service</h4>
+                    <ul>
+                        <li>Build a classic tabular ML project (e.g., fraud/credit/churn).</li>
+                        <li>Ship a <strong>FastAPI inference service</strong> packaged in a Docker image.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phase 2 -->
+        <div class="timeline-item">
+            <div class="timeline-badge">2</div>
+            <div class="timeline-content-wrapper">
+                <div class="timeline-content">
+                    <h3>Phase 2: Data & MLOps Foundations</h3>
+                    <p><strong>Duration:</strong> 2 – 4 Months</p>
+                    <h4>Action Items</h4>
+                    <ul>
+                        <li>
+                            <span class="li-text">Master Data Engineering tools:</span>
+                            <div class="link-list">
+                                <a href="https://airflow.apache.org/docs/" target="_blank">Airflow/Prefect</a>
+                                <a href="https://feast.dev/" target="_blank">Feast</a>
+                            </div>
+                        </li>
+
+                        <li>
+                            <span class="li-text">Implement CI/CD for ML: unit tests for data & models, model registry, canary/blue-green deploys.</span>
+                            <div class="link-list">
+                                <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/model-registry.html" target="_blank">Model Registry Concepts</a>
+                            </div>
+                        </li>
+
+                        <li>
+                            <span class="li-text">Set up Cloud Infra using IaC:</span>
+                            <div class="link-list">
+                                <a href="https://www.terraform.io/docs" target="_blank">Terraform</a>
+                                <a href="https://kubernetes.io/docs/home/" target="_blank">Kubernetes</a>
+                            </div>
+                        </li>
+
+                        <li>
+                            <span class="li-text">Establish Observability:</span>
+                            <div class="link-list">
+                                <a href="https://prometheus.io/docs/introduction/overview/" target="_blank">Prometheus/Grafana</a>
+                                <a href="https://whylogs.ai/docs" target="_blank">whylogs/evidently</a>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <h4>Project 2: End-to-End MLOps Pipeline</h4>
+                    <ul>
+                        <li>Develop a training pipeline integrated with a feature store.</li>
+                        <li>Implement full CI/CD deployment to a Kubernetes cluster with autoscaling enabled.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phase 3 -->
+        <div class="timeline-item">
+            <div class="timeline-badge">3</div>
+            <div class="timeline-content-wrapper">
+                <div class="timeline-content">
+                    <h3>Phase 3: Generative AI & LLMOps</h3>
+                    <p><strong>Duration:</strong> 4 – 7 Months</p>
+                    <h4>Action Items</h4>
+                    <ul>
+                        <li>
+                            <span class="li-text">Design RAG systems: chunking, embeddings, vector DBs, retrieval evaluation.</span>
+                            <div class="link-list">
+                                <a href="https://www.pinecone.io/learn/series/rag/what-is-rag/" target="_blank">RAG Overview</a>
+                                <a href="https://github.com/pgvector/pgvector" target="_blank">pgvector</a>
+                            </div>
+                        </li>
+
+                        <li>
+                            <span class="li-text">Implement Prompt & Policy: guardrails, PII filtering.</span>
+                            <div class="link-list">
+                                <a href="https://www.owasp.org/index.php/Prompt_Injection" target="_blank">Prompt-injection defenses</a>
+                            </div>
+                        </li>
+
+                        <li>
+                            <span class="li-text">Control Latency/Cost: quantization, batching, caching.</span>
+                            <div class="link-list">
+                                <a href="https://github.com/TimDettmers/bitsandbytes" target="_blank">bitsandbytes</a>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <h4>Project 3: Production RAG Service</h4>
+                    <ul>
+                        <li>Deliver a production-grade RAG service with evaluation and A/B testing capability.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phase 4 -->
+        <div class="timeline-item">
+            <div class="timeline-badge">4</div>
+            <div class="timeline-content-wrapper">
+                <div class="timeline-content">
+                    <h3>Phase 4: Scalable Architectures</h3>
+                    <p><strong>Duration:</strong> 7 – 10 Months</p>
+                    <h4>Action Items</h4>
+                    <ul>
+                        <li>
+                            <span class="li-text">Master Architecture Patterns:</span>
+                            <div class="link-list">
+                                <a href="https://kafka.apache.org/documentation" target="_blank">Kafka</a>
+                                <a href="https://delta.io/" target="_blank">Delta/Iceberg</a>
+                            </div>
+                        </li>
+
+                        <li>
+                            <span class="li-text">Implement Security & Governance:</span>
+                            <div class="link-list">
+                                <a href="https://modelcards.withgoogle.com/about" target="_blank">Model Cards</a>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <h4>Project 4: Multi-Region AI API</h4>
+                    <ul>
+                        <li>Build a multi-region, auto-failover AI API (using CDN + WAF).</li>
+                        <li>Define and thoroughly test RTO and RPO.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phase 5 -->
+        <div class="timeline-item">
+            <div class="timeline-badge">5</div>
+            <div class="timeline-content-wrapper">
+                <div class="timeline-content">
+                    <h3>Phase 5: Platform & Enterprise Skills (Capstone)</h3>
+                    <p><strong>Duration:</strong> 10 – 14 Months</p>
+                    <h4>Action Items</h4>
+                    <ul>
+                        <li>
+                            <span class="li-text">Apply Platform Thinking:</span>
+                            <div class="link-list">
+                                <a href="https://platform.engineering/blog/what-is-platform-engineering" target="_blank">Platform Eng</a>
+                            </div>
+                        </li>
+
+                        <li>
+                            <span class="li-text">Address Compliance:</span>
+                            <div class="link-list">
+                                <a href="https://www.iso.org/standard/27001.html" target="_blank">ISO 27001</a>
+                                <a href="https://adr.github.io/" target="_blank">ADRs</a>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <h4>Project 5: AI Platform Starter Kit (Capstone)</h4>
+                    <ul>
+                        <li>Deliver an "AI Platform Starter Kit" repository.</li>
+                        <li>One-click deploy of ETL → training → registry → serving → monitoring.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="appendix">
+        <h2>Career Acceleration Components</h2>
+        <div class="grid-3">
+            <div class="grid-item">
+                <h3>Certifications</h3>
+                <ul>
+                    <li>AWS Solutions Architect (Associate → Professional) OR Azure Architect Expert (AZ-305).</li>
+                    <li>CKA (Kubernetes).</li>
+                    <li>Terraform Associate.</li>
+                    <li>Optional: Databricks or GCP Professional ML Engineer.</li>
+                </ul>
+            </div>
+
+            <div class="grid-item">
+                <h3>Portfolio "Architect"</h3>
+                <ul>
+                    <li>3 public reference architectures (diagrams + ADRs + costs + SLOs).</li>
+                    <li>RAG system with robust eval + safety filters + latency/cost charts.</li>
+                    <li>K8s-based serving stack with A/B & canary deploys, autoscaling, rollback playbooks.</li>
+                    <li>Cost-optimization case study.</li>
+                </ul>
+            </div>
+
+            <div class="grid-item">
+                <h3>Interview & Comp Playbook</h3>
+                <ul>
+                    <li>Systems-design drill: clarify reqs → constraints → designs → trade-offs → risks → mitigations.</li>
+                    <li>Behavioral: STAR stories for incidents, migrations, and cost reductions.</li>
+                    <li>Negotiate total compensation (base + bonus + RSUs).</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="quick-start">
+            <h3>Quick Start (Next 14 Days)</h3>
+            <ol>
+                <li><strong>Day 1–3:</strong> Spin up a managed Kubernetes cluster and deploy a toy FastAPI model with autoscaling configured.</li>
+                <li><strong>Day 4–7:</strong> Build a tiny RAG system using pgvector + OpenAI/Local LLM; add a basic offline evaluation harness.</li>
+                <li><strong>Day 8–14:</strong> Wire up MLflow + CI/CD for your toy model; add drift monitors; publish an ADR + diagram for your entire setup.</li>
+            </ol>
+        </div>
+    </section>
+</div>
+</body>
+</html>

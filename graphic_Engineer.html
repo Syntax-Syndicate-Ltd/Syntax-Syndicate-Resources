@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GRAPHIC ENGINEER ROADMAP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Exo+2:wght@300;400;500&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #02070d;
+            --neon: #00eaff;
+            --accent: #00ff88;
+            --text: #e8f7ff;
+            --dark-bg: rgba(2, 7, 13, 0.8);
+            --card-bg: rgba(0, 26, 39, 0.6);
+            --glow: 0 0 10px var(--neon), 0 0 20px var(--neon), 0 0 30px var(--neon);
+            --accent-glow: 0 0 10px var(--accent), 0 0 20px var(--accent);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: clamp(12px, 2vw, 16px);
+        }
+
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            letter-spacing: clamp(0.5px, 0.5vw, 2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding: clamp(1rem, 4vw, 3rem);
+        }
+
+        .grid-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 234, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 234, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .hero-title {
+            font-size: clamp(1.5rem, 7vw, 4.5rem);
+            text-align: center;
+            margin-bottom: clamp(0.5rem, 2vw, 1.5rem);
+            text-transform: uppercase;
+            filter: drop-shadow(0 0 10px var(--neon));
+            animation: pulse 3s infinite alternate;
+            line-height: 1.2;
+        }
+
+        @keyframes pulse {
+            0% { filter: drop-shadow(0 0 10px var(--neon)); }
+            100% { filter: drop-shadow(0 0 20px var(--neon)) drop-shadow(0 0 30px var(--neon)); }
+        }
+
+        .hero-subtitle {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: clamp(0.85rem, 3vw, 1.3rem);
+            text-align: center;
+            margin-bottom: clamp(1.5rem, 3vw, 3rem);
+            max-width: 95%;
+        }
+
+        .enter-button {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(0.85rem, 2vw, 1.1rem);
+            padding: clamp(0.6rem, 1.5vw, 1rem) clamp(1.2rem, 2.5vw, 2.5rem);
+            background: transparent;
+            color: var(--neon);
+            border: 2px solid var(--neon);
+            border-radius: 0;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: clamp(0.5px, 1vw, 2px);
+            filter: drop-shadow(0 0 5px var(--neon));
+        }
+
+        .enter-button:hover {
+            background-color: rgba(0, 234, 255, 0.1);
+            filter: drop-shadow(0 0 10px var(--neon));
+            transform: translateY(-5px);
+        }
+
+        /* Section Common Styles */
+        section {
+            padding: clamp(2rem, 5vw, 5rem) clamp(0.8rem, 3vw, 2rem);
+            position: relative;
+        }
+
+        .section-title {
+            font-size: clamp(1.3rem, 5vw, 2.5rem);
+            text-align: center;
+            margin-bottom: clamp(1.5rem, 4vw, 3rem);
+            text-transform: uppercase;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+            max-width: 90%;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: clamp(-8px, -1vw, -12px);
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--neon), transparent);
+        }
+
+        /* Roadmap Section */
+        .roadmap {
+            background-color: var(--dark-bg);
+            clip-path: polygon(0 0, 100% 3%, 100% 97%, 0 100%);
+        }
+
+        .timeline {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            background: var(--neon);
+            transform: translateX(-50%);
+            filter: var(--glow);
+        }
+
+        .timeline-item {
+            margin-bottom: clamp(2rem, 4vw, 4rem);
+            position: relative;
+            width: 50%;
+            padding: 0 clamp(1rem, 2vw, 3rem);
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-item:after {
+            content: '';
+            position: absolute;
+            top: clamp(1.5rem, 1.5vw, 2rem);
+            width: 20px;
+            height: 20px;
+            background: var(--bg);
+            border: 3px solid var(--neon);
+            border-radius: 50%;
+            filter: var(--glow);
+        }
+
+        .timeline-item:nth-child(odd):after {
+            right: clamp(-12px, -1.5vw, -10px);
+        }
+
+        .timeline-item:nth-child(even):after {
+            left: clamp(-12px, -1.5vw, -10px);
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--neon);
+            clip-path: polygon(0 0, 95% 5%, 100% 100%, 5% 95%);
+            padding: clamp(1rem, 2vw, 2rem);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            filter: var(--glow);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            gap: clamp(0.5rem, 1.5vw, 1rem);
+            min-height: clamp(40px, 10vw, 50px);
+        }
+
+        .card-icon {
+            min-width: clamp(35px, 7vw, 45px);
+            width: clamp(35px, 7vw, 45px);
+            height: clamp(35px, 7vw, 45px);
+            background: var(--neon);
+            clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            filter: drop-shadow(0 0 5px var(--neon));
+            font-weight: bold;
+            font-size: clamp(12px, 3vw, 20px);
+            flex-shrink: 0;
+        }
+
+        .card-title {
+            font-size: clamp(0.9rem, 2.5vw, 1.4rem);
+            flex: 1;
+            min-width: 0;
+        }
+
+        .expand-toggle {
+            width: 30px;
+            height: 30px;
+            position: relative;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .expand-toggle:before, .expand-toggle:after {
+            content: '';
+            position: absolute;
+            background-color: var(--neon);
+            transition: all 0.3s ease;
+        }
+
+        .expand-toggle:before {
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            transform: translateY(-50%);
+        }
+
+        .expand-toggle:after {
+            left: 50%;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            transform: translateX(-50%);
+        }
+
+        .expanded .expand-toggle:after {
+            transform: translateX(-50%) rotate(90deg);
+            opacity: 0;
+        }
+
+        .card-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+
+        .expanded .card-content {
+            max-height: 2000px;
+        }
+
+        .card-description {
+            margin-bottom: 1rem;
+            font-size: clamp(0.8rem, 1.8vw, 1rem);
+        }
+
+        .tools-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: clamp(0.3rem, 0.8vw, 0.8rem);
+            margin-bottom: 1rem;
+        }
+
+        .tool-tag {
+            background: rgba(0, 234, 255, 0.1);
+            border: 1px solid var(--neon);
+            padding: clamp(0.2rem, 0.4vw, 0.4rem) clamp(0.4rem, 0.8vw, 0.8rem);
+            font-size: clamp(0.6rem, 1.2vw, 0.8rem);
+            border-radius: 2px;
+        }
+
+        .difficulty-meter {
+            display: flex;
+            margin-bottom: 1rem;
+            gap: 0.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .difficulty-label {
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 600;
+            font-size: clamp(0.75rem, 1.3vw, 0.95rem);
+            white-space: nowrap;
+        }
+
+        .difficulty-bars {
+            display: flex;
+            gap: 3px;
+        }
+
+        .difficulty-bar {
+            width: clamp(15px, 3vw, 20px);
+            height: 8px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .difficulty-bar.active {
+            background: var(--accent);
+            filter: var(--accent-glow);
+        }
+
+        .video-preview {
+            width: 100%;
+            height: clamp(120px, 25vw, 250px);
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--neon);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #001119, #003344);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--neon);
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(0.8rem, 1.8vw, 1.1rem);
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .play-button {
+            position: absolute;
+            width: clamp(45px, 8vw, 60px);
+            height: clamp(45px, 8vw, 60px);
+            background: rgba(0, 234, 255, 0.7);
+            clip-path: polygon(0 0, 0% 100%, 100% 50%);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .play-button:hover {
+            background: var(--neon);
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 10px var(--neon));
+        }
+
+        /* Skill Wheel Section */
+        .skills {
+            background-color: var(--bg);
+            clip-path: polygon(0 3%, 100% 0, 100% 97%, 0 100%);
+        }
+
+        .wheel-container {
+            max-width: 100%;
+            margin: 0 auto;
+            position: relative;
+            height: clamp(280px, 70vw, 500px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(1rem, 2vw, 2rem);
+        }
+
+        .skill-wheel {
+            width: clamp(220px, 55vw, 400px);
+            height: clamp(220px, 55vw, 400px);
+            border-radius: 50%;
+            background: var(--dark-bg);
+            border: 2px solid var(--neon);
+            filter: var(--glow);
+            position: relative;
+        }
+
+        .wheel-segment {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            clip-path: polygon(50% 50%, 50% 0%, 100% 0%, 100% 100%, 50% 50%);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 50%;
+        }
+
+        .wheel-segment:nth-child(1) { transform: rotate(0deg); background: rgba(0, 234, 255, 0.1); }
+        .wheel-segment:nth-child(2) { transform: rotate(60deg); background: rgba(0, 234, 255, 0.15); }
+        .wheel-segment:nth-child(3) { transform: rotate(120deg); background: rgba(0, 234, 255, 0.2); }
+        .wheel-segment:nth-child(4) { transform: rotate(180deg); background: rgba(0, 234, 255, 0.25); }
+        .wheel-segment:nth-child(5) { transform: rotate(240deg); background: rgba(0, 234, 255, 0.3); }
+        .wheel-segment:nth-child(6) { transform: rotate(300deg); background: rgba(0, 234, 255, 0.35); }
+
+        .wheel-segment:hover {
+            background: rgba(0, 234, 255, 0.5);
+            filter: drop-shadow(0 0 10px var(--neon));
+        }
+
+        .segment-label {
+            position: absolute;
+            top: 30%;
+            left: 70%;
+            transform: rotate(30deg);
+            transform-origin: left;
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(0.6rem, 1.2vw, 0.9rem);
+            color: var(--text);
+            text-shadow: 0 0 5px var(--neon);
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        .wheel-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: clamp(90px, 20vw, 150px);
+            height: clamp(90px, 20vw, 150px);
+            background: var(--card-bg);
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 1rem;
+            filter: var(--accent-glow);
+            z-index: 10;
+        }
+
+        .center-title {
+            font-size: clamp(0.9rem, 2vw, 1.2rem);
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+
+        .center-description {
+            font-size: clamp(0.6rem, 1.2vw, 0.85rem);
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        /* Competency Details Section */
+        .competency-details {
+            background-color: var(--dark-bg);
+            clip-path: polygon(0 3%, 100% 0, 100% 97%, 0 100%);
+            min-height: 600px;
+            padding: clamp(2rem, 5vw, 5rem) clamp(0.8rem, 3vw, 2rem);
+        }
+
+        .details-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .details-container.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .details-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: clamp(1.5rem, 3vw, 2rem);
+            gap: clamp(0.8rem, 2vw, 1.5rem);
+            flex-wrap: wrap;
+        }
+
+        .details-icon {
+            width: clamp(45px, 10vw, 60px);
+            height: clamp(45px, 10vw, 60px);
+            background: var(--neon);
+            clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            filter: drop-shadow(0 0 5px var(--neon));
+            flex-shrink: 0;
+        }
+
+        .details-title {
+            font-size: clamp(1.3rem, 3.5vw, 2.5rem);
+            color: var(--accent);
+        }
+
+        .details-description {
+            font-size: clamp(0.85rem, 1.8vw, 1.1rem);
+            margin-bottom: clamp(1.5rem, 2vw, 2rem);
+        }
+
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(clamp(200px, 100%, 300px), 1fr));
+            gap: clamp(0.8rem, 1.5vw, 1.5rem);
+            margin-bottom: clamp(1.5rem, 2vw, 2rem);
+        }
+
+        .topic-card {
+            background: var(--card-bg);
+            border: 1px solid var(--neon);
+            clip-path: polygon(0 0, 95% 5%, 100% 100%, 5% 95%);
+            padding: clamp(0.8rem, 1.5vw, 1.5rem);
+            transition: all 0.3s ease;
+        }
+
+        .topic-card:hover {
+            transform: translateY(-5px);
+            filter: var(--glow);
+        }
+
+        .topic-title {
+            font-size: clamp(0.9rem, 1.8vw, 1.2rem);
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+
+        .topic-description {
+            font-size: clamp(0.75rem, 1.3vw, 0.95rem);
+        }
+
+        .tools-section {
+            margin-top: clamp(1.5rem, 2vw, 2rem);
+        }
+
+        .tools-title {
+            font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+            margin-bottom: 1rem;
+            color: var(--neon);
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(clamp(100px, 100%, 180px), 1fr));
+            gap: clamp(0.6rem, 1vw, 1rem);
+        }
+
+        .tool-item {
+            background: rgba(0, 234, 255, 0.1);
+            border: 1px solid var(--neon);
+            padding: clamp(0.6rem, 1vw, 1rem);
+            text-align: center;
+            transition: all 0.3s ease;
+            font-size: clamp(0.7rem, 1.3vw, 0.95rem);
+            word-break: break-word;
+        }
+
+        .tool-item:hover {
+            background: rgba(0, 234, 255, 0.2);
+            filter: drop-shadow(0 0 5px var(--neon));
+        }
+
+        .default-message {
+            text-align: center;
+            padding: clamp(2rem, 4vw, 3rem);
+            font-size: clamp(0.95rem, 2vw, 1.2rem);
+            color: var(--neon);
+        }
+
+        /* Documentation Section */
+        .documentation {
+            background-color: var(--bg);
+            clip-path: polygon(0 3%, 100% 0, 100% 97%, 0 100%);
+        }
+
+        .docs-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(clamp(220px, 100%, 320px), 1fr));
+            gap: clamp(1rem, 1.8vw, 2rem);
+        }
+
+        .doc-card {
+            background: var(--card-bg);
+            border: 1px solid var(--neon);
+            clip-path: polygon(0 0, 95% 5%, 100% 100%, 5% 95%);
+            padding: clamp(1rem, 1.8vw, 2rem);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .doc-card:hover {
+            transform: translateY(-10px);
+            filter: var(--glow);
+        }
+
+        .doc-icon {
+            width: clamp(45px, 10vw, 60px);
+            height: clamp(45px, 10vw, 60px);
+            margin-bottom: 1rem;
+            background: var(--neon);
+            clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(0.9rem, 2vw, 1.5rem);
+            filter: drop-shadow(0 0 5px var(--neon));
+        }
+
+        .doc-title {
+            font-size: clamp(1rem, 2.2vw, 1.5rem);
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .doc-description {
+            flex: 1;
+            margin-bottom: 1rem;
+            font-size: clamp(0.8rem, 1.5vw, 0.95rem);
+        }
+
+        .doc-links {
+            display: flex;
+            flex-direction: column;
+            gap: clamp(0.4rem, 0.8vw, 0.8rem);
+        }
+
+        .doc-link {
+            display: flex;
+            align-items: center;
+            padding: clamp(0.5rem, 0.8vw, 0.8rem) clamp(0.6rem, 1vw, 1rem);
+            background: rgba(0, 234, 255, 0.1);
+            border: 1px solid var(--neon);
+            color: var(--text);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 500;
+            font-size: clamp(0.75rem, 1.3vw, 0.9rem);
+            min-height: 35px;
+        }
+
+        .doc-link:hover {
+            background: rgba(0, 234, 255, 0.2);
+            transform: translateX(5px);
+            filter: drop-shadow(0 0 5px var(--neon));
+        }
+
+        .doc-link:before {
+            content: '📚';
+            margin-right: clamp(0.5rem, 0.8vw, 0.8rem);
+            font-size: clamp(0.9rem, 1.8vw, 1.2rem);
+            flex-shrink: 0;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(2, 7, 13, 0.95);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(1rem, 2vw, 2rem);
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            border: 2px solid var(--neon);
+            clip-path: polygon(0 0, 95% 5%, 100% 100%, 5% 95%);
+            width: 100%;
+            max-width: 800px;
+            padding: clamp(1.2rem, 1.8vw, 2rem);
+            position: relative;
+            filter: var(--glow);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: clamp(0.5rem, 1vw, 1rem);
+            right: clamp(0.5rem, 1vw, 1rem);
+            background: transparent;
+            border: none;
+            color: var(--neon);
+            font-size: clamp(1.2rem, 2vw, 1.8rem);
+            cursor: pointer;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-video {
+            width: 100%;
+            height: clamp(150px, 40vw, 400px);
+            background: #000;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--neon);
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(0.85rem, 1.8vw, 1.2rem);
+            text-align: center;
+        }
+
+        .modal-title {
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .modal-description {
+            margin-bottom: 1rem;
+            font-size: clamp(0.8rem, 1.5vw, 0.95rem);
+        }
+
+        /* Bookmark System */
+        .bookmark-btn {
+            position: fixed;
+            bottom: clamp(1rem, 3vw, 2rem);
+            right: clamp(1rem, 3vw, 2rem);
+            width: clamp(50px, 12vw, 60px);
+            height: clamp(50px, 12vw, 60px);
+            background: var(--card-bg);
+            border: 2px solid var(--neon);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 0 5px var(--neon));
+        }
+
+        .bookmark-btn:hover {
+            transform: scale(1.1);
+            filter: var(--glow);
+        }
+
+        .bookmark-panel {
+            position: fixed;
+            bottom: clamp(1rem, 3vw, 2rem);
+            right: clamp(1rem, 3vw, 2rem);
+            width: clamp(220px, 80vw, 300px);
+            background: var(--card-bg);
+            border: 2px solid var(--neon);
+            clip-path: polygon(0 0, 95% 5%, 100% 100%, 5% 95%);
+            padding: clamp(1rem, 1.5vw, 1.5rem);
+            z-index: 99;
+            display: none;
+            filter: var(--glow);
+            max-height: 400px;
+            overflow: hidden;
+            flex-direction: column;
+        }
+
+        .bookmark-panel.active {
+            display: flex;
+        }
+
+        .bookmark-title {
+            font-size: clamp(0.95rem, 1.8vw, 1.2rem);
+            margin-bottom: 1rem;
+            color: var(--accent);
+            text-align: center;
+        }
+
+        .bookmark-list {
+            flex: 1;
+            overflow-y: auto;
+            margin-bottom: 1rem;
+        }
+
+        .bookmark-item {
+            padding: clamp(0.4rem, 0.8vw, 0.6rem);
+            border-bottom: 1px solid rgba(0, 234, 255, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .bookmark-item:last-child {
+            border-bottom: none;
+        }
+
+        .bookmark-item-title {
+            font-size: clamp(0.75rem, 1.3vw, 0.9rem);
+            flex: 1;
+            min-width: 0;
+            word-break: break-word;
+        }
+
+        .bookmark-remove {
+            background: transparent;
+            border: none;
+            color: var(--neon);
+            cursor: pointer;
+            font-size: clamp(1rem, 1.5vw, 1.2rem);
+            flex-shrink: 0;
+        }
+
+        .progress-bar {
+            height: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            margin-top: 0.5rem;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--accent);
+            width: 0%;
+            transition: width 0.5s ease;
+            filter: var(--accent-glow);
+        }
+
+        .progress-text {
+            text-align: center;
+            margin-top: 0.5rem;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: clamp(0.7rem, 1.2vw, 0.85rem);
+        }
+
+        /* Footer */
+        footer {
+            padding: clamp(1.5rem, 2vw, 3rem) clamp(0.8rem, 3vw, 2rem);
+            text-align: center;
+            position: relative;
+        }
+
+        footer:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--neon), transparent);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: clamp(1rem, 3vw, 2rem);
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: var(--neon);
+            text-decoration: none;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: clamp(0.8rem, 1.5vw, 1rem);
+        }
+
+        .footer-link:hover {
+            color: var(--accent);
+            filter: drop-shadow(0 0 5px var(--accent));
+        }
+
+        /* Tablet and Mobile Responsive */
+        @media (max-width: 1024px) {
+            .timeline:before {
+                left: 40px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 80px;
+                padding-right: 0;
+            }
+
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+
+            .timeline-item:after {
+                left: 30px !important;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .timeline:before {
+                left: 30px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 0;
+                margin-bottom: clamp(1.5rem, 3vw, 3rem);
+            }
+
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+
+            .timeline-item:after {
+                left: 20px !important;
+            }
+
+            .card-header {
+                flex-wrap: wrap;
+            }
+
+            .card-title {
+                min-width: 100%;
+            }
+
+            .wheel-container {
+                height: clamp(250px, 65vw, 400px);
+            }
+
+            .topics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .docs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .details-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .details-icon {
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="grid-background"></div>
+        <h1 class="hero-title">GRAPHIC ENGINEER ROADMAP</h1>
+        <p class="hero-subtitle">Become a master of tools, rendering, shaders, and pipelines.</p>
+        <button class="enter-button" id="enterButton">ENTER ROADMAP</button>
+    </section>
+
+    <!-- Roadmap Section -->
+    <section class="roadmap" id="roadmap">
+        <h2 class="section-title">Learning Path</h2>
+        <div class="timeline">
+            <!-- Timeline items generated by JavaScript -->
+        </div>
+    </section>
+
+    <!-- Skill Wheel Section -->
+    <section class="skills" id="skills">
+        <h2 class="section-title">Core Competencies</h2>
+        <div class="wheel-container">
+            <div class="skill-wheel" id="skillWheel">
+                <div class="wheel-segment" data-segment="fundamentals">
+                    <span class="segment-label">Fundamentals</span>
+                </div>
+                <div class="wheel-segment" data-segment="tools">
+                    <span class="segment-label">Tools</span>
+                </div>
+                <div class="wheel-segment" data-segment="rendering">
+                    <span class="segment-label">Rendering</span>
+                </div>
+                <div class="wheel-segment" data-segment="shaders">
+                    <span class="segment-label">Shaders</span>
+                </div>
+                <div class="wheel-segment" data-segment="engines">
+                    <span class="segment-label">Engines</span>
+                </div>
+                <div class="wheel-segment" data-segment="projects">
+                    <span class="segment-label">Projects</span>
+                </div>
+            </div>
+            <div class="wheel-center">
+                <div class="center-title" id="centerTitle">Fundamentals</div>
+                <div class="center-description" id="centerDescription">Click a segment</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Competency Details Section -->
+    <section class="competency-details" id="competencyDetails">
+        <div class="default-message" id="defaultMessage">
+            Select a core competency from the wheel above to view detailed information
+        </div>
+    </section>
+
+    <!-- Documentation Section -->
+    <section class="documentation" id="documentation">
+        <h2 class="section-title">Documentation & Tools</h2>
+        <div class="docs-grid">
+            <!-- Documentation cards generated by JavaScript -->
+        </div>
+    </section>
+
+    <!-- Bookmark System -->
+    <div class="bookmark-btn" id="bookmarkBtn">
+        <div>📌</div>
+    </div>
+    <div class="bookmark-panel" id="bookmarkPanel">
+        <h3 class="bookmark-title">Saved Progress</h3>
+        <div class="bookmark-list" id="bookmarkList"></div>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="progress-text" id="progressText">0% Complete</div>
+    </div>
+
+    <!-- Video Modal -->
+    <div class="modal" id="videoModal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeModal">&times;</button>
+            <div class="modal-video" id="modalVideo">Video Player</div>
+            <h3 class="modal-title" id="modalTitle">Video Title</h3>
+            <p class="modal-description" id="modalDescription">Video description</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>GRAPHIC ENGINEER ROADMAP BY SYNTAX SYNDICATE &copy; 2025</p>
+        <div class="footer-links">
+            <a href="#" class="footer-link">About</a>
+            <a href="#" class="footer-link">Contribute</a>
+            <a href="#" class="footer-link">Resources</a>
+            <a href="#" class="footer-link">Contact</a>
+        </div>
+    </footer>
+
+    <script>
+        const roadmapData = [
+            {
+                id: 1,
+                title: "Mathematics Fundamentals",
+                icon: "M",
+                description: "Master linear algebra, calculus, and geometry essential for computer graphics.",
+                tools: ["Linear Algebra", "Calculus", "Geometry"],
+                difficulty: 3,
+                youtubeUrl: "https://youtu.be/fNk_zzaMoSs?si=EieMqbIYVfjkmKdO"
+            },
+            {
+                id: 2,
+                title: "Programming Basics",
+                icon: "P",
+                description: "Learn C++ and Python as primary languages for graphics programming.",
+                tools: ["C++", "Python", "Data Structures"],
+                difficulty: 2,
+                youtubeUrl: "https://youtu.be/e7sAf4SbS_g?si=OFQzLbPTty0Nourk"
+            },
+            {
+                id: 3,
+                title: "Computer Graphics Theory",
+                icon: "C",
+                description: "Understand rasterization, ray tracing, and the graphics pipeline.",
+                tools: ["Rasterization", "Ray Tracing", "Pipeline"],
+                difficulty: 4,
+                youtubeUrl: "https://youtube.com/playlist?list=PLYwpaL_SFmcAtxMe7ahYC4ZYjQHun_b-T"
+            },
+            {
+                id: 4,
+                title: "OpenGL / DirectX",
+                icon: "G",
+                description: "Get hands-on with graphics APIs for real-time rendering.",
+                tools: ["OpenGL", "DirectX", "Vulkan"],
+                difficulty: 4,
+                youtubeUrl: "https://youtu.be/45MIykWJ-C4?si=ZzAwrv8nclcddgcw"
+            },
+            {
+                id: 5,
+                title: "Shader Programming",
+                icon: "S",
+                description: "Write vertex, fragment, and compute shaders for GPU processing.",
+                tools: ["GLSL", "HLSL", "ShaderLab"],
+                difficulty: 5,
+                youtubeUrl: "https://youtu.be/oKbCaj1J6EI?si=0gyaCy0jVHJl1CIu"
+            },
+            {
+                id: 6,
+                title: "3D Modeling & Texturing",
+                icon: "3",
+                description: "Create and optimize 3D models with proper UV mapping and textures.",
+                tools: ["Blender", "Maya", "Substance"],
+                difficulty: 3,
+                youtubeUrl: "https://youtu.be/axglfkaFgYE?si=r90by6RlRvJnqB-r"
+            }
+        ];
+
+        const competencyData = {
+            fundamentals: {
+                title: "Fundamentals",
+                icon: "F",
+                description: "Core mathematical and programming concepts that form the foundation of computer graphics.",
+                topics: [
+                    { title: "Linear Algebra", description: "Vectors, matrices, transformations" },
+                    { title: "Calculus", description: "Animation and physics simulation" },
+                    { title: "Geometry", description: "Geometric primitives and spatial relationships" },
+                    { title: "Algorithms", description: "Essential algorithms for graphics computations" },
+                    { title: "Computer Architecture", description: "CPU/GPU and memory hierarchy" }
+                ],
+                tools: ["C++", "Python", "MATLAB", "NumPy", "Eigen"]
+            },
+            tools: {
+                title: "Tools & Software",
+                icon: "T",
+                description: "Industry-standard software and development tools used in graphics programming.",
+                topics: [
+                    { title: "3D Modeling", description: "Blender, Maya, 3ds Max" },
+                    { title: "Texturing", description: "Substance Painter, Photoshop" },
+                    { title: "Development", description: "Visual Studio, CLion, VS Code" },
+                    { title: "Profilers", description: "RenderDoc, Nsight, Intel GPA" },
+                    { title: "Version Control", description: "Git, Perforce for management" }
+                ],
+                tools: ["Blender", "Maya", "Substance Suite", "Visual Studio", "RenderDoc"]
+            },
+            rendering: {
+                title: "Rendering Techniques",
+                icon: "R",
+                description: "Methods and algorithms for generating images from 3D scene descriptions.",
+                topics: [
+                    { title: "Rasterization", description: "Real-time rendering pipeline" },
+                    { title: "Ray Tracing", description: "Physically-based light transport" },
+                    { title: "Global Illumination", description: "Radiosity and path tracing" },
+                    { title: "Real-time Rendering", description: "Optimized techniques" },
+                    { title: "Post-processing", description: "Effects and anti-aliasing" }
+                ],
+                tools: ["OpenGL", "DirectX", "Vulkan", "Metal", "OptiX"]
+            },
+            shaders: {
+                title: "Shader Programming",
+                icon: "S",
+                description: "GPU programming for implementing visual effects and rendering algorithms.",
+                topics: [
+                    { title: "Vertex Shaders", description: "Transform vertex positions" },
+                    { title: "Fragment Shaders", description: "Calculate color and properties" },
+                    { title: "Compute Shaders", description: "General-purpose GPU computing" },
+                    { title: "Shader Languages", description: "GLSL, HLSL, and ecosystems" },
+                    { title: "Advanced Shading", description: "PBR and procedural generation" }
+                ],
+                tools: ["GLSL", "HLSL", "CUDA", "OpenCL", "ShaderToy"]
+            },
+            engines: {
+                title: "Graphics Engines",
+                icon: "E",
+                description: "Frameworks and engines that provide graphics rendering capabilities.",
+                topics: [
+                    { title: "Game Engines", description: "Unity, Unreal Engine" },
+                    { title: "Rendering Frameworks", description: "Custom engine development" },
+                    { title: "Scene Management", description: "Spatial data structures" },
+                    { title: "Asset Pipelines", description: "Importing and optimizing assets" },
+                    { title: "Engine Architecture", description: "Component systems" }
+                ],
+                tools: ["Unity", "Unreal Engine", "Ogre3D", "Three.js", "Babylon.js"]
+            },
+            projects: {
+                title: "Practical Applications",
+                icon: "P",
+                description: "Real-world projects and applications of graphics programming knowledge.",
+                topics: [
+                    { title: "Ray Tracer", description: "Real-time rendering" },
+                    { title: "Terrain Generator", description: "Procedural landscapes" },
+                    { title: "PBR Materials", description: "Material systems" },
+                    { title: "Volumetric Effects", description: "Cloud rendering" },
+                    { title: "Particle System", description: "GPU-based particles" }
+                ],
+                tools: ["Custom Projects", "Open Source", "Research Papers", "Portfolio"]
+            }
+        };
+
+        const documentationData = [
+            { title: "OpenGL", icon: "GL", description: "Cross-platform graphics API for rendering", links: [
+                { name: "Official Documentation", url: "https://www.khronos.org/opengl/" },
+                { name: "Learn OpenGL", url: "https://learnopengl.com/" },
+                { name: "Reference Pages", url: "https://www.khronos.org/registry/OpenGL-Refpages/" }
+            ]},
+            { title: "Vulkan", icon: "VK", description: "Next generation high-performance graphics API", links: [
+                { name: "Official Documentation", url: "https://www.vulkan.org/" },
+                { name: "Vulkan Guide", url: "https://vkguide.dev/" },
+                { name: "Vulkan Tutorial", url: "https://vulkan-tutorial.com/" }
+            ]},
+            { title: "DirectX", icon: "DX", description: "Microsoft multimedia and game programming APIs", links: [
+                { name: "Microsoft Docs", url: "https://docs.microsoft.com/en-us/windows/win32/directx" },
+                { name: "Direct3D Docs", url: "https://docs.microsoft.com/en-us/windows/win32/direct3d" },
+                { name: "Developer Center", url: "https://developer.microsoft.com/en-us/windows/directx" }
+            ]},
+            { title: "Blender", icon: "BL", description: "Free and open-source 3D computer graphics software", links: [
+                { name: "Official Documentation", url: "https://docs.blender.org/" },
+                { name: "Manual", url: "https://docs.blender.org/manual/en/latest/" },
+                { name: "API Reference", url: "https://docs.blender.org/api/current/" }
+            ]},
+            { title: "Unity", icon: "UN", description: "Cross-platform game engine", links: [
+                { name: "Documentation", url: "https://docs.unity3d.com/Manual/index.html" },
+                { name: "Scripting API", url: "https://docs.unity3d.com/ScriptReference/index.html" },
+                { name: "Unity Learn", url: "https://learn.unity.com/" }
+            ]},
+            { title: "Unreal Engine", icon: "UE", description: "High-quality graphics game engine by Epic Games", links: [
+                { name: "Documentation", url: "https://docs.unrealengine.com/" },
+                { name: "API Reference", url: "https://docs.unrealengine.com/API/index.html" },
+                { name: "Learning Resources", url: "https://www.unrealengine.com/en-US/onlinelearning-courses" }
+            ]}
+        ];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            generateRoadmap();
+            generateCompetencyDetails();
+            generateDocumentation();
+            setupSkillWheel();
+            setupBookmarkSystem();
+            setupModal();
+            
+            document.getElementById('enterButton').addEventListener('click', function() {
+                document.getElementById('roadmap').scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        function generateRoadmap() {
+            const timeline = document.querySelector('.timeline');
+            roadmapData.forEach((item, index) => {
+                const timelineItem = document.createElement('div');
+                timelineItem.className = 'timeline-item';
+                
+                let difficultyBars = '';
+                for (let i = 1; i <= 5; i++) {
+                    difficultyBars += `<div class="difficulty-bar ${i <= item.difficulty ? 'active' : ''}"></div>`;
+                }
+                
+                timelineItem.innerHTML = `
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon">${item.icon}</div>
+                            <h3 class="card-title">${item.title}</h3>
+                            <div class="expand-toggle"></div>
+                        </div>
+                        <div class="card-content">
+                            <p class="card-description">${item.description}</p>
+                            <div class="tools-list">
+                                ${item.tools.map(tool => `<span class="tool-tag">${tool}</span>`).join('')}
+                            </div>
+                            <div class="difficulty-meter">
+                                <span class="difficulty-label">Difficulty:</span>
+                                <div class="difficulty-bars">${difficultyBars}</div>
+                            </div>
+                            <div class="video-preview">
+                                <div class="video-placeholder">${item.title}</div>
+                                <div class="play-button" data-youtube="${item.youtubeUrl}"></div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                timeline.appendChild(timelineItem);
+                
+                const cardHeader = timelineItem.querySelector('.card-header');
+                cardHeader.addEventListener('click', function() {
+                    this.parentElement.classList.toggle('expanded');
+                });
+                
+                const playButton = timelineItem.querySelector('.play-button');
+                playButton.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const youtubeUrl = this.getAttribute('data-youtube');
+                    const videoId = youtubeUrl.split('v=')[1] || youtubeUrl.split('/').pop();
+                    openModal(item.title, item.description, videoId);
+                });
+            });
+        }
+
+        function generateCompetencyDetails() {
+            const competencyDetails = document.getElementById('competencyDetails');
+            Object.keys(competencyData).forEach(key => {
+                const competency = competencyData[key];
+                const detailsContainer = document.createElement('div');
+                detailsContainer.className = 'details-container';
+                detailsContainer.id = `details-${key}`;
+                
+                const topicsHTML = competency.topics.map(topic => `
+                    <div class="topic-card">
+                        <h4 class="topic-title">${topic.title}</h4>
+                        <p class="topic-description">${topic.description}</p>
+                    </div>
+                `).join('');
+                
+                const toolsHTML = competency.tools.map(tool => `<div class="tool-item">${tool}</div>`).join('');
+                
+                detailsContainer.innerHTML = `
+                    <div class="details-header">
+                        <div class="details-icon">${competency.icon}</div>
+                        <h2 class="details-title">${competency.title}</h2>
+                    </div>
+                    <p class="details-description">${competency.description}</p>
+                    <div class="topics-grid">${topicsHTML}</div>
+                    <div class="tools-section">
+                        <h3 class="tools-title">Tools & Technologies</h3>
+                        <div class="tools-grid">${toolsHTML}</div>
+                    </div>
+                `;
+                
+                competencyDetails.appendChild(detailsContainer);
+            });
+        }
+
+        function generateDocumentation() {
+            const docsGrid = document.querySelector('.docs-grid');
+            documentationData.forEach(doc => {
+                const docCard = document.createElement('div');
+                docCard.className = 'doc-card';
+                
+                const linksHTML = doc.links.map(link => `
+                    <a href="${link.url}" target="_blank" class="doc-link">${link.name}</a>
+                `).join('');
+                
+                docCard.innerHTML = `
+                    <div class="doc-icon">${doc.icon}</div>
+                    <h3 class="doc-title">${doc.title}</h3>
+                    <p class="doc-description">${doc.description}</p>
+                    <div class="doc-links">${linksHTML}</div>
+                `;
+                
+                docsGrid.appendChild(docCard);
+            });
+        }
+
+        function setupSkillWheel() {
+            const segments = document.querySelectorAll('.wheel-segment');
+            const centerTitle = document.getElementById('centerTitle');
+            const centerDescription = document.getElementById('centerDescription');
+            const defaultMessage = document.getElementById('defaultMessage');
+            
+            segments.forEach(segment => {
+                segment.addEventListener('click', function() {
+                    const segmentType = this.getAttribute('data-segment');
+                    const data = competencyData[segmentType];
+                    
+                    centerTitle.textContent = data.title;
+                    centerDescription.textContent = "View details below";
+                    
+                    document.querySelectorAll('.details-container').forEach(container => {
+                        container.classList.remove('active');
+                    });
+                    
+                    defaultMessage.style.display = 'none';
+                    document.getElementById(`details-${segmentType}`).classList.add('active');
+                    document.getElementById('competencyDetails').scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+        }
+
+        function setupBookmarkSystem() {
+            const bookmarkBtn = document.getElementById('bookmarkBtn');
+            const bookmarkPanel = document.getElementById('bookmarkPanel');
+            
+            bookmarkBtn.addEventListener('click', function() {
+                bookmarkPanel.classList.toggle('active');
+            });
+            
+            document.addEventListener('click', function(e) {
+                if (!bookmarkBtn.contains(e.target) && !bookmarkPanel.contains(e.target)) {
+                    bookmarkPanel.classList.remove('active');
+                }
+            });
+        }
+
+        function setupModal() {
+            const modal = document.getElementById('videoModal');
+            const closeBtn = document.getElementById('closeModal');
+            
+            closeBtn.addEventListener('click', function() {
+                modal.style.display = 'none';
+            });
+            
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        }
+
+        function openModal(title, description, videoId) {
+            const modal = document.getElementById('videoModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDescription = document.getElementById('modalDescription');
+            const modalVideo = document.getElementById('modalVideo');
+            
+            modalTitle.textContent = title;
+            modalDescription.textContent = description;
+            modalVideo.innerHTML = `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>`;
+            
+            modal.style.display = 'flex';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,2155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevOps Engineer Roadmap | Zero to Advanced</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --neon-cyan: #0ff;
+            --neon-lime: #0f0;
+            --neon-magenta: #f0f;
+            --dark-bg: #0a0a12;
+            --darker-bg: #050508;
+            --card-bg: rgba(15, 15, 25, 0.8);
+            --text-color: #e0e0e0;
+            --header-height: 70px;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Matrix Background */
+        #matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        /* Header and Navigation */
+        header {
+            background-color: rgba(5, 5, 8, 0.95);
+            padding: 0.5rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid var(--neon-cyan);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+            height: var(--header-height);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--neon-lime);
+            text-shadow: 0 0 10px var(--neon-lime);
+            font-family: 'Orbitron', sans-serif;
+            animation: pulse 3s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { text-shadow: 0 0 10px var(--neon-lime); }
+            100% { text-shadow: 0 0 15px var(--neon-lime), 0 0 30px var(--neon-lime); }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-link:hover {
+            color: var(--neon-cyan);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--neon-cyan);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--neon-lime);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding-top: calc(var(--header-height) + 2rem);
+            padding-bottom: 2rem;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: var(--neon-lime);
+            text-shadow: 0 0 10px var(--neon-lime), 0 0 20px var(--neon-lime), 0 0 30px var(--neon-lime);
+            font-family: 'Orbitron', sans-serif;
+            animation: pulse 3s infinite alternate;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: var(--neon-cyan);
+            margin-bottom: 2rem;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .terminal-container {
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 1px solid var(--neon-cyan);
+            border-radius: 5px;
+            padding: 1.5rem;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+            text-align: left;
+            height: 180px;
+            margin-bottom: 2rem;
+        }
+
+        .info-container {
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 1px solid var(--neon-magenta);
+            border-radius: 5px;
+            padding: 2rem;
+            box-shadow: 0 0 15px rgba(255, 0, 255, 0.2);
+            text-align: left;
+            height: auto;
+            min-height: 400px;
+        }
+
+        .info-container h3 {
+            color: var(--neon-magenta);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            text-shadow: 0 0 5px rgba(255, 0, 255, 0.5);
+            border-bottom: 1px solid var(--neon-magenta);
+            padding-bottom: 0.5rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .info-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .info-section h4 {
+            color: var(--neon-lime);
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+        }
+
+        .info-section p {
+            margin-bottom: 0.8rem;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .info-section ul {
+            padding-left: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .info-section li {
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .terminal-header, .info-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .terminal-dots, .info-dots {
+            display: flex;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot-red { background-color: #ff5f56; }
+        .dot-yellow { background-color: #ffbd2e; }
+        .dot-green { background-color: #27ca3f; }
+
+        .terminal-title, .info-title {
+            margin-left: 15px;
+            font-size: 0.9rem;
+            color: var(--text-color);
+        }
+
+        .terminal-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .typing-cursor {
+            display: inline-block;
+            width: 8px;
+            height: 1.2rem;
+            background-color: var(--neon-lime);
+            margin-left: 5px;
+            animation: blink 1s infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        section {
+            margin-bottom: 4rem;
+            padding: 2rem;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        section:hover {
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+        }
+
+        h2 {
+            color: var(--neon-magenta);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            text-shadow: 0 0 8px rgba(255, 0, 255, 0.5);
+            border-bottom: 1px solid var(--neon-magenta);
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            color: var(--neon-lime);
+            margin: 1.5rem 0 1rem;
+            font-size: 1.4rem;
+        }
+
+        /* Roadmap Timeline */
+        .roadmap {
+            position: relative;
+        }
+
+        .roadmap::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--neon-cyan), var(--neon-magenta));
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+
+        .roadmap-step {
+            position: relative;
+            margin-bottom: 2.5rem;
+            padding-left: 70px;
+        }
+
+        .step-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 60px;
+            height: 60px;
+            background-color: var(--darker-bg);
+            border: 2px solid var(--neon-cyan);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--neon-cyan);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .step-number:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+
+        .step-content {
+            background-color: rgba(10, 10, 20, 0.7);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .step-content:hover {
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .step-title {
+            color: var(--neon-lime);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .step-title i {
+            transition: transform 0.3s ease;
+        }
+
+        .step-details {
+            display: none;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(0, 255, 255, 0.2);
+        }
+
+        .step-details.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .resources {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .resource-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 15px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border: 1px solid;
+            border-radius: 4px;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        .resource-link.youtube {
+            border-color: #ff0000;
+            color: #ff0000;
+        }
+
+        .resource-link.youtube:hover {
+            background-color: rgba(255, 0, 0, 0.1);
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+        }
+
+        .resource-link.docs {
+            border-color: var(--neon-cyan);
+            color: var(--neon-cyan);
+        }
+
+        .resource-link.docs:hover {
+            background-color: rgba(0, 255, 255, 0.1);
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+
+        /* Fixed DevOps Lifecycle Section */
+        .lifecycle-section {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .lifecycle-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .lifecycle-visual {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .lifecycle-circle {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            margin: 0 auto;
+        }
+
+        .lifecycle-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120px;
+            height: 120px;
+            background-color: var(--darker-bg);
+            border: 2px solid var(--neon-magenta);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--neon-magenta);
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-align: center;
+            box-shadow: 0 0 15px rgba(255, 0, 255, 0.3);
+            z-index: 10;
+        }
+
+        .lifecycle-stage {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background-color: var(--card-bg);
+            border: 2px solid var(--neon-cyan);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--neon-cyan);
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 5;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+            font-size: 0.9rem;
+            transform: translate(-50%, -50%);
+        }
+
+        .lifecycle-stage:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+            background-color: rgba(0, 255, 255, 0.1);
+        }
+
+        .lifecycle-stage.active {
+            background-color: rgba(0, 255, 255, 0.2);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.7);
+            transform: translate(-50%, -50%) scale(1.15);
+        }
+
+        .stage-number {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 2px;
+        }
+
+        .stage-name {
+            font-size: 0.7rem;
+            text-align: center;
+            line-height: 1;
+        }
+
+        .lifecycle-connector {
+            position: absolute;
+            background-color: var(--neon-lime);
+            height: 2px;
+            transform-origin: 0 0;
+            z-index: 1;
+            opacity: 0.5;
+            top: 50%;
+            left: 50%;
+        }
+
+        .lifecycle-details {
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 1px solid var(--neon-lime);
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
+            text-align: left;
+        }
+
+        .lifecycle-details h3 {
+            color: var(--neon-lime);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            border-bottom: 1px solid var(--neon-lime);
+            padding-bottom: 0.5rem;
+        }
+
+        .lifecycle-details p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .lifecycle-details ul {
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .lifecycle-details li {
+            margin-bottom: 0.5rem;
+        }
+
+        .default-message {
+            text-align: center;
+            color: #aaa;
+            font-style: italic;
+        }
+
+        /* Mobile-friendly lifecycle stages */
+        .lifecycle-mobile {
+            display: none;
+            flex-direction: column;
+            gap: 1rem;
+            width: 100%;
+        }
+
+        .lifecycle-mobile-stage {
+            background-color: rgba(10, 10, 20, 0.7);
+            border: 1px solid var(--neon-cyan);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .lifecycle-mobile-stage:hover {
+            border-color: var(--neon-lime);
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+        }
+
+        .lifecycle-mobile-stage.active {
+            background-color: rgba(0, 255, 255, 0.1);
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+        }
+
+        .lifecycle-mobile-stage h4 {
+            color: var(--neon-cyan);
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .lifecycle-mobile-stage h4 i {
+            transition: transform 0.3s ease;
+        }
+
+        .lifecycle-mobile-stage.active h4 i {
+            transform: rotate(180deg);
+        }
+
+        .lifecycle-mobile-content {
+            display: none;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(0, 255, 255, 0.2);
+        }
+
+        .lifecycle-mobile-stage.active .lifecycle-mobile-content {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        /* Documentation Hub */
+        .docs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .doc-card {
+            background-color: rgba(10, 10, 20, 0.7);
+            border: 1px solid rgba(0, 255, 0, 0.2);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .doc-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(0, 255, 0, 0.1),
+                rgba(0, 255, 0, 0.05),
+                transparent
+            );
+            transform: rotate(30deg);
+            transition: all 0.5s ease;
+            z-index: 0;
+        }
+
+        .doc-card:hover {
+            border-color: var(--neon-lime);
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .doc-card:hover::before {
+            top: -20%;
+            left: -20%;
+        }
+
+        .doc-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--neon-lime);
+            position: relative;
+            z-index: 1;
+        }
+
+        .doc-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--neon-lime);
+            position: relative;
+            z-index: 1;
+        }
+
+        .doc-description {
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            color: #aaa;
+            position: relative;
+            z-index: 1;
+        }
+
+        .doc-link {
+            display: inline-block;
+            padding: 8px 20px;
+            background-color: transparent;
+            border: 1px solid var(--neon-lime);
+            border-radius: 4px;
+            color: var(--neon-lime);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .doc-link:hover {
+            background-color: rgba(0, 255, 0, 0.1);
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+        }
+
+        /* Fixed Footer without Underlines */
+        footer {
+            background-color: rgba(5, 5, 8, 0.9);
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 1px solid var(--neon-magenta);
+            box-shadow: 0 0 15px rgba(255, 0, 255, 0.2);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-color);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            text-decoration: none; /* This removes the underline */
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px);
+            text-decoration: none; /* Ensure no underline on hover */
+        }
+
+        .social-link.github:hover {
+            background-color: #333;
+            color: white;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+        }
+
+        .social-link.linkedin:hover {
+            background-color: #0077b5;
+            color: white;
+            box-shadow: 0 0 15px rgba(0, 119, 181, 0.5);
+        }
+
+        .social-link.instagram:hover {
+            background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+            color: white;
+            box-shadow: 0 0 15px rgba(225, 48, 108, 0.5);
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(0, 255, 255, 0.2);
+            border: 1px solid var(--neon-cyan);
+            border-radius: 50%;
+            color: var(--neon-cyan);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: rgba(0, 255, 255, 0.3);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+            transform: translateY(-5px);
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            position: fixed;
+            top: var(--header-height);
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(0, 255, 255, 0.1);
+            z-index: 1000;
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: linear-gradient(to right, var(--neon-cyan), var(--neon-magenta));
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .lifecycle-circle {
+                width: 450px;
+                height: 450px;
+            }
+            
+            .lifecycle-stage {
+                width: 70px;
+                height: 70px;
+                font-size: 0.85rem;
+            }
+            
+            .stage-number {
+                font-size: 1.1rem;
+            }
+            
+            .stage-name {
+                font-size: 0.65rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: var(--header-height);
+                left: 0;
+                width: 100%;
+                background-color: rgba(5, 5, 8, 0.95);
+                flex-direction: column;
+                padding: 1rem 0;
+                border-top: 1px solid var(--neon-cyan);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-link {
+                padding: 0.8rem 2rem;
+                width: 100%;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .terminal-container {
+                height: auto;
+                min-height: 150px;
+            }
+            
+            .info-container {
+                min-height: auto;
+            }
+            
+            .terminal-container {
+                padding: 1rem;
+            }
+            
+            .roadmap::before {
+                left: 25px;
+            }
+            
+            .roadmap-step {
+                padding-left: 60px;
+            }
+            
+            .step-number {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+            
+            .lifecycle-container {
+                flex-direction: column;
+            }
+            
+            .lifecycle-circle {
+                width: 400px;
+                height: 400px;
+            }
+            
+            .lifecycle-stage {
+                width: 65px;
+                height: 65px;
+                font-size: 0.8rem;
+            }
+            
+            .stage-number {
+                font-size: 1rem;
+            }
+            
+            .stage-name {
+                font-size: 0.6rem;
+            }
+            
+            .lifecycle-center {
+                width: 100px;
+                height: 100px;
+                font-size: 1rem;
+            }
+            
+            .docs-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            main {
+                padding: 1rem;
+            }
+            
+            section {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .lifecycle-circle {
+                display: none;
+            }
+            
+            .lifecycle-mobile {
+                display: flex;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .logo {
+                font-size: 1.5rem;
+            }
+            
+            .terminal-container {
+                padding: 0.8rem;
+            }
+            
+            .roadmap-step {
+                padding-left: 50px;
+            }
+            
+            .step-number {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+
+            .lifecycle-details {
+                padding: 1.5rem;
+            }
+
+            .nav-container {
+                padding: 0 1rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            
+            .logo {
+                font-size: 1.3rem;
+            }
+            
+            .terminal-container, .info-container {
+                padding: 0.7rem;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .back-to-top,
+            .progress-container,
+            .mobile-menu-btn {
+                display: none !important;
+            }
+            
+            header {
+                position: static;
+            }
+            
+            .hero {
+                padding-top: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Matrix Background -->
+    <canvas id="matrix-bg"></canvas>
+
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progress-bar"></div>
+    </div>
+
+    <!-- Header Section -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">SYNTAX SYNDICATE</div>
+            <nav class="nav-links" id="nav-links">
+                <a href="#roadmap" class="nav-link">Roadmap</a>
+                <a href="#lifecycle" class="nav-link">Lifecycle</a>
+                <a href="#documentation" class="nav-link">Documentation</a>
+        
+            </nav>
+            <button class="mobile-menu-btn" id="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1 class="hero-title">DevOps Engineer Roadmap</h1>
+        <div class="tagline">From Zero to Advanced - Your Path to DevOps Mastery</div>
+        
+        <div class="hero-container">
+            <div class="terminal-container">
+                <div class="terminal-header">
+                    <div class="terminal-dots">
+                        <div class="dot dot-red"></div>
+                        <div class="dot dot-yellow"></div>
+                        <div class="dot dot-green"></div>
+                    </div>
+                    <div class="terminal-title">terminal@devops:~</div>
+                </div>
+                <div class="terminal-content">
+                    <span id="terminal-text"></span><span class="typing-cursor"></span>
+                </div>
+            </div>
+            
+            <div class="info-container">
+                <div class="info-header">
+                    <div class="info-dots">
+                        <div class="dot dot-red"></div>
+                        <div class="dot dot-yellow"></div>
+                        <div class="dot dot-green"></div>
+                    </div>
+                    <div class="info-title">info@devops:~</div>
+                </div>
+                <h3>About DevOps Engineers</h3>
+                
+                <div class="info-grid">
+                    <div class="info-column">
+                        <div class="info-section">
+                            <h4>Who is a DevOps Engineer?</h4>
+                            <p>A DevOps Engineer is an IT professional who works with software developers, system operators, and other production IT staff to oversee code releases and deployments. They combine an understanding of both engineering and coding to bridge gaps between software development and IT operations teams.</p>
+                        </div>
+                        
+                        <div class="info-section">
+                            <h4>What Do They Do?</h4>
+                            <ul>
+                                <li>Implement and manage CI/CD pipelines</li>
+                                <li>Automate infrastructure provisioning and configuration</li>
+                                <li>Monitor system performance and reliability</li>
+                                <li>Ensure security throughout the development lifecycle</li>
+                                <li>Collaborate with development and operations teams</li>
+                                <li>Manage cloud infrastructure and container orchestration</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="info-column">
+                        <div class="info-section">
+                            <h4>Average Salary in India</h4>
+                            <p>According to industry reports (2023):</p>
+                            <ul>
+                                <li>Entry-level: ₹6-10 LPA</li>
+                                <li>Mid-level: ₹12-20 LPA</li>
+                                <li>Senior-level: ₹22-35+ LPA</li>
+                            </ul>
+                            <p>Salaries vary based on experience, location, and company size.</p>
+                        </div>
+                        
+                        <div class="info-section">
+                            <h4>Key Skills Required</h4>
+                            <ul>
+                                <li>Linux/Unix administration</li>
+                                <li>Scripting languages (Python, Bash)</li>
+                                <li>Cloud platforms (AWS, Azure, GCP)</li>
+                                <li>Containerization (Docker, Kubernetes)</li>
+                                <li>Infrastructure as Code (Terraform, Ansible)</li>
+                                <li>CI/CD tools (Jenkins, GitLab CI)</li>
+                                <li>Monitoring and logging tools</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Roadmap Timeline Section -->
+        <section class="roadmap" id="roadmap">
+            <h2><i class="fas fa-road"></i> DevOps Roadmap Timeline</h2>
+            
+            <!-- Step 1 -->
+            <div class="roadmap-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <div class="step-title">
+                        <span>Linux Fundamentals</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="step-details">
+                        <p>Master the foundation of most server environments and container technologies.</p>
+                        <ul>
+                            <li>CLI (Bash) commands and scripting</li>
+                            <li>Process management & permissions (ps, kill, chmod)</li>
+                            <li>Package managers (apt, yum)</li>
+                            <li>Text editors (vim)</li>
+                        </ul>
+                        <div class="resources">
+                            <a href="https://www.youtube.com/results?search_query=linux+fundamentals+for+devops" class="resource-link youtube" target="_blank">
+                                <i class="fab fa-youtube"></i> Linux Basics Videos
+                            </a>
+                            <a href="https://www.gnu.org/software/bash/manual/" class="resource-link docs" target="_blank">
+                                <i class="fas fa-book"></i> GNU Bash Docs
+                            </a>
+                            <a href="https://ubuntu.com/tutorials/command-line-for-beginners" class="resource-link docs" target="_blank">
+                                <i class="fas fa-book"></i> Ubuntu CLI Tutorial
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Step 2 -->
+            <div class="roadmap-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <div class="step-title">
+                        <span>Networking & Security Concepts</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="step-details">
+                        <p>Understand how systems communicate and how to secure them.</p>
+                        <ul>
+                            <li>OSI & TCP/IP models</li>
+                            <li>HTTP, HTTPS, SSH protocols</li>
+                            <li>IP addresses, DNS, subnetting</li>
+                            <li>Firewalls & proxy servers</li>
+                            <li>Basic load balancers & caching servers</li>
+                        </ul>
+                        <div class="resources">
+                            <a href="https://www.youtube.com/results?search_query=networking+fundamentals+for+devops" class="resource-link youtube" target="_blank">
+                                <i class="fab fa-youtube"></i> Networking Videos
+                            </a>
+                            <a href="https://www.ssh.com/academy/ssh/protocol" class="resource-link docs" target="_blank">
+                                <i class="fas fa-book"></i> SSH Protocol Docs
+                            </a>
+                            <a href="https://www.cloudflare.com/learning/dns/what-is-dns/" class="resource-link docs" target="_blank">
+                                <i class="fas fa-book"></i> DNS Explained
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Step 3 -->
+            <div class="roadmap-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <div class="step-title">
+                        <span>Scripting</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="step-details">
+                        <p>Automate tasks and build tools with scripting languages.</p>
+                        <ul>
+                            <li>Languages: Python, Ruby, Golang</li>
+                            <li>Syntax fundamentals</li>
+                            <li>File handling</li>
+                            <li>Useful libraries for DevOps</li>
+                            <li>Automation scripts</li>
+                        </ul>
+                        <div class="resources">
+                            <a href="https://www.youtube.com/results?search_query=python+for+devops" class="resource-link youtube" target="_blank">
+                                <i class="fab fa-youtube"></i> Python for DevOps
+                            </a>
+                            <a href="https://www.youtube.com/results?search_query=golang+for+devops" class="resource-link youtube" target="_blank">
+                                <i class="fab fa-youtube"></i> Golang for DevOps
+                            </a>
+                            <a href="https://docs.python.org/3/" class="resource-link docs" target="_blank">
+                                <i class="fas fa-book"></i> Python Docs
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Step 4 -->
+            <div class="roadmap-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <div class="step-title">
+                        <span>Git & Version Control</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="step-details">
+                        <p>Manage code changes and collaborate effectively with teams.</p>
+                        <ul>
+                            <li>Repository operations: init, clone, add, commit, push</li>
+                            <li>Collaboration: pull, merge, rebase</li>
+                            <li>Branching strategies</li>
+                            <li>Conflict resolution</li>
+                        </ul>
+                        <div class="resources">
+                            <a href="https://www.youtube.com/results?search_query=git+tutorial+for+beginners" class="resource-link youtube" target="_blank">
+                                <i class="fab fa-youtube"></i> Git Tutorial Videos
+                            </a>
+                            <a href="https://git-scm.com/doc" class="resource-link docs" target="_blank">
+                                <i class="fas fa-book"></i> Git Official Docs
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Step 5 -->
+            <div class="roadmap-step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <div class="step-title">
+                        <span>Cloud Platforms (AWS, Azure, GCP)</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="step-details">
+                        <p>Deploy and manage applications in cloud environments.</p>
+                        <ul>
+                            <li>Compute services (EC2, VMs)</li>
+                            <li>Storage services (S3, Blob Storage)</li>
+                            <li>Database services (RDS, Cosmos DB)</li>
+                            <li>Identity and Access Management (IAM)</li>
+                            <li>Virtual Private Cloud (VPC)</li>
+                        </ul>
+                        <div class="resources">
+                            <a href="https://www.youtube.com/results?search_query=aws+for+beginners" class="resource-link youtube" target="_blank">
+                                <i class="fab fa-youtube"></i> AWS Tutorials
+                            </a>
+                            <a href="https://docs.aws.amazon.com/" class="resource-link docs" target="_blank">
+                                <i class="fas fa-book"></i> AWS Docs
+                            </a>
+                            <a href="https://docs.microsoft.com/en-us/azure/" class="resource-link docs" target="_blank">
+                                <i class="fas fa-book"></i> Azure Docs
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Step 6 -->
+            <div class="roadmap-step">
+                <div class="step-number">6</div>
+                <div class="step-content">
+                    <div class="step-title">
+                        <span>Microservices & Containers (Docker)</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="step-details">
+                        <p>Package and run applications consistently across environments.</p>
+                        <ul>
+                            <li>Virtualization vs containerization</li>
+                            <li>Docker images and containers</li>
+                            <li>Dockerfile creation</li>
+                            <li>Docker compose for multi-container apps</li>
+                        </ul>
+                        <div class="resources">
+                            <a href="https://www.youtube.com/results?search_query=docker+for+beginners" class="resource-link youtube" target="_blank">
+                                <i class="fab fa-youtube"></i> Docker Basics
+                            </a>
+                            <a href="https://docs.docker.com/" class="resource-link docs" target="_blank">
+                                <i class="fas fa-book"></i> Docker Docs
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Step 7 -->
+            <div class="roadmap-step">
+                <div class="step-number">7</div>
+                <div class="step-content">
+                    <div class="step-title">
+                        <span>CI/CD Pipelines</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="step-details">
+                        <p>Automate testing and deployment processes.</p>
+                        <ul>
+                            <li>Tools: Jenkins, GitHub Actions, GitLab CI, CircleCI</li>
+                            <li>Pipeline creation and management</li>
+                            <li>Automated testing integration</li>
+                            <li>Deployment strategies</li>
+                        </ul>
+                        <div class="resources">
+                            <a href="https://www.youtube.com/results?search_query=jenkins+tutorial" class="resource-link youtube" target="_blank">
+                                <i class="fab fa-youtube"></i> Jenkins Tutorials
+                            </a>
+                            <a href="https://www.jenkins.io/doc/" class="resource-link docs" target="_blank">
+                                <i class="fas fa-book"></i> Jenkins Docs
+                            </a>
+                            <a href="https://docs.github.com/en/actions" class="resource-link docs" target="_blank">
+                                <i class="fas fa-book"></i> GitHub Actions Docs
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Step 8 -->
+            <div class="roadmap-step">
+                <div class="step-number">8</div>
+                <div class="step-content">
+                    <div class="step-title">
+                        <span>Infrastructure as Code</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="step-details">
+                        <p>Manage infrastructure through code for consistency and repeatability.</p>
+                        <ul>
+                            <li>Terraform for cloud resource provisioning</li>
+                            <li>Ansible for configuration management</li>
+                            <li>CloudFormation (AWS)</li>
+                            <li>ARM Templates (Azure)</li>
+                        </ul>
+                        <div class="resources">
+                            <a href="https://www.youtube.com/results?search_query=terraform+tutorial" class="resource-link youtube" target="_blank">
+                                <i class="fab fa-youtube"></i> Terraform Tutorials
+                            </a>
+                            <a href="https://www.terraform.io/docs" class="resource-link docs" target="_blank">
+                                <i class="fas fa-book"></i> Terraform Docs
+                            </a>
+                            <a href="https://docs.ansible.com/" class="resource-link docs" target="_blank">
+                                <i class="fas fa-book"></i> Ansible Docs
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Step 9 -->
+            <div class="roadmap-step">
+                <div class="step-number">9</div>
+                <div class="step-content">
+                    <div class="step-title">
+                        <span>Orchestration (Kubernetes)</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="step-details">
+                        <p>Manage containerized applications at scale.</p>
+                        <ul>
+                            <li>Cluster management</li>
+                            <li>Deployments, Services, Pods</li>
+                            <li>kubectl commands (apply, delete, logs)</li>
+                            <li>Helm for package management</li>
+                        </ul>
+                        <div class="resources">
+                            <a href="https://www.youtube.com/results?search_query=kubernetes+tutorial" class="resource-link youtube" target="_blank">
+                                <i class="fab fa-youtube"></i> Kubernetes Videos
+                            </a>
+                            <a href="https://kubernetes.io/docs/home/" class="resource-link docs" target="_blank">
+                                <i class="fas fa-book"></i> Kubernetes Docs
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Step 10 -->
+            <div class="roadmap-step">
+                <div class="step-number">10</div>
+                <div class="step-content">
+                    <div class="step-title">
+                        <span>Monitoring & Logging</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="step-details">
+                        <p>Gain visibility into system performance and troubleshoot issues.</p>
+                        <ul>
+                            <li>Tools: Prometheus, Grafana, ELK Stack, CloudWatch</li>
+                            <li>Metrics collection and visualization</li>
+                            <li>Log aggregation and analysis</li>
+                            <li>Alerting and incident response</li>
+                        </ul>
+                        <div class="resources">
+                            <a href="https://www.youtube.com/results?search_query=prometheus+grafana+tutorial" class="resource-link youtube" target="_blank">
+                                <i class="fab fa-youtube"></i> Monitoring Tutorials
+                            </a>
+                            <a href="https://prometheus.io/docs/" class="resource-link docs" target="_blank">
+                                <i class="fas fa-book"></i> Prometheus Docs
+                            </a>
+                            <a href="https://grafana.com/docs/" class="resource-link docs" target="_blank">
+                                <i class="fas fa-book"></i> Grafana Docs
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Fixed DevOps Lifecycle Section -->
+        <section class="lifecycle-section" id="lifecycle">
+            <h2><i class="fas fa-sync-alt"></i> DevOps Lifecycle</h2>
+            <p>The DevOps lifecycle consists of eight phases that represent the processes, capabilities, and tools needed for development and operations.</p>
+            
+            <div class="lifecycle-container">
+                <div class="lifecycle-visual">
+                    <!-- Desktop Circle Diagram -->
+                    <div class="lifecycle-circle" id="lifecycle-circle">
+                        <div class="lifecycle-center">DevOps<br>Lifecycle</div>
+                        
+                        <!-- Lifecycle stages with proper positioning -->
+                        <div class="lifecycle-stage" data-stage="plan">
+                            <div class="stage-number">1</div>
+                            <div class="stage-name">Plan</div>
+                        </div>
+                        <div class="lifecycle-stage" data-stage="develop">
+                            <div class="stage-number">2</div>
+                            <div class="stage-name">Develop</div>
+                        </div>
+                        <div class="lifecycle-stage" data-stage="build">
+                            <div class="stage-number">3</div>
+                            <div class="stage-name">Build</div>
+                        </div>
+                        <div class="lifecycle-stage" data-stage="test">
+                            <div class="stage-number">4</div>
+                            <div class="stage-name">Test</div>
+                        </div>
+                        <div class="lifecycle-stage" data-stage="release">
+                            <div class="stage-number">5</div>
+                            <div class="stage-name">Release</div>
+                        </div>
+                        <div class="lifecycle-stage" data-stage="deploy">
+                            <div class="stage-number">6</div>
+                            <div class="stage-name">Deploy</div>
+                        </div>
+                        <div class="lifecycle-stage" data-stage="operate">
+                            <div class="stage-number">7</div>
+                            <div class="stage-name">Operate</div>
+                        </div>
+                        <div class="lifecycle-stage" data-stage="monitor">
+                            <div class="stage-number">8</div>
+                            <div class="stage-name">Monitor</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Mobile-friendly accordion layout -->
+                    <div class="lifecycle-mobile">
+                        <div class="lifecycle-mobile-stage" data-stage="plan">
+                            <h4>1. Plan <i class="fas fa-chevron-down"></i></h4>
+                            <div class="lifecycle-mobile-content">
+                                <p>The planning phase involves defining requirements, creating project timelines, and establishing goals for the development process.</p>
+                                <p><strong>Key Activities:</strong></p>
+                                <ul>
+                                    <li>Requirements gathering and analysis</li>
+                                    <li>Project planning and scheduling</li>
+                                    <li>Resource allocation</li>
+                                    <li>Risk assessment and mitigation planning</li>
+                                    <li>Stakeholder communication</li>
+                                </ul>
+                                <p><strong>Common Tools:</strong> Jira, Trello, Asana, Confluence</p>
+                            </div>
+                        </div>
+                        
+                        <div class="lifecycle-mobile-stage" data-stage="develop">
+                            <h4>2. Develop <i class="fas fa-chevron-down"></i></h4>
+                            <div class="lifecycle-mobile-content">
+                                <p>During development, engineers write code according to requirements and implement features using version control systems.</p>
+                                <p><strong>Key Activities:</strong></p>
+                                <ul>
+                                    <li>Code development and implementation</li>
+                                    <li>Version control management</li>
+                                    <li>Code review processes</li>
+                                    <li>Unit testing</li>
+                                    <li>Integration with CI/CD pipelines</li>
+                                </ul>
+                                <p><strong>Common Tools:</strong> Git, GitHub, GitLab, Bitbucket, Visual Studio Code</p>
+                            </div>
+                        </div>
+                        
+                        <div class="lifecycle-mobile-stage" data-stage="build">
+                            <h4>3. Build <i class="fas fa-chevron-down"></i></h4>
+                            <div class="lifecycle-mobile-content">
+                                <p>The build phase involves compiling code, running tests, and packaging applications into deployable artifacts.</p>
+                                <p><strong>Key Activities:</strong></p>
+                                <ul>
+                                    <li>Code compilation and packaging</li>
+                                    <li>Dependency management</li>
+                                    <li>Container image creation</li>
+                                    <li>Artifact repository management</li>
+                                    <li>Build automation</li>
+                                </ul>
+                                <p><strong>Common Tools:</strong> Maven, Gradle, Docker, Jenkins, Artifactory</p>
+                            </div>
+                        </div>
+                        
+                        <div class="lifecycle-mobile-stage" data-stage="test">
+                            <h4>4. Test <i class="fas fa-chevron-down"></i></h4>
+                            <div class="lifecycle-mobile-content">
+                                <p>Testing ensures software quality through automated and manual testing processes before deployment.</p>
+                                <p><strong>Key Activities:</strong></p>
+                                <ul>
+                                    <li>Automated testing execution</li>
+                                    <li>Performance and load testing</li>
+                                    <li>Security vulnerability scanning</li>
+                                    <li>User acceptance testing</li>
+                                    <li>Test environment management</li>
+                                </ul>
+                                <p><strong>Common Tools:</strong> Selenium, JUnit, JMeter, SonarQube, OWASP ZAP</p>
+                            </div>
+                        </div>
+                        
+                        <div class="lifecycle-mobile-stage" data-stage="release">
+                            <h4>5. Release <i class="fas fa-chevron-down"></i></h4>
+                            <div class="lifecycle-mobile-content">
+                                <p>The release phase involves preparing the application for deployment, including final approvals and scheduling.</p>
+                                <p><strong>Key Activities:</strong></p>
+                                <ul>
+                                    <li>Release planning and coordination</li>
+                                    <li>Change management</li>
+                                    <li>Deployment scheduling</li>
+                                    <li>Release documentation</li>
+                                    <li>Stakeholder communication</li>
+                                </ul>
+                                <p><strong>Common Tools:</strong> ServiceNow, Jira Service Management, XL Deploy</p>
+                            </div>
+                        </div>
+                        
+                        <div class="lifecycle-mobile-stage" data-stage="deploy">
+                            <h4>6. Deploy <i class="fas fa-chevron-down"></i></h4>
+                            <div class="lifecycle-mobile-content">
+                                <p>Deployment involves moving the application to production environments, either through automated or manual processes.</p>
+                                <p><strong>Key Activities:</strong></p>
+                                <ul>
+                                    <li>Infrastructure provisioning</li>
+                                    <li>Application deployment</li>
+                                    <li>Database migrations</li>
+                                    <li>Configuration management</li>
+                                    <li>Rollback planning</li>
+                                </ul>
+                                <p><strong>Common Tools:</strong> Ansible, Chef, Puppet, Kubernetes, Terraform</p>
+                            </div>
+                        </div>
+                        
+                        <div class="lifecycle-mobile-stage" data-stage="operate">
+                            <h4>7. Operate <i class="fas fa-chevron-down"></i></h4>
+                            <div class="lifecycle-mobile-content">
+                                <p>Operation involves managing the infrastructure and services in production to ensure availability and performance.</p>
+                                <p><strong>Key Activities:</strong></p>
+                                <ul>
+                                    <li>Infrastructure management</li>
+                                    <li>Incident response</li>
+                                    <li>Performance optimization</li>
+                                    <li>Capacity planning</li>
+                                    <li>Disaster recovery</li>
+                                </ul>
+                                <p><strong>Common Tools:</strong> Kubernetes, Docker Swarm, AWS EC2, Azure VMs</p>
+                            </div>
+                        </div>
+                        
+                        <div class="lifecycle-mobile-stage" data-stage="monitor">
+                            <h4>8. Monitor <i class="fas fa-chevron-down"></i></h4>
+                            <div class="lifecycle-mobile-content">
+                                <p>Monitoring involves tracking application and infrastructure performance to identify issues and optimize systems.</p>
+                                <p><strong>Key Activities:</strong></p>
+                                <ul>
+                                    <li>Application performance monitoring</li>
+                                    <li>Infrastructure monitoring</li>
+                                    <li>Log aggregation and analysis</li>
+                                    <li>Alert management</li>
+                                    <li>Performance reporting</li>
+                                </ul>
+                                <p><strong>Common Tools:</strong> Prometheus, Grafana, ELK Stack, Datadog, New Relic</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lifecycle-details">
+                    <div class="default-message">
+                        <i class="fas fa-mouse-pointer"></i><br>
+                        Click on any stage in the DevOps lifecycle to learn more about it.
+                    </div>
+                    
+                    <div id="plan-details" class="stage-details" style="display: none;">
+                        <h3>1. Plan</h3>
+                        <p>The planning phase involves defining requirements, creating project timelines, and establishing goals for the development process.</p>
+                        <p><strong>Key Activities:</strong></p>
+                        <ul>
+                            <li>Requirements gathering and analysis</li>
+                            <li>Project planning and scheduling</li>
+                            <li>Resource allocation</li>
+                            <li>Risk assessment and mitigation planning</li>
+                            <li>Stakeholder communication</li>
+                        </ul>
+                        <p><strong>Common Tools:</strong> Jira, Trello, Asana, Confluence</p>
+                    </div>
+                    
+                    <div id="develop-details" class="stage-details" style="display: none;">
+                        <h3>2. Develop</h3>
+                        <p>During development, engineers write code according to requirements and implement features using version control systems.</p>
+                        <p><strong>Key Activities:</strong></p>
+                        <ul>
+                            <li>Code development and implementation</li>
+                            <li>Version control management</li>
+                            <li>Code review processes</li>
+                            <li>Unit testing</li>
+                            <li>Integration with CI/CD pipelines</li>
+                        </ul>
+                        <p><strong>Common Tools:</strong> Git, GitHub, GitLab, Bitbucket, Visual Studio Code</p>
+                    </div>
+                    
+                    <div id="build-details" class="stage-details" style="display: none;">
+                        <h3>3. Build</h3>
+                        <p>The build phase involves compiling code, running tests, and packaging applications into deployable artifacts.</p>
+                        <p><strong>Key Activities:</strong></p>
+                        <ul>
+                            <li>Code compilation and packaging</li>
+                            <li>Dependency management</li>
+                            <li>Container image creation</li>
+                            <li>Artifact repository management</li>
+                            <li>Build automation</li>
+                        </ul>
+                        <p><strong>Common Tools:</strong> Maven, Gradle, Docker, Jenkins, Artifactory</p>
+                    </div>
+                    
+                    <div id="test-details" class="stage-details" style="display: none;">
+                        <h3>4. Test</h3>
+                        <p>Testing ensures software quality through automated and manual testing processes before deployment.</p>
+                        <p><strong>Key Activities:</strong></p>
+                        <ul>
+                            <li>Automated testing execution</li>
+                            <li>Performance and load testing</li>
+                            <li>Security vulnerability scanning</li>
+                            <li>User acceptance testing</li>
+                            <li>Test environment management</li>
+                        </ul>
+                        <p><strong>Common Tools:</strong> Selenium, JUnit, JMeter, SonarQube, OWASP ZAP</p>
+                    </div>
+                    
+                    <div id="release-details" class="stage-details" style="display: none;">
+                        <h3>5. Release</h3>
+                        <p>The release phase involves preparing the application for deployment, including final approvals and scheduling.</p>
+                        <p><strong>Key Activities:</strong></p>
+                        <ul>
+                            <li>Release planning and coordination</li>
+                            <li>Change management</li>
+                            <li>Deployment scheduling</li>
+                            <li>Release documentation</li>
+                            <li>Stakeholder communication</li>
+                        </ul>
+                        <p><strong>Common Tools:</strong> ServiceNow, Jira Service Management, XL Deploy</p>
+                    </div>
+                    
+                    <div id="deploy-details" class="stage-details" style="display: none;">
+                        <h3>6. Deploy</h3>
+                        <p>Deployment involves moving the application to production environments, either through automated or manual processes.</p>
+                        <p><strong>Key Activities:</strong></p>
+                        <ul>
+                            <li>Infrastructure provisioning</li>
+                            <li>Application deployment</li>
+                            <li>Database migrations</li>
+                            <li>Configuration management</li>
+                            <li>Rollback planning</li>
+                        </ul>
+                        <p><strong>Common Tools:</strong> Ansible, Chef, Puppet, Kubernetes, Terraform</p>
+                    </div>
+                    
+                    <div id="operate-details" class="stage-details" style="display: none;">
+                        <h3>7. Operate</h3>
+                        <p>Operation involves managing the infrastructure and services in production to ensure availability and performance.</p>
+                        <p><strong>Key Activities:</strong></p>
+                        <ul>
+                            <li>Infrastructure management</li>
+                            <li>Incident response</li>
+                            <li>Performance optimization</li>
+                            <li>Capacity planning</li>
+                            <li>Disaster recovery</li>
+                        </ul>
+                        <p><strong>Common Tools:</strong> Kubernetes, Docker Swarm, AWS EC2, Azure VMs</p>
+                    </div>
+                    
+                    <div id="monitor-details" class="stage-details" style="display: none;">
+                        <h3>8. Monitor</h3>
+                        <p>Monitoring involves tracking application and infrastructure performance to identify issues and optimize systems.</p>
+                        <p><strong>Key Activities:</strong></p>
+                        <ul>
+                            <li>Application performance monitoring</li>
+                            <li>Infrastructure monitoring</li>
+                            <li>Log aggregation and analysis</li>
+                            <li>Alert management</li>
+                            <li>Performance reporting</li>
+                        </ul>
+                        <p><strong>Common Tools:</strong> Prometheus, Grafana, ELK Stack, Datadog, New Relic</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Documentation Hub -->
+        <section class="documentation" id="documentation">
+            <h2><i class="fas fa-book-open"></i> Documentation Hub</h2>
+            <p>Official documentation and resources for essential DevOps tools and technologies.</p>
+            
+            <div class="docs-grid">
+                <div class="doc-card">
+                    <div class="doc-icon">
+                        <i class="fab fa-docker"></i>
+                    </div>
+                    <div class="doc-title">Docker</div>
+                    <div class="doc-description">Container platform documentation</div>
+                    <a href="https://docs.docker.com/" class="doc-link" target="_blank">View Docs</a>
+                </div>
+                
+                <div class="doc-card">
+                    <div class="doc-icon">
+                        <i class="fab fa-aws"></i>
+                    </div>
+                    <div class="doc-title">AWS</div>
+                    <div class="doc-description">Amazon Web Services documentation</div>
+                    <a href="https://docs.aws.amazon.com/" class="doc-link" target="_blank">View Docs</a>
+                </div>
+                
+                <div class="doc-card">
+                    <div class="doc-icon">
+                        <i class="fab fa-microsoft"></i>
+                    </div>
+                    <div class="doc-title">Azure</div>
+                    <div class="doc-description">Microsoft Azure documentation</div>
+                    <a href="https://docs.microsoft.com/en-us/azure/" class="doc-link" target="_blank">View Docs</a>
+                </div>
+                
+                <div class="doc-card">
+                    <div class="doc-icon">
+                        <i class="fab fa-google"></i>
+                    </div>
+                    <div class="doc-title">Google Cloud</div>
+                    <div class="doc-description">GCP documentation and guides</div>
+                    <a href="https://cloud.google.com/docs" class="doc-link" target="_blank">View Docs</a>
+                </div>
+                
+                <div class="doc-card">
+                    <div class="doc-icon">
+                        <i class="fab fa-jenkins"></i>
+                    </div>
+                    <div class="doc-title">Jenkins</div>
+                    <div class="doc-description">CI/CD automation server</div>
+                    <a href="https://www.jenkins.io/doc/" class="doc-link" target="_blank">View Docs</a>
+                </div>
+                
+                <div class="doc-card">
+                    <div class="doc-icon">
+                        <i class="fas fa-code-branch"></i>
+                    </div>
+                    <div class="doc-title">Git</div>
+                    <div class="doc-description">Version control system</div>
+                    <a href="https://git-scm.com/doc" class="doc-link" target="_blank">View Docs</a>
+                </div>
+                
+                <div class="doc-card">
+                    <div class="doc-icon">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <div class="doc-title">Kubernetes</div>
+                    <div class="doc-description">Container orchestration</div>
+                    <a href="https://kubernetes.io/docs/home/" class="doc-link" target="_blank">View Docs</a>
+                </div>
+                
+                <div class="doc-card">
+                    <div class="doc-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <div class="doc-title">Terraform</div>
+                    <div class="doc-description">Infrastructure as Code</div>
+                    <a href="https://www.terraform.io/docs" class="doc-link" target="_blank">View Docs</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Fixed Footer without Underlines -->
+    <footer>
+        <div class="social-links">
+            <a href="https://github.com/Syntax-Syndicate-Ltd" class="social-link github" target="_blank">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/company/syntax-syndicate/" class="social-link linkedin" target="_blank">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://www.instagram.com/syntax_syndicate_?igsh=bmF5bDVydzVscHM=" class="social-link instagram" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </div>
+        <div class="copyright">
+            &copy; 2025 DevOps Engineer Roadmap. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Matrix Background Effect
+        const canvas = document.getElementById('matrix-bg');
+        const ctx = canvas.getContext('2d');
+
+        // Set canvas to full window size
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // Characters for the matrix effect
+        const chars = "01";
+        const charArray = chars.split("");
+
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+
+        // Array of drops - one per column
+        const drops = [];
+        for (let x = 0; x < columns; x++) {
+            drops[x] = 1;
+        }
+
+        function drawMatrix() {
+            // Semi-transparent black background for trailing effect
+            ctx.fillStyle = "rgba(5, 5, 8, 0.04)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.fillStyle = "#0F0"; // Green text
+            ctx.font = fontSize + "px monospace";
+
+            for (let i = 0; i < drops.length; i++) {
+                // Random character
+                const text = charArray[Math.floor(Math.random() * charArray.length)];
+                
+                // x = i * fontSize, y = value of drops[i] * fontSize
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                
+                // Reset drop to top when it reaches bottom with some randomness
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                
+                // Move the drop down
+                drops[i]++;
+            }
+        }
+
+        // Terminal Typing Effect
+        const terminalText = document.getElementById('terminal-text');
+        const texts = [
+            "Welcome to the DevOps Engineer Roadmap...",
+            "This guide will take you from zero to advanced DevOps skills...",
+            "Follow the steps, watch the videos, and read the documentation...",
+            "Start your journey to becoming a DevOps expert today!"
+        ];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let isPaused = false;
+
+        function typeText() {
+            const currentText = texts[textIndex];
+            
+            if (!isDeleting && !isPaused) {
+                terminalText.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+                
+                if (charIndex === currentText.length) {
+                    isPaused = true;
+                    setTimeout(() => {
+                        isPaused = false;
+                        isDeleting = true;
+                    }, 2000);
+                }
+            } else if (isDeleting && !isPaused) {
+                terminalText.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+                
+                if (charIndex === 0) {
+                    isDeleting = false;
+                    textIndex++;
+                    
+                    if (textIndex === texts.length) {
+                        textIndex = 0;
+                    }
+                }
+            }
+            
+            setTimeout(typeText, isDeleting ? 50 : 100);
+        }
+
+        // Expandable Roadmap Steps
+        document.querySelectorAll('.step-title').forEach(title => {
+            title.addEventListener('click', () => {
+                const details = title.parentElement.querySelector('.step-details');
+                const icon = title.querySelector('i');
+                
+                details.classList.toggle('active');
+                icon.classList.toggle('fa-chevron-down');
+                icon.classList.toggle('fa-chevron-up');
+            });
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const navLinks = document.getElementById('nav-links');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // Progress Bar
+        const progressBar = document.getElementById('progress-bar');
+
+        function updateProgressBar() {
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight - windowHeight;
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const progress = (scrollTop / documentHeight) * 100;
+            progressBar.style.width = progress + '%';
+        }
+
+        // Back to Top Button
+        const backToTopBtn = document.getElementById('back-to-top');
+
+        function toggleBackToTop() {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        }
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Smooth Scrolling for Navigation Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Scroll Animation
+        function checkScroll() {
+            const elements = document.querySelectorAll('.roadmap-step, .doc-card');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.style.opacity = "1";
+                    element.style.transform = "translateY(0)";
+                }
+            });
+        }
+
+        // Initialize elements with initial styles for animation
+        document.querySelectorAll('.roadmap-step, .doc-card').forEach(element => {
+            element.style.opacity = "0";
+            element.style.transform = "translateY(20px)";
+            element.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+        });
+
+        // Fixed DevOps Lifecycle Interaction
+        document.addEventListener('DOMContentLoaded', function() {
+            const stages = document.querySelectorAll('.lifecycle-stage');
+            const stageDetails = document.querySelectorAll('.stage-details');
+            const defaultMessage = document.querySelector('.default-message');
+            const mobileStages = document.querySelectorAll('.lifecycle-mobile-stage');
+            const circle = document.getElementById('lifecycle-circle');
+            
+            // Position stages in a circle
+            function positionStages() {
+                const radius = 180; // Distance from center
+                const centerX = circle.offsetWidth / 2;
+                const centerY = circle.offsetHeight / 2;
+                const angleStep = (2 * Math.PI) / stages.length;
+                
+                stages.forEach((stage, index) => {
+                    const angle = index * angleStep;
+                    const x = centerX + radius * Math.cos(angle);
+                    const y = centerY + radius * Math.sin(angle);
+                    
+                    stage.style.left = `${x}px`;
+                    stage.style.top = `${y}px`;
+                });
+            }
+            
+            // Desktop circle interaction
+            stages.forEach(stage => {
+                stage.addEventListener('click', function() {
+                    const stageName = this.getAttribute('data-stage');
+                    
+                    // Remove active class from all stages
+                    stages.forEach(s => s.classList.remove('active'));
+                    
+                    // Add active class to clicked stage
+                    this.classList.add('active');
+                    
+                    // Hide all stage details and default message
+                    stageDetails.forEach(detail => detail.style.display = 'none');
+                    defaultMessage.style.display = 'none';
+                    
+                    // Show the selected stage details
+                    document.getElementById(`${stageName}-details`).style.display = 'block';
+                });
+            });
+            
+            // Mobile accordion interaction
+            mobileStages.forEach(stage => {
+                stage.addEventListener('click', function() {
+                    // Toggle active class for clicked stage
+                    this.classList.toggle('active');
+                    
+                    // Close other stages
+                    mobileStages.forEach(s => {
+                        if (s !== this) {
+                            s.classList.remove('active');
+                        }
+                    });
+                    
+                    // Update details panel
+                    const stageName = this.getAttribute('data-stage');
+                    
+                    // Hide all stage details and default message
+                    stageDetails.forEach(detail => detail.style.display = 'none');
+                    defaultMessage.style.display = 'none';
+                    
+                    // Show the selected stage details
+                    document.getElementById(`${stageName}-details`).style.display = 'block';
+                });
+            });
+            
+            // Position stages on load and resize
+            positionStages();
+            window.addEventListener('resize', positionStages);
+        });
+
+        // Window event listeners
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        window.addEventListener('scroll', () => {
+            updateProgressBar();
+            toggleBackToTop();
+            checkScroll();
+        });
+
+        // Start animations
+        setInterval(drawMatrix, 35);
+        setTimeout(typeText, 1000);
+        checkScroll();
+        updateProgressBar();
+        toggleBackToTop();
+    </script>
+</body>
+</html>
