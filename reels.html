@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Opportunities | Syntax Syndicate</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+
+    <style>
+        /* ===============================
+           OPPORTUNITIES – EDITORIAL FLOW
+        =============================== */
+
+        .opportunities-page {
+            padding: 120px 0 80px;
+            background: var(--bg-primary);
+        }
+
+        .opportunities-container {
+            max-width: 1320px;
+            margin: auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Header */
+        .opportunities-header {
+            text-align: center;
+            margin-bottom: 6rem;
+        }
+
+        .section-badge {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.08);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+
+        .opportunities-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .opportunities-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 640px;
+            margin: auto;
+        }
+
+        /* Opportunity Block */
+        .opportunity {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 4rem;
+            align-items: flex-start;
+            justify-content: center;
+            max-width: 1100px;
+            margin: 0 auto 6rem;
+        }
+
+        /* Reel */
+        .opportunity-video {
+            width: 350px;
+        }
+
+        .opportunity-video video {
+            width: 100%;
+            aspect-ratio: 9 / 16;
+            border-radius: 14px;
+            object-fit: cover;
+            box-shadow: 0 18px 50px rgba(0,0,0,0.25);
+        }
+
+        /* Content */
+        .opportunity-content {
+            max-width: 720px;
+        }
+
+        .opportunity-tag {
+            font-size: 0.95rem;
+            color: gray;
+            margin-bottom: 1.2rem;
+            display: inline-block;
+        }
+
+        .opportunity-title {
+            font-size: 2.3rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+        }
+
+        .opportunity-content p {
+            font-size: 1.05rem;
+            line-height: 1.85;
+            color: var(--text-secondary);
+            margin-bottom: 1.75rem;
+        }
+
+        .opportunity-content ul {
+            margin: 1.5rem 0 2.5rem 1.25rem;
+        }
+
+        .opportunity-content li {
+            margin-bottom: 0.75rem;
+        }
+
+        .apply-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.85rem 1.6rem;
+            border-radius: 999px;
+            background: var(--accent-primary);
+            color: #fff;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .opportunity-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--border-color), transparent);
+            margin: 4rem auto;
+            max-width: 900px;
+        }
+
+        /* Mobile */
+        @media (max-width: 900px) {
+            .opportunity {
+                grid-template-columns: 1fr;
+                justify-items: center;
+                gap: 2.5rem;
+            }
+
+            .opportunity-video {
+                width: 220px;
+            }
+
+            .opportunity-content {
+                max-width: 100%;
+                text-align: left;
+            }
+
+            .opportunity-title {
+                font-size: 1.9rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <span class="logo-text">Syntax <span class="logo-highlight">Syndicate</span></span>
+            </div>
+            
+            <div class="nav-links">
+                <a href="/index.html#home" class="nav-link active">Home</a>
+                <a href="/index.html#about" class="nav-link">About</a>
+                <a href="/index.html#blog" class="nav-link">Blog</a>
+                <a href="/index.html#roadmaps" class="nav-link">Roadmaps</a>
+                <a href="/index.html#opportunities" class="nav-link">Opportunities</a>
+                <a href="/index.html#notes" class="nav-link">Notes</a>
+                <a href="/certificates.html" class="nav-link">Badges</a>
+                <a href="/index.html#join" class="nav-link">Community</a>
+            </div>
+            
+            <div class="nav-actions">
+                <a href="#join" class="btn btn-primary btn-join">Join Now</a>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+<!-- OPPORTUNITIES PAGE -->
+<section class="opportunities-page">
+    <div class="opportunities-container">
+
+        <!-- HEADER -->
+        <div class="opportunities-header">
+            <div class="section-badge">Premium Opportunities</div>
+            <h2 class="opportunities-title">Explore All Opportunities</h2>
+            <p class="opportunities-subtitle">
+                Handpicked courses, programs, and platforms to help you level up faster.
+            </p>
+        </div>
+
+        <!-- OPPORTUNITY 1 -->
+        <article class="opportunity">
+            <div class="opportunity-video">
+                <video controls muted loop>
+                    <source src="reel1.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <div class="opportunity-content">
+                <span class="opportunity-tag">AI • Deep Learning</span>
+                <h1 class="opportunity-title">NVIDIA Deep Learning Institute</h1>
+
+                <p>
+                    NVIDIA DLI offers hands-on training in AI, machine learning,
+                    data science, and accelerated computing using real-world projects.
+                </p>
+
+                <ul>
+                    <li>Industry-recognized certification</li>
+                    <li>Hands-on labs using NVIDIA GPUs</li>
+                    <li>Beginner to advanced level courses</li>
+                </ul>
+
+                <a href="https://www.nvidia.com/en-in/training/" target="_blank" class="apply-btn">
+                    Apply Now <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </article>
+
+        <div class="opportunity-divider"></div>
+
+        <!-- OPPORTUNITY 2 -->
+        <article class="opportunity">
+            <div class="opportunity-video">
+                <video controls muted loop>
+                    <source src="reel1.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <div class="opportunity-content">
+                <span class="opportunity-tag">AI • Research</span>
+                <h1 class="opportunity-title">Anthropic Academy</h1>
+
+                <p>
+                    Learn cutting-edge AI concepts focused on alignment, safety,
+                    and responsible AI development from Anthropic.
+                </p>
+
+                <ul>
+                    <li>Research-backed curriculum</li>
+                    <li>Focus on ethical AI</li>
+                    <li>Advanced AI systems understanding</li>
+                </ul>
+
+                <a href="https://www.anthropic.com" target="_blank" class="apply-btn">
+                    Apply Now <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </article>
+
+        <div class="opportunity-divider"></div>
+
+        <!-- OPPORTUNITY 3 -->
+        <article class="opportunity">
+            <div class="opportunity-video">
+                <video controls muted loop>
+                    <source src="reel1.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <div class="opportunity-content">
+                <span class="opportunity-tag">Generative AI</span>
+                <h1 class="opportunity-title">Gen AI Academy 2.0</h1>
+
+                <p>
+                    A practical program designed to help learners understand
+                    and build with modern generative AI tools.
+                </p>
+
+                <ul>
+                    <li>LLMs, prompt engineering & tools</li>
+                    <li>Project-based learning</li>
+                    <li>Career-focused curriculum</li>
+                </ul>
+
+                <a href="https://www.deeplearning.ai" target="_blank" class="apply-btn">
+                    Apply Now <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </article>
+
+    </div>
+</section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <span class="logo-text">Syntax <span class="logo-highlight">Syndicate</span></span>
+                    </div>
+                    <p class="footer-description">
+                        A tech community for modern learners providing study material, 
+                        tech roadmaps, and trending tech content.
+                    </p>
+                    <div class="footer-social">
+                        <!-- Updated Social Links -->
+                        <a href="https://www.instagram.com/syntax_syndicate_?igsh=bmF5bDVydzVscHM=" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/company/syntax-syndicate/" target="_blank">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@SyntaxSyndicateOfficial" target="_blank">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <!-- Discord icon removed as requested -->
+                        <a href="https://github.com/Syntax-Syndicate-Ltd" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h3>Resources</h3>
+                        <a href="/index.html#notes">Study Materials</a>
+                        <a href="/index.html#roadmaps">Tech Roadmaps</a>
+                        <a href="/index#blog">Blog & Articles</a>
+                        <a href="/index.html#opportunities">Coding Challenges</a>
+                    </div>
+                    
+                    <div class="link-group">
+                        <h3>Community</h3>
+                        <a href="#">Join Discord</a>
+                        <a href="#">Events</a>
+                        <a href="#">Mentorship Program</a>
+                        <a href="#">Contributors</a>
+                    </div>
+                    
+                    <div class="link-group">
+                        <h3>Company</h3>
+                        <a href="#">About Us</a>
+                        <a href="#">Contact</a>
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Syntax Syndicate. All rights reserved. Designed with <i class="fas fa-heart"></i> for tech learners.</p>
+                <div class="footer-extra">
+                    <a href="#">Code of Conduct</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+<script>
+            // DOM Elements
+        const backToTopBtn = document.getElementById('backToTop');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.querySelector('.nav-links');
+        const blogTrack = document.getElementById('blogTrack');
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize animations
+            initAnimations();
+            
+            // Set up mobile menu
+            mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+            
+            // Set up back to top button
+            window.addEventListener('scroll', handleScroll);
+            backToTopBtn.addEventListener('click', scrollToTop);
+            
+            // Set up smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        // Close mobile menu if open
+                        if (navLinks.classList.contains('active')) {
+                            navLinks.classList.remove('active');
+                            mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                        }
+                        
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Update active nav link
+                        document.querySelectorAll('.nav-link').forEach(link => {
+                            link.classList.remove('active');
+                        });
+                        this.classList.add('active');
+                    }
+                });
+            });
+            
+            // Handle nav link active state on scroll
+            window.addEventListener('scroll', updateActiveNavLink);
+        });
+
+        // Initialize animations on scroll
+        function initAnimations() {
+            const animatedElements = document.querySelectorAll('.fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            animatedElements.forEach(element => {
+                observer.observe(element);
+            });
+        }
+
+        // Toggle mobile menu
+        function toggleMobileMenu() {
+            navLinks.classList.toggle('active');
+            
+            if (navLinks.classList.contains('active')) {
+                mobileMenuBtn.innerHTML = '<i class="fas fa-times"></i>';
+                mobileMenuBtn.style.color = 'var(--accent-primary)';
+            } else {
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                mobileMenuBtn.style.color = '';
+            }
+        }
+
+</script>
+</html>

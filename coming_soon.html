@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coming Soon | Syntax Syndicate</title>
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+  <link rel="stylesheet" href="/style.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    /* Home page style for Coming Soon */
+    .opportunities-page {
+      padding: 120px 1.5rem;
+      background: var(--bg-primary);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .coming-soon-container {
+      text-align: center;
+      background: var(--glass-bg);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--border-radius-lg);
+      padding: 3rem 2rem;
+      max-width: 500px;
+      width: 90%;
+      box-shadow: var(--elevation-3);
+      animation: fade-in 0.6s ease forwards;
+    }
+
+    .coming-soon-container .section-badge {
+      display: inline-block;
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .coming-soon-container h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+    }
+
+    .coming-soon-container p {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      margin-bottom: 2.5rem;
+    }
+
+    .back-home-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0.75rem 1.5rem;
+      background: var(--glass-bg);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--border-radius);
+      color: var(--text-primary);
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 0.9375rem;
+      box-shadow: var(--elevation-2);
+      transition: all var(--transition-speed);
+    }
+
+    .back-home-btn i {
+      font-size: 1rem;
+      color: var(--accent-primary);
+    }
+
+    .back-home-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--elevation-3);
+      background: var(--glass-bg-hover);
+      border-color: var(--accent-primary);
+    }
+
+    @keyframes fade-in {
+      from {opacity:0; transform: translateY(20px);}
+      to {opacity:1; transform: translateY(0);}
+    }
+
+    @media (max-width: 600px) {
+      .coming-soon-container h1 {
+        font-size: 2rem;
+      }
+      .back-home-btn {
+        font-size: 0.875rem;
+        padding: 0.625rem 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <section class="opportunities-page">
+    <div class="coming-soon-container">
+      <div class="section-badge">Exciting Updates Ahead!</div>
+      <h1>Coming Soon</h1>
+      <p>We're preparing something amazing. Stay tuned and check back soon for new opportunities!</p>
+      <a href="/index.html" class="back-home-btn">
+        <i class="fas fa-home" style="color:aliceblue"></i>
+        <span>Back to Home</span>
+      </a>
+    </div>
+  </section>
+</body>
+</html>

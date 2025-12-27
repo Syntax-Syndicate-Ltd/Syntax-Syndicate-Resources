@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5116839186846142"
      crossorigin="anonymous"></script>
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Exo+2:wght@300;400;500&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -990,6 +991,53 @@
                 margin-bottom: 1rem;
             }
         }
+.back-home-btn{
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 12px 18px;
+  background: rgba(20, 20, 20, 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  border: 1px solid rgba(0, 255, 255, 0.4);
+  border-radius: 14px;
+
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+
+  box-shadow: 0 0 18px rgba(0, 255, 255, 0.25);
+  transition: all 0.25s ease;
+  z-index: 999;
+}
+
+.back-home-btn i{
+  font-size: 16px;
+  color: #00e5ff;
+}
+
+.back-home-btn:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 0 28px rgba(0, 255, 255, 0.45);
+  background: rgba(20, 20, 20, 0.95);
+}
+
+/* Mobile tweak */
+@media (max-width: 600px){
+  .back-home-btn{
+    bottom: 16px;
+    right: 16px;
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+}
+
     </style>
 </head>
 <body>
@@ -998,7 +1046,8 @@
         <div class="grid-background"></div>
         <h1 class="hero-title">GRAPHIC ENGINEER ROADMAP</h1>
         <p class="hero-subtitle">Become a master of tools, rendering, shaders, and pipelines.</p>
-        <button class="enter-button" id="enterButton">ENTER ROADMAP</button>
+        <a href="#roadmap" class="enter-button">ENTER ROADMAP</a>
+
     </section>
 
     <!-- Roadmap Section -->
@@ -1055,18 +1104,6 @@
         </div>
     </section>
 
-    <!-- Bookmark System -->
-    <div class="bookmark-btn" id="bookmarkBtn">
-        <div>📌</div>
-    </div>
-    <div class="bookmark-panel" id="bookmarkPanel">
-        <h3 class="bookmark-title">Saved Progress</h3>
-        <div class="bookmark-list" id="bookmarkList"></div>
-        <div class="progress-bar">
-            <div class="progress-fill" id="progressFill"></div>
-        </div>
-        <div class="progress-text" id="progressText">0% Complete</div>
-    </div>
 
     <!-- Video Modal -->
     <div class="modal" id="videoModal">
@@ -1077,16 +1114,15 @@
             <p class="modal-description" id="modalDescription">Video description</p>
         </div>
     </div>
+<a href="/index.html" class="back-home-btn">
+  <i class="fas fa-home"></i>
+  <span>Back to Home</span>
+</a>
 
     <!-- Footer -->
     <footer>
         <p>GRAPHIC ENGINEER ROADMAP BY SYNTAX SYNDICATE &copy; 2025</p>
-        <div class="footer-links">
-            <a href="#" class="footer-link">About</a>
-            <a href="#" class="footer-link">Contribute</a>
-            <a href="#" class="footer-link">Resources</a>
-            <a href="#" class="footer-link">Contact</a>
-        </div>
+
     </footer>
 
     <script>
