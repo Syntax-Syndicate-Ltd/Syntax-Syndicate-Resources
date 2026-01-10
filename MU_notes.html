@@ -292,7 +292,18 @@
 
 /* Cards */
 .note-card {
-  background: rgba(30, 29, 29, 0.85);
+  background: linear-gradient(
+  135deg,
+  rgba(64, 62, 62, 0.593),
+  rgba(255, 255, 255, 0.02)
+);
+backdrop-filter: blur(20px) saturate(180%);
+-webkit-backdrop-filter: blur(20px) saturate(180%);
+border: 1px solid rgba(255, 255, 255, 0.12);
+box-shadow:
+  0 8px 32px rgba(0, 0, 0, 0.45),
+  inset 0 0 30px rgba(255, 255, 255, 0.03);
+
   backdrop-filter: blur(18px);
   border-radius: 16px;
   padding: 16px;
@@ -780,8 +791,9 @@
             data-subject="Applied Physics"
             data-file="notes/sem1/applied-physics/Fibre_Optics.pdf"
           >
-            <span>Fibre Optics</span>
-            <h3>Laser Notes</h3>
+            <h3>Fibre Optics</h3>
+            <span>Applied Physics</span>
+          
             <button class="open-btn">Open to Study</button>
           </div>
 
@@ -791,8 +803,9 @@
             data-subject="Applied Physics"
             data-file="notes/sem1/applied-physics/Electrodynamics.pdf"
           >
-            <span>Electrodynamics</span>
-            <h3>Laser Notes</h3>
+          <h3>Electrodynamics</h3>
+            <span>Applied Physics</span>
+            
             <button class="open-btn">Open to Study</button>
           </div>
 
@@ -800,9 +813,9 @@
           <div
             class="note-card"
             data-subject="Applied Chemistry"
-            data-file="notes/sem1/applied-chemistry/overview.pdf"
+            data-file="notes/sem1/applied-chemistry/alloys_sem1.pdf"
           >
-            <h3>Overview</h3>
+            <h3>Alloys</h3>
             <span>Applied Chemistry</span>
             <button class="open-btn">Open to Study</button>
           </div>
@@ -815,6 +828,39 @@
           >
             <h3>Matrices</h3>
             <span>Applied Maths I</span>
+            <button class="open-btn">Open to Study</button>
+          </div>
+
+          <!-- 📊 APPLIED MATHS I -->
+          <div
+            class="note-card"
+            data-subject="Applied Maths I"
+            data-file="notes/sem1/applied-maths-1/Complex_Number.pdf"
+          >
+            <h3>Complex Number</h3>
+            <span>Applied Maths I</span>
+            <button class="open-btn">Open to Study</button>
+          </div>
+
+          <!-- 📊 APPLIED MATHS I -->
+          <div
+            class="note-card"
+            data-subject="Applied Maths I"
+            data-file="notes/sem1/applied-maths-1/Hyperbolic_and_Logarithm_Function.pdf"
+          >
+            <h3>Complex Number</h3>
+            <span>Hyperbolic and Logarithm Function</span>
+            <button class="open-btn">Open to Study</button>
+          </div>
+
+          <!-- 📊 APPLIED MATHS I -->
+          <div
+            class="note-card"
+            data-subject="Applied Maths I"
+            data-file="notes/sem1/applied-maths-1/Partial_Differentiation.pdf"
+          >
+            <h3>Complex Number</h3>
+            <span>Partial Differentiation</span>
             <button class="open-btn">Open to Study</button>
           </div>
 
@@ -964,9 +1010,6 @@
             data-subject="PCE"
             data-file="notes/sem1/pce/overview.pdf"
           >
-            <iframe
-              src="notes/sem1/pce/overview.pdf#toolbar=0&navpanes=0"
-            ></iframe>
             <h3>Overview</h3>
             <span>PCE</span>
             <button class="open-btn">Open to Study</button>
