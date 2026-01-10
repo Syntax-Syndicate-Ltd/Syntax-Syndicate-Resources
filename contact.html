@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Syntax Syndicate | Community Contacts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link rel="icon" href="favicon.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+
+      .contacts-page {
+        padding: 140px 0 90px;
+        background: var(--bg-primary);
+      }
+      .contacts-container {
+        max-width: 1100px;
+        margin: auto;
+        padding: 0 1.5rem;
+      }
+
+      .contacts-hero {
+        text-align: center;
+        margin-bottom: 5rem;
+      }
+      .contacts-hero h1 {
+        font-size: 3rem;
+        font-weight: 800;
+        color: var(--text-primary);
+      }
+      .contacts-hero p {
+        color: var(--text-muted);
+        max-width: 800px;
+        margin: 1.2rem auto;
+        font-size: 1.15rem;
+      }
+.contacts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 by 2 grid */
+  gap: 1.6rem;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+  .contacts-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .contacts-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+      .contact-card {
+        background: var(--bg-glass);
+        border: 1px solid var(--border-color);
+        border-radius: 20px;
+        padding: 2.5rem 2rem;
+        transition: 0.3s;
+        text-align: center;
+      }
+      .contact-card:hover {
+        transform: translateY(-8px);
+        border-color: var(--accent-primary);
+      }
+
+      .contact-card i {
+        font-size: 2.6rem;
+        margin-bottom: 1.2rem;
+        color: var(--accent-primary);
+      }
+      .contact-card h3 {
+        color: var(--text-primary);
+        font-size: 1.5rem;
+        margin-bottom: 0.6rem;
+      }
+      .contact-card p {
+        color: var(--text-secondary);
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+
+      .contact-card a {
+        display: inline-block;
+        margin-top: 1.4rem;
+        padding: 12px 30px;
+        border-radius: 50px;
+        background: linear-gradient(
+          135deg,
+          var(--accent-primary),
+          var(--accent-secondary)
+        );
+        color: #000;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .contacts-highlight {
+        margin: 5rem auto 0;
+        max-width: 900px;
+        padding: 3.5rem 3rem;
+        border-radius: 28px;
+        background: linear-gradient(
+          135deg,
+          rgba(0, 255, 255, 0.08),
+          rgba(255, 0, 255, 0.08)
+        );
+        border: 1px solid var(--border-color);
+        text-align: center;
+      }
+      .contacts-highlight h2 {
+        font-size: 2.3rem;
+        color: var(--text-primary);
+        margin-bottom: 1.2rem;
+      }
+      .contacts-highlight p {
+        color: var(--text-secondary);
+        font-size: 1.05rem;
+        max-width: 750px;
+        margin: auto;
+        line-height: 1.8;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="logo">
+          <div class="logo-icon"><i class="fas fa-code"></i></div>
+          <span class="logo-text"
+            >Syntax <span class="logo-highlight">Syndicate</span></span
+          >
+        </div>
+
+        <div class="nav-links">
+          <a href="/index.html#home" class="nav-link">Home</a>
+          <a href="/about.html" class="nav-link">About</a>
+          <a href="/blogs.html" class="nav-link">Blog</a>
+          <a href="/index.html#roadmaps" class="nav-link">Roadmaps</a>
+          <a href="/index.html#opportunities" class="nav-link">Opportunities</a>
+          <a href="/index.html#notes" class="nav-link">Notes</a>
+          <a href="/certificates.html" class="nav-link">Badges</a>
+          <a href="/index.html#join" class="nav-link">Community</a>
+        </div>
+
+        <div class="nav-actions">
+          <a href="#join" class="btn btn-primary btn-join">Join Now</a>
+        </div>
+
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </nav>
+
+    <section class="contacts-page">
+      <div class="contacts-container">
+        <div class="contacts-hero">
+          <h1>Community Help Contacts</h1>
+          <p>
+            Connect directly with the right team of Syntax Syndicate. Each
+            department has a dedicated WhatsApp contact for faster support.
+          </p>
+        </div>
+
+        <div class="contacts-grid">
+          <!-- Guidance -->
+          <div class="contact-card">
+            <i class="fas fa-compass" style="color: aliceblue;"></i>
+            <h3>Guidance & Help</h3>
+            <p>
+              Career guidance, platform help, onboarding support, and community
+              assistance.
+            </p>
+            <a href="https://wa.me/8104578518" target="_blank" style="color: aliceblue;"
+              >Contact on WhatsApp</a
+            >
+          </div>
+
+          <!-- Academics -->
+          <div class="contact-card">
+            <i class="fas fa-book-open" style="color: aliceblue;"></i>
+            <h3>Academics</h3>
+            <p>Notes, syllabus, exams, academic doubts, and study resources.</p>
+            <a href="https://wa.me/8208519403" target="_blank" style="color: aliceblue;"
+              >Contact on WhatsApp</a
+            >
+          </div>
+
+          <!-- Gaming -->
+          <div class="contact-card">
+            <i class="fas fa-gamepad" style="color: aliceblue;"></i>
+            <h3>Gaming & Tournaments</h3>
+            <p>
+              Scrims, tournaments, team registration, and gaming community
+              support.
+            </p>
+            <a href="https://wa.me/7738353010" target="_blank" style="color: aliceblue;"
+              >Contact on WhatsApp</a
+            >
+          </div>
+
+          <!-- Workshops -->
+          <div class="contact-card">
+            <i class="fas fa-chalkboard-teacher" style="color: aliceblue;"></i>
+            <h3>Internships & Workshops</h3>
+            <p>
+              Internships assistance, Paid workshops, premium access, subscriptions, and event
+              registrations.
+            </p>
+            <a href="https://wa.me/7977270870" target="_blank" style="color: aliceblue;"
+              >Contact on WhatsApp</a
+            >
+          </div>
+        </div>
+
+        <div class="contacts-highlight">
+          <h2>Need Help but Not Sure Who to Contact?</h2>
+          <p>
+            Message any department — our admins will route your request to the
+            correct team. We are building a system where every student always
+            knows exactly where to go.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-main">
+          <div class="footer-brand">
+            <div class="logo">
+              <div class="logo-icon"><i class="fas fa-code"></i></div>
+              <span class="logo-text"
+                >Syntax <span class="logo-highlight">Syndicate</span></span
+              >
+            </div>
+            <p class="footer-description">
+              A tech community for modern learners providing study material,
+              tech roadmaps, and trending tech content.
+            </p>
+            <div class="footer-social">
+              <a
+                href="https://www.instagram.com/syntax_syndicate_?igsh=bmF5bDVydzVscHM="
+                target="_blank"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a
+                href="https://www.linkedin.com/company/syntax-syndicate/"
+                target="_blank"
+                ><i class="fab fa-linkedin"></i
+              ></a>
+              <a
+                href="https://www.youtube.com/@SyntaxSyndicateOfficial"
+                target="_blank"
+                ><i class="fab fa-youtube"></i
+              ></a>
+              <a href="https://github.com/Syntax-Syndicate-Ltd" target="_blank"
+                ><i class="fab fa-github"></i
+              ></a>
+              <a
+                href="https://www.threads.net/@syntax_syndicate_"
+                target="_blank"
+                ><i class="fab fa-threads"></i
+              ></a>
+            </div>
+          </div>
+
+          <div class="footer-links">
+            <div class="link-group">
+              <h3>Resources</h3>
+              <a href="/index.html#notes">Study Materials</a>
+              <a href="/index.html#roadmaps">Tech Roadmaps</a>
+              <a href="/blogs.html">Blog & Articles</a>
+              <a href="/reels.html">Opportunities</a>
+            </div>
+
+            <div class="link-group">
+              <h3>Community</h3>
+              <a href="https://discord.gg/bhRS3vfz" target="_blank"
+                >Join Discord</a
+              >
+              <a
+                href="https://whatsapp.com/channel/0029Vb6vHvW8V0tgHZa4Ar2u"
+                target="_blank"
+                >Join Internships Channel</a
+              >
+              <a
+                href="https://chat.whatsapp.com/HVOr8nmlq8aELHmKYzF39x"
+                target="_blank"
+                >Join Gaming Community</a
+              >
+              <a href="/coming_soon.html">More from us</a>
+            </div>
+
+            <div class="link-group">
+              <h3>Company</h3>
+              <a href="/admins.html">Community Admins</a>
+              <a href="/about.html">About Us</a>
+              <a href="/contacts.html">Contact</a>
+              <a href="https://feedbacks.syntaxsyndicate.co.in/" target="_blank"
+                >Feedbacks</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>© 2025 Syntax Syndicate. All rights reserved.</p>
+          <div class="footer-extra">
+            <a href="/code_of_conduct.html">Code of Conduct</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+      const navLinks = document.querySelector(".nav-links");
+      mobileMenuBtn.onclick = () => {
+        navLinks.classList.toggle("active");
+        mobileMenuBtn.innerHTML = navLinks.classList.contains("active")
+          ? '<i class="fas fa-times"></i>'
+          : '<i class="fas fa-bars"></i>';
+      };
+    </script>
+  </body>
+</html>

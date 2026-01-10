@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Syntax Syndicate | Admin Team</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="icon" href="/favicon.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+    <style>
+      .admin-page {
+        padding: 140px 0 100px;
+        background: var(--bg-primary);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .admin-container {
+        max-width: 1200px;
+        margin: auto;
+        padding: 0 1.5rem;
+      }
+
+      .admin-header {
+        text-align: center;
+        margin-bottom: 5rem;
+      }
+
+      .admin-header h1 {
+        font-size: 3rem;
+        font-weight: 900;
+        color: var(--text-primary);
+        position: relative;
+        display: inline-block;
+        margin-bottom: 1.5rem;
+      }
+
+      .admin-header h1::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60%;
+        height: 3px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--accent-primary),
+          transparent
+        );
+      }
+
+      .admin-header p {
+        max-width: 780px;
+        margin: 0 auto;
+        color: var(--text-secondary);
+        font-size: 1.1rem;
+        line-height: 1.7;
+      }
+
+      .admin-showcase {
+        display: flex;
+        flex-direction: column;
+        gap: 4rem;
+      }
+
+      .admin-member {
+        display: grid;
+        grid-template-columns: 300px 1fr;
+        gap: 3rem;
+        align-items: center;
+        position: relative;
+        padding: 2.5rem;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 16px;
+        backdrop-filter: blur(20px);
+        box-shadow: var(--elevation-1);
+        transition: all 0.4s ease;
+        overflow: hidden;
+      }
+
+      .admin-member:hover {
+        transform: translateX(10px);
+        border-color: var(--accent-primary);
+        box-shadow: var(--elevation-2);
+      }
+
+      .admin-member:nth-child(even) {
+        grid-template-columns: 1fr 300px;
+      }
+
+      .admin-member:nth-child(even):hover {
+        transform: translateX(-10px);
+      }
+
+      .admin-member:nth-child(even) .admin-visual {
+        order: 2;
+      }
+
+      .admin-member:nth-child(even) .admin-info {
+        text-align: right;
+      }
+
+      .admin-visual {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .admin-photo-frame {
+        position: relative;
+        width: 220px;
+        height: 220px;
+      }
+
+      .admin-photo-bg {
+        position: absolute;
+        inset: 0;
+        background: var(--accent-primary);
+        border-radius: 50%;
+      }
+
+      .admin-photo-inner {
+        position: absolute;
+        inset: 4px;
+        border-radius: 50%;
+        overflow: hidden;
+        background: var(--bg-primary);
+      }
+
+      .admin-photo-inner img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .admin-info h3 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+        color: var(--text-primary);
+        font-weight: 800;
+      }
+
+      .admin-role {
+        display: inline-block;
+        color: var(--text-primary);
+        font-weight: 700;
+        padding: 0.5rem 1.4rem;
+        background: var(--accent-primary);
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+        border: 1px solid var(--border-light);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-size: 0.85rem;
+        box-shadow: var(--elevation-1);
+        transition: all 0.3s ease;
+      }
+
+      .admin-info p {
+        color: var(--text-secondary);
+        line-height: 1.8;
+        font-size: 1.05rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .admin-social {
+        display: flex;
+        gap: 0.75rem;
+        margin-bottom: 1.5rem;
+        flex-wrap: wrap;
+      }
+
+      .admin-member:nth-child(even) .admin-social {
+        justify-content: flex-end;
+      }
+
+      .social-link {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--bg-tertiary);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        color: var(--text-secondary);
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        text-decoration: none;
+      }
+
+      .social-link:hover {
+        background: var(--accent-primary);
+        border-color: var(--border-light);
+        color: var(--text-primary);
+        transform: translateY(-3px);
+      }
+
+      .social-link.linkedin:hover {
+        background: #0077b5;
+      }
+
+      .social-link.github:hover {
+        background: #333;
+      }
+
+      .social-link.instagram:hover {
+        background: linear-gradient(
+          45deg,
+          #f09433 0%,
+          #e6683c 25%,
+          #dc2743 50%,
+          #cc2366 75%,
+          #bc1888 100%
+        );
+      }
+
+      .admin-stats {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1.5rem;
+        flex-wrap: wrap;
+      }
+
+      .admin-member:nth-child(even) .admin-stats {
+        justify-content: flex-end;
+      }
+
+      .stat-item {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        padding: 0.5rem 0.9rem;
+        background: var(--bg-tertiary);
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+        transition: all 0.3s ease;
+      }
+
+      .stat-item:hover {
+        background: var(--accent-primary);
+        border-color: var(--border-light);
+        transform: translateY(-2px);
+      }
+
+      .stat-item i {
+        color: var(--text-primary);
+        font-size: 1rem;
+      }
+
+      .glow-accent {
+        position: absolute;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(
+          circle,
+          rgba(58, 58, 58, 0.15),
+          transparent
+        );
+        pointer-events: none;
+        border-radius: 50%;
+        filter: blur(60px);
+      }
+
+      .glow-1 {
+        top: -100px;
+        left: -100px;
+      }
+      .glow-2 {
+        bottom: -100px;
+        right: -100px;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 992px) {
+        .admin-member {
+          display: grid;
+          grid-template-columns: 1fr;
+          grid-template-areas:
+            "photo"
+            "info";
+          gap: 2rem;
+          padding: 2rem;
+        }
+
+        .admin-visual {
+          grid-area: photo;
+          order: 1;
+          justify-content: center;
+        }
+
+        .admin-info {
+          grid-area: info;
+          order: 2;
+          text-align: left;
+        }
+
+        .admin-member:nth-child(even) {
+          grid-template-columns: 1fr;
+        }
+
+        .admin-member:nth-child(even) .admin-visual {
+          order: 1;
+        }
+
+        .admin-member:nth-child(even) .admin-info {
+          text-align: left;
+        }
+
+        .admin-member:nth-child(even) .admin-social,
+        .admin-member:nth-child(even) .admin-stats {
+          justify-content: flex-start;
+        }
+
+        .admin-member:hover,
+        .admin-member:nth-child(even):hover {
+          transform: translateY(-4px);
+        }
+
+        .admin-photo-frame {
+          width: 200px;
+          height: 200px;
+        }
+
+        .admin-info h3 {
+          font-size: 1.75rem;
+          text-align: left;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .admin-page {
+          padding: 120px 0 80px;
+        }
+
+        .admin-container {
+          padding: 0 1rem;
+        }
+
+        .admin-header {
+          margin-bottom: 3.5rem;
+        }
+
+        .admin-header h1 {
+          font-size: 2.5rem;
+        }
+
+        .admin-header p {
+          font-size: 1rem;
+        }
+
+        .admin-showcase {
+          gap: 3rem;
+        }
+
+        .admin-member {
+          padding: 1.5rem;
+          gap: 1.5rem;
+        }
+
+        .admin-photo-frame {
+          width: 180px;
+          height: 180px;
+        }
+
+        .admin-info h3 {
+          font-size: 1.5rem;
+        }
+
+        .admin-info p {
+          font-size: 1rem;
+        }
+
+        .admin-stats {
+          gap: 0.75rem;
+        }
+
+        .stat-item {
+          font-size: 0.85rem;
+          padding: 0.45rem 0.8rem;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .admin-page {
+          padding: 100px 0 60px;
+        }
+
+        .admin-header {
+          margin-bottom: 3rem;
+        }
+
+        .admin-header h1 {
+          font-size: 2rem;
+        }
+
+        .admin-header p {
+          font-size: 0.95rem;
+        }
+
+        .admin-showcase {
+          gap: 2.5rem;
+        }
+
+        .admin-member {
+          padding: 1.25rem;
+          gap: 1.25rem;
+        }
+
+        .admin-photo-frame {
+          width: 160px;
+          height: 160px;
+        }
+
+        .admin-info h3 {
+          font-size: 1.35rem;
+        }
+
+        .admin-role {
+          font-size: 0.8rem;
+          padding: 0.4rem 1rem;
+        }
+
+        .admin-info p {
+          font-size: 0.95rem;
+          margin-bottom: 1rem;
+        }
+
+        .admin-social {
+          gap: 0.6rem;
+          margin-bottom: 1rem;
+        }
+
+        .social-link {
+          width: 36px;
+          height: 36px;
+          font-size: 1rem;
+        }
+
+        .admin-stats {
+          flex-direction: column;
+          gap: 0.65rem;
+          margin-top: 1rem;
+        }
+
+        .stat-item {
+          justify-content: flex-start;
+          font-size: 0.8rem;
+        }
+
+        .glow-accent {
+          width: 300px;
+          height: 300px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="logo">
+          <div class="logo-icon"><i class="fas fa-code"></i></div>
+          <span class="logo-text"
+            >Syntax <span class="logo-highlight">Syndicate</span></span
+          >
+        </div>
+
+        <div class="nav-links">
+          <a href="/index.html#home" class="nav-link">Home</a>
+          <a href="/index.html#about" class="nav-link">About</a>
+          <a href="/blogs.html" class="nav-link">Blog</a>
+          <a href="/index.html#roadmaps" class="nav-link">Roadmaps</a>
+          <a href="/index.html#opportunities" class="nav-link">Opportunities</a>
+          <a href="/index.html#notes" class="nav-link">Notes</a>
+          <a href="/certificates.html" class="nav-link">Badges</a>
+          <a href="/index.html#join" class="nav-link">Community</a>
+        </div>
+
+        <div class="nav-actions">
+          <a href="#join" class="btn btn-primary btn-join">Join Now</a>
+        </div>
+
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </nav>
+
+    <section class="admin-page">
+      <div class="glow-accent glow-1"></div>
+      <div class="glow-accent glow-2"></div>
+
+      <div class="admin-container">
+        <div class="admin-header">
+          <h1>Our Admin Team</h1>
+          <p>
+            Syntax Syndicate is operated by a trusted team of student leaders
+            and tech professionals who manage community operations, verify
+            opportunities, and maintain quality across the platform.
+          </p>
+        </div>
+
+        <div class="admin-showcase">
+          <!-- Piyush Koli -->
+          <div class="admin-member">
+            <div class="admin-visual">
+              <div class="admin-photo-frame">
+                <div class="admin-photo-bg"></div>
+                <div class="admin-photo-inner">
+                  <img src="/pfps/piyush.jpg" alt="Piyush Koli" />
+                </div>
+              </div>
+            </div>
+            <div class="admin-info">
+              <h3>Piyush Koli</h3>
+              <span class="admin-role">Founder & Lead Administrator (CEO)</span>
+              <p>
+                Leads the vision, platform development, partnerships, and growth
+                of Syntax Syndicate. Driving innovation and building the future
+                of tech education.
+              </p>
+              <div class="admin-stats">
+                <div class="stat-item">
+                  <i class="fas fa-star"></i> <span>Founder</span>
+                </div>
+                <div class="stat-item">
+                  <i class="fas fa-users"></i> <span>Community Lead</span>
+                </div>
+                <div class="stat-item">
+                  <i class="fas fa-rocket"></i> <span>Innovator</span>
+                </div>
+              </div>
+              <div class="admin-social" style="padding-top: 15px">
+                <a
+                  href="https://www.linkedin.com/in/piyush-koli-646b43336/"
+                  target="_blank"
+                  class="social-link linkedin"
+                >
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a
+                  href="https://github.com/PiyushKoli04"
+                  target="_blank"
+                  class="social-link github"
+                >
+                  <i class="fab fa-github"></i>
+                </a>
+                <a
+                  href="https://www.instagram.com/piyush_koli_289/"
+                  target="_blank"
+                  class="social-link instagram"
+                >
+                  <i class="fab fa-instagram"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Adinath Jagtap -->
+          <div class="admin-member">
+            <div class="admin-visual">
+              <div class="admin-photo-frame">
+                <div class="admin-photo-bg"></div>
+                <div class="admin-photo-inner">
+                  <img src="/pfps/adinath.jpg" alt="Adinath Jagtap" />
+                </div>
+              </div>
+            </div>
+            <div class="admin-info">
+              <h3>Adinath Jagtap</h3>
+              <span class="admin-role"
+                >Community Operations & Development (COO )</span
+              >
+              <p>
+                Handles community operations, product management, new
+                innovations, and community safety. Ensuring a welcoming and
+                secure environment for all members.
+              </p>
+              <div class="admin-stats">
+                <div class="stat-item">
+                  <i class="fas fa-code"></i> <span>Development</span>
+                </div>
+                <div class="stat-item">
+                  <i class="fas fa-tasks"></i> <span>Product Management</span>
+                </div>
+                <div class="stat-item">
+                  <i class="fas fa-shield"></i> <span>Community safety</span>
+                </div>
+              </div>
+              <div class="admin-social" style="padding-top: 15px">
+                <a href="https://www.linkedin.com/in/adinath-jagtap-441313332/" target="_blank" class="social-link linkedin">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://github.com/adinath-jagtap" target="_blank" class="social-link github">
+                  <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.instagram.com/__adinath__aj/" target="_blank" class="social-link instagram">
+                  <i class="fab fa-instagram"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Aryan Naik -->
+          <div class="admin-member">
+            <div class="admin-visual">
+              <div class="admin-photo-frame">
+                <div class="admin-photo-bg"></div>
+                <div class="admin-photo-inner">
+                  <img src="/pfps/aryan.jpg" alt="Aryan Naik" />
+                </div>
+              </div>
+            </div>
+            <div class="admin-info">
+              <h3>Aryan Naik</h3>
+              <span class="admin-role">Finance & Technical Support (CTO)</span>
+              <p>
+                Oversees financial systems, manages technical infrastructure,
+                and provides critical support to ensure smooth platform
+                operations and community services.
+              </p>
+              <div class="admin-stats">
+                <div class="stat-item">
+                  <i class="fas fa-dollar-sign"></i> <span>Finance</span>
+                </div>
+                <div class="stat-item">
+                  <i class="fas fa-cogs"></i> <span>Technical</span>
+                </div>
+              </div>
+              <div class="admin-social" style="padding-top: 15px">
+                <a href="#https://www.linkedin.com/in/aryan-naik-933403375/" target="_blank" class="social-link linkedin">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://github.com/infinus-77" target="_blank" class="social-link github">
+                  <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.instagram.com/ft_zeppeli/" target="_blank" class="social-link instagram">
+                  <i class="fab fa-instagram"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pratham Shinde -->
+          <div class="admin-member">
+            <div class="admin-visual">
+              <div class="admin-photo-frame">
+                <div class="admin-photo-bg"></div>
+                <div class="admin-photo-inner">
+                  <img src="/pfps/pratham.jpg" alt="Pratham Shinde" />
+                </div>
+              </div>
+            </div>
+            <div class="admin-info">
+              <h3>Pratham Shinde</h3>
+              <span class="admin-role">Design & Content Lead</span>
+              <p>
+                Handles design and content for social media, creating
+                storytelling visuals and branding for community.
+              </p>
+              <div class="admin-stats">
+                <div class="stat-item">
+                  <i class="fas fa-palette"></i> <span>Design</span>
+                </div>
+                <div class="stat-item">
+                  <i class="fas fa-pen-nib"></i> <span>Content</span>
+                </div>
+              </div>
+              <div class="admin-social" style="padding-top: 15px">
+                <a href="https://www.linkedin.com/in/pratham-shinde-97a676374/" target="_blank" class="social-link linkedin">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://github.com/shindepratham265-droid" target="_blank" class="social-link github">
+                  <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.instagram.com/prathams_17/" target="_blank" class="social-link instagram">
+                  <i class="fab fa-instagram"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bhupesh Lodhi -->
+          <div class="admin-member">
+            <div class="admin-visual">
+              <div class="admin-photo-frame">
+                <div class="admin-photo-bg"></div>
+                <div class="admin-photo-inner">
+                  <img src="/pfps/bhupesh.jpg" alt="Bhupesh Lodhi" />
+                </div>
+              </div>
+            </div>
+            <div class="admin-info">
+              <h3>Bhupesh Lodhi</h3>
+              <span class="admin-role">Research & Publicity (CMO)</span>
+              <p>
+                Leads research on trends, technologies, and opportunities while
+                managing outreach, branding, and public visibility of the
+                community.
+              </p>
+              <div class="admin-stats">
+                <div class="stat-item">
+                  <i class="fas fa-search"></i> <span>Research</span>
+                </div>
+                <div class="stat-item">
+                  <i class="fas fa-bullhorn"></i> <span>Publicity</span>
+                </div>
+              </div>
+              <div class="admin-social" style="padding-top: 15px">
+                <a href="https://www.linkedin.com/in/bhupesh-lodhi/" target="_blank" class="social-link linkedin">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://github.com/bhupesh150603" target="_blank" class="social-link github">
+                  <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.instagram.com/bhupesh_lodhi_/" target="_blank" class="social-link instagram">
+                  <i class="fab fa-instagram"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Prajwal Zolage -->
+          <div class="admin-member">
+            <div class="admin-visual">
+              <div class="admin-photo-frame">
+                <div class="admin-photo-bg"></div>
+                <div class="admin-photo-inner">
+                  <img src="/pfps/prajwal.jpg" alt="Prajwal Zolage" />
+                </div>
+              </div>
+            </div>
+            <div class="admin-info">
+              <h3>Prajwal Zolage</h3>
+              <span class="admin-role">Academics & Front End Development</span>
+              <p>
+                Oversees academic resources and manages front-end development to
+                ensure smooth learning experiences and interactive community
+                tools.
+              </p>
+              <div class="admin-stats">
+                <div class="stat-item">
+                  <i class="fas fa-book"></i> <span>Academics</span>
+                </div>
+                <div class="stat-item">
+                  <i class="fas fa-laptop-code"></i> <span>Front End</span>
+                </div>
+              </div>
+
+              <div class="admin-social" style="padding-top: 15px">
+                <a href="https://www.linkedin.com/in/prajwal-zolage-82ab10347/" target="_blank" class="social-link linkedin">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://github.com/prajwalzolage2425" target="_blank" class="social-link github">
+                  <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.instagram.com/prajwal__0506/" target="_blank" class="social-link instagram">
+                  <i class="fab fa-instagram"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Viraj Kakade -->
+          <div class="admin-member">
+            <div class="admin-visual">
+              <div class="admin-photo-frame">
+                <div class="admin-photo-bg"></div>
+                <div class="admin-photo-inner">
+                  <img src="/pfps/viraj.jpg" alt="Viraj Kakade" />
+                </div>
+              </div>
+            </div>
+            <div class="admin-info">
+              <h3>Viraj Kakade</h3>
+              <span class="admin-role">Data Admin & Scheduling</span>
+              <p>
+                Handles data management and task schedule management for the
+                community
+              </p>
+
+              <div class="admin-stats">
+                <div class="stat-item">
+                  <i class="fas fa-tasks"></i> <span>Task Coordination</span>
+                </div>
+
+                <div class="stat-item">
+                  <i class="fas fa-database"></i> <span>Data Management</span>
+                </div>
+              </div>
+              <div class="admin-social" style="padding-top: 15px">
+                <a href="https://www.linkedin.com/in/viraj-kakade-94ba173a0/" target="_blank" class="social-link linkedin">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://github.com/virajk1207" target="_blank" class="social-link github">
+                  <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.instagram.com/viraj_kakade_07/" target="_blank" class="social-link instagram">
+                  <i class="fab fa-instagram"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ved Dixit -->
+          <div class="admin-member">
+            <div class="admin-visual">
+              <div class="admin-photo-frame">
+                <div class="admin-photo-bg"></div>
+                <div class="admin-photo-inner">
+                  <img src="/pfps/ved.jpg" alt="Ved Dixit" />
+                </div>
+              </div>
+            </div>
+            <div class="admin-info">
+              <h3>Ved Dixit</h3>
+              <span class="admin-role">Gaming and Editing</span>
+              <p>
+                Manages gaming events and competitions, including BGMI and Free
+                Fire, and editing content for social media posts of gaming.
+              </p>
+              <div class="admin-stats">
+                <div class="stat-item">
+                  <i class="fas fa-gamepad"></i> <span>Gaming</span>
+                </div>
+                <div class="stat-item">
+                  <i class="fas fa-pen"></i> <span>Editing</span>
+                </div>
+              </div>
+
+              <div class="admin-social" style="padding-top: 15px">
+                <a href="https://www.linkedin.com/in/ved-dixit-b279983a1/" target="_blank" class="social-link linkedin">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://github.com/vedd023" target="_blank" class="social-link github">
+                  <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.instagram.com/ved__023/" target="_blank" class="social-link instagram">
+                  <i class="fab fa-instagram"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sharvil Gharat -->
+          <div class="admin-member">
+            <div class="admin-visual">
+              <div class="admin-photo-frame">
+                <div class="admin-photo-bg"></div>
+                <div class="admin-photo-inner">
+                  <img src="/pfps/sharvil.jpg" alt="Sharvil Gharat" />
+                </div>
+              </div>
+            </div>
+            <div class="admin-info">
+              <h3>Sharvil Gharat</h3>
+              <span class="admin-role">Social Media & Editing</span>
+              <p>
+                Manages social media platforms and creates engaging content,
+                along with editing videos and graphics for community outreach.
+              </p>
+
+              <div class="admin-stats">
+                <div class="stat-item">
+                  <i class="fas fa-calendar-check"></i>
+                  <span>Social Media</span>
+                </div>
+
+                <div class="stat-item">
+                  <i class="fas fa-edit"></i> <span>Editing</span>
+                </div>
+              </div>
+
+              <div class="admin-social" style="padding-top: 15px">
+                <a href="https://www.linkedin.com/in/sharvil-gharat-16a86b373/" target="_blank" class="social-link linkedin">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://github.com/sharvil-14" target="_blank" class="social-link github">
+                  <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.instagram.com/sharvilgharat/" target="_blank" class="social-link instagram">
+                  <i class="fab fa-instagram"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-main">
+          <div class="footer-brand">
+            <div class="logo">
+              <div class="logo-icon"><i class="fas fa-code"></i></div>
+              <span class="logo-text"
+                >Syntax <span class="logo-highlight">Syndicate</span></span
+              >
+            </div>
+            <p class="footer-description">
+              A tech community for modern learners providing study material,
+              tech roadmaps, and trending tech content.
+            </p>
+            <div class="footer-social">
+              <a
+                href="https://www.instagram.com/syntax_syndicate_?igsh=bmF5bDVydzVscHM="
+                target="_blank"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a
+                href="https://www.linkedin.com/company/syntax-syndicate/"
+                target="_blank"
+                ><i class="fab fa-linkedin"></i
+              ></a>
+              <a
+                href="https://www.youtube.com/@SyntaxSyndicateOfficial"
+                target="_blank"
+                ><i class="fab fa-youtube"></i
+              ></a>
+              <a href="https://github.com/Syntax-Syndicate-Ltd" target="_blank"
+                ><i class="fab fa-github"></i
+              ></a>
+              <a
+                href="https://www.threads.net/@syntax_syndicate_"
+                target="_blank"
+                ><i class="fab fa-threads"></i
+              ></a>
+            </div>
+          </div>
+
+          <div class="footer-links">
+            <div class="link-group">
+              <h3>Resources</h3>
+              <a href="/index.html#notes">Study Materials</a>
+              <a href="/index.html#roadmaps">Tech Roadmaps</a>
+              <a href="/blogs.html">Blog & Articles</a>
+              <a href="/reels.html">Opportunities</a>
+            </div>
+
+            <div class="link-group">
+              <h3>Community</h3>
+              <a href="https://discord.gg/bhRS3vfz" target="_blank"
+                >Join Discord</a
+              >
+              <a
+                href="https://whatsapp.com/channel/0029Vb6vHvW8V0tgHZa4Ar2u"
+                target="_blank"
+                >Join Internships Channel</a
+              >
+              <a
+                href="https://chat.whatsapp.com/HVOr8nmlq8aELHmKYzF39x"
+                target="_blank"
+                >Join gaming community</a
+              >
+              <a href="/coming_soon.html">More from us</a>
+            </div>
+
+            <div class="link-group">
+              <h3>Company</h3>
+              <a href="/admins.html">Community Admins</a>
+              <a href="/about.html">About Us</a>
+              <a href="/contact.html">Contact</a>
+              <a href="https://feedbacks.syntaxsyndicate.co.in/" target="_blank"
+                >Feedbacks</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>
+            &copy; 2025 Syntax Syndicate. All rights reserved. Designed for tech
+            learners.
+          </p>
+          <div class="footer-extra">
+            <a href="/code_of_conduct.html">Code of Conduct</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const btn = document.getElementById("mobileMenuBtn");
+      const links = document.querySelector(".nav-links");
+      btn.onclick = () => {
+        links.classList.toggle("active");
+        btn.innerHTML = links.classList.contains("active")
+          ? '<i class="fas fa-times"></i>'
+          : '<i class="fas fa-bars"></i>';
+      };
+    </script>
+  </body>
+</html>
