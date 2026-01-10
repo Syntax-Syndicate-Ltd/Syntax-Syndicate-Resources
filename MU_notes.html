@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>University of Mumbai Notes | Syntax Syndicate</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
     <link rel="stylesheet" href="/style.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
@@ -365,36 +368,35 @@
         box-shadow: 0 6px 18px rgba(0, 255, 255, 0.3);
       }
       /* FULLSCREEN BACKDROP */
-.notes-popup {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.85);
-  z-index: 9999;
+      .notes-popup {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.85);
+        z-index: 9999;
 
-  display: none;
-  padding: 16px;
-  box-sizing: border-box;
+        display: none;
+        padding: 16px;
+        box-sizing: border-box;
 
-  /* THIS makes the popup itself scroll */
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-}
+        /* THIS makes the popup itself scroll */
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+      }
 
-/* POPUP BOX */
-.notes-popup .popup-content {
-  background: rgba(20, 20, 20, 0.95);
-  border-radius: 16px;
-  width: 100%;
-  max-width: 1200px;
+      /* POPUP BOX */
+      .notes-popup .popup-content {
+        background: rgba(20, 20, 20, 0.95);
+        border-radius: 16px;
+        width: 100%;
+        max-width: 1200px;
 
-  /* Prevent it from being taller than viewport */
-  min-height: fit-content;
-  margin: auto;
+        /* Prevent it from being taller than viewport */
+        min-height: fit-content;
+        margin: auto;
 
-  padding: 20px;
-  box-sizing: border-box;
-}
-
+        padding: 20px;
+        box-sizing: border-box;
+      }
 
       .notes-popup .close-popup {
         position: absolute;
@@ -645,7 +647,6 @@
 
         <!-- 🔽 GLOBAL FILTERS -->
         <div class="global-filters">
-
           <select id="branchFilter">
             <option value="">Select Branch</option>
             <option value="general">General Engineering</option>
@@ -751,21 +752,21 @@
             data-subject="Applied Physics"
             data-file="notes/sem1/applied-physics/Laser_notes.pdf"
           >
-
-            <span>Applied Physics</span>
             <h3>Laser Notes</h3>
+            <span>Applied Physics</span>
+
             <button class="open-btn">Open to Study</button>
           </div>
-          
+
           <!-- 🔬 APPLIED PHYSICS -->
           <div
             class="note-card"
             data-subject="Applied Physics"
             data-file="notes/sem1/applied-physics/Interference_in_thin_film.pdf"
           >
-
-            <span>Interference in thin film</span>
-            <h3>Laser Notes</h3>
+          <h3>Interference in thin film</h3>
+            <span>Applied Physics</span>
+            
             <button class="open-btn">Open to Study</button>
           </div>
 
@@ -775,7 +776,6 @@
             data-subject="Applied Physics"
             data-file="notes/sem1/applied-physics/Fibre_Optics.pdf"
           >
-
             <span>Fibre Optics</span>
             <h3>Laser Notes</h3>
             <button class="open-btn">Open to Study</button>
@@ -787,7 +787,6 @@
             data-subject="Applied Physics"
             data-file="notes/sem1/applied-physics/Electrodynamics.pdf"
           >
-
             <span>Electrodynamics</span>
             <h3>Laser Notes</h3>
             <button class="open-btn">Open to Study</button>
@@ -1160,109 +1159,150 @@
             <button class="open-btn">Open to Study</button>
           </div>
         </div>
-        
-<!-- 📚 YEAR / BRANCH / SEM SECTION -->
-<div class="year-section highlight-target"
-     data-year="year-2"
-     data-branch="ai&ds engineering"
-     data-sem="sem-4">
 
-  <h3 class="year-title">2nd Year – AI&DS Engineering (Semester 4)</h3>
+        <!-- 📚 YEAR / BRANCH / SEM SECTION -->
+        <div
+          class="year-section highlight-target"
+          data-year="year-2"
+          data-branch="ai&ds engineering"
+          data-sem="sem-4"
+        >
+          <h3 class="year-title">2nd Year – AI&DS Engineering (Semester 4)</h3>
 
-  <!-- SUBJECT CARDS GRID -->
-  <div class="subject-cards-grid sem4-filter">
+          <!-- SUBJECT CARDS GRID -->
+          <div class="subject-cards-grid sem4-filter">
+            <div class="subject-card" data-subject="Computational Theory">
+              <h4>Computational Theory</h4>
+              <p>Concepts, notes</p>
+              <button
+                class="view-notes-btn"
+                data-subject="Computational Theory"
+              >
+                View Notes
+              </button>
+            </div>
 
-    <div class="subject-card" data-subject="Computational Theory">
-      <h4>Computational Theory</h4>
-      <p>Concepts, notes</p>
-      <button class="view-notes-btn" data-subject="Computational Theory">View Notes</button>
-    </div>
+            <div class="subject-card" data-subject="Operating Systems">
+              <h4>Operating Systems</h4>
+              <p>theory, exam-oriented</p>
+              <button class="view-notes-btn" data-subject="Operating Systems">
+                View Notes
+              </button>
+            </div>
 
-    <div class="subject-card" data-subject="Operating Systems">
-      <h4>Operating Systems</h4>
-      <p>theory, exam-oriented</p>
-      <button class="view-notes-btn" data-subject="Operating Systems">View Notes</button>
-    </div>
+            <div
+              class="subject-card"
+              data-subject="Database Management Systems"
+            >
+              <h4>Database Management Systems</h4>
+              <p>Detailed Notes</p>
+              <button
+                class="view-notes-btn"
+                data-subject="Database Management Systems"
+              >
+                View Notes
+              </button>
+            </div>
 
-    <div class="subject-card" data-subject="Database Management Systems">
-      <h4>Database Management Systems</h4>
-      <p>Detailed Notes</p>
-      <button class="view-notes-btn" data-subject="Database Management Systems">View Notes</button>
-    </div>
+            <div class="subject-card" data-subject="Multidisciplinary Minor">
+              <h4>Multidisciplinary Minor</h4>
+              <p>Detailed Notes</p>
+              <button
+                class="view-notes-btn"
+                data-subject="Multidisciplinary Minor"
+              >
+                View Notes
+              </button>
+            </div>
 
-    <div class="subject-card" data-subject="Multidisciplinary Minor">
-      <h4>Multidisciplinary Minor</h4>
-      <p>Detailed Notes</p>
-      <button class="view-notes-btn" data-subject="Multidisciplinary Minor">View Notes</button>
-    </div>
+            <div class="subject-card" data-subject="Business Model Development">
+              <h4>Business Model Development</h4>
+              <p>Detailed Notes</p>
+              <button
+                class="view-notes-btn"
+                data-subject="Business Model Development"
+              >
+                View Notes
+              </button>
+            </div>
+          </div>
+        </div>
 
-    <div class="subject-card" data-subject="Business Model Development">
-      <h4>Business Model Development</h4>
-      <p>Detailed Notes</p>
-      <button class="view-notes-btn" data-subject="Business Model Development">View Notes</button>
-    </div>
-  </div>
-</div>
+        <!-- 📦 NOTES POPUP -->
+        <div id="notesPopup" class="notes-popup">
+          <div class="popup-content">
+            <span class="close-popup">&times;</span>
+            <h3 id="popupTitle">Subject Notes</h3>
+            <div class="notes-grid" id="popupGrid"></div>
+          </div>
+        </div>
 
-<!-- 📦 NOTES POPUP -->
-<div id="notesPopup" class="notes-popup">
-  <div class="popup-content">
-    <span class="close-popup">&times;</span>
-    <h3 id="popupTitle">Subject Notes</h3>
-    <div class="notes-grid" id="popupGrid"></div>
-  </div>
-</div>
+        <!-- 📦 PDF POPUP -->
+        <div id="pdfModal" class="pdf-popup">
+          <div class="pdf-content">
+            <span class="close-modal">&times;</span>
+            <iframe id="pdfViewer" src="" frameborder="0"></iframe>
+          </div>
+        </div>
 
-<!-- 📦 PDF POPUP -->
-<div id="pdfModal" class="pdf-popup">
-  <div class="pdf-content">
-    <span class="close-modal">&times;</span>
-    <iframe id="pdfViewer" src="" frameborder="0"></iframe>
-  </div>
-</div>
+        <!-- HIDDEN NOTES STORAGE -->
+        <div class="notes-storage sem1-grid" style="display: none">
+          <!-- Computational Theory -->
+          <div
+            class="note-card"
+            data-subject="Computational Theory"
+            data-file="notes/sem4/applied-physics/Laser_notes.pdf"
+          >
+            <iframe
+              src="notes/sem4/Computational Theory/.pdf#toolbar=0&navpanes=0"
+            ></iframe>
+            <span>Computational Theory</span>
+            <h3>Chp1 Notes</h3>
+            <button class="open-btn">Open to Study</button>
+          </div>
 
-<!-- HIDDEN NOTES STORAGE -->
-<div class="notes-storage sem1-grid" style="display:none">
+          <!-- Operating Systems -->
+          <div
+            class="note-card"
+            data-subject="Operating Systems"
+            data-file="notes/sem4/Operating Systems/overview.pdf"
+          >
+            <iframe
+              src="notes/sem4/Operating Systems/overview.pdf#toolbar=0&navpanes=0"
+            ></iframe>
+            <h3>Overview</h3>
+            <span>Operating Systems</span>
+            <button class="open-btn">Open to Study</button>
+          </div>
 
-  <!-- Computational Theory -->
-  <div class="note-card" data-subject="Computational Theory" data-file="notes/sem4/applied-physics/Laser_notes.pdf">
-    <iframe src="notes/sem4/Computational Theory/.pdf#toolbar=0&navpanes=0"></iframe>
-    <span>Computational Theory</span>
-    <h3>Chp1 Notes</h3>
-    <button class="open-btn">Open to Study</button>
-  </div>
+          <!-- Database Management Systems -->
+          <div
+            class="note-card"
+            data-subject="Database Management Systems"
+            data-file="notes/sem4/Database Management Systems/overview.pdf"
+          >
+            <iframe
+              src="notes/sem4/Database Management Systems/.pdf#toolbar=0&navpanes=0"
+            ></iframe>
+            <span>Database Management Systems</span>
+            <h3>Chp1 Notes</h3>
+            <button class="open-btn">Open to Study</button>
+          </div>
 
-  <!-- Operating Systems -->
-  <div class="note-card" data-subject="Operating Systems" data-file="notes/sem4/Operating Systems/overview.pdf">
-        <iframe src="notes/sem4/Operating Systems/overview.pdf#toolbar=0&navpanes=0"></iframe>
-    <h3>Overview</h3>
-    <span>Operating Systems</span>
-    <button class="open-btn">Open to Study</button>
-  </div>
-
-  <!-- Database Management Systems -->
-  <div class="note-card" data-subject="Database Management Systems" data-file="notes/sem4/Database Management Systems/overview.pdf">
-    <iframe src="notes/sem4/Database Management Systems/.pdf#toolbar=0&navpanes=0"></iframe>
-    <span>Database Management Systems</span>
-    <h3>Chp1 Notes</h3>
-    <button class="open-btn">Open to Study</button>
-  </div>
-
-  <!-- Operating Systems -->
-  <div class="note-card" data-subject="Business Model Development" data-file="notes/sem4/Business Model Development/overview.pdf">
-        <iframe src="notes/sem4/Business Model Development/overview.pdf#toolbar=0&navpanes=0"></iframe>
-    <h3>Overview</h3>
-    <span>Business Model Development</span>
-    <button class="open-btn">Open to Study</button>
-  </div>
-
-
-
-</div>
-
-
-
-
+          <!-- Operating Systems -->
+          <div
+            class="note-card"
+            data-subject="Business Model Development"
+            data-file="notes/sem4/Business Model Development/overview.pdf"
+          >
+            <iframe
+              src="notes/sem4/Business Model Development/overview.pdf#toolbar=0&navpanes=0"
+            ></iframe>
+            <h3>Overview</h3>
+            <span>Business Model Development</span>
+            <button class="open-btn">Open to Study</button>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -1524,80 +1564,107 @@
           behavior: "smooth",
         });
       }
-      
     </script>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-main">
-                <div class="footer-brand">
-                    <div class="logo">
-                        <div class="logo-icon">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <span class="logo-text">Syntax <span class="logo-highlight">Syndicate</span></span>
-                    </div>
-                    <p class="footer-description">
-                        A tech community for modern learners providing study material, 
-                        tech roadmaps, and trending tech content.
-                    </p>
-                    <div class="footer-social">
-                        <!-- Updated Social Links -->
-                        <a href="https://www.instagram.com/syntax_syndicate_?igsh=bmF5bDVydzVscHM=" target="_blank">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/company/syntax-syndicate/" target="_blank">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                        <a href="https://www.youtube.com/@SyntaxSyndicateOfficial" target="_blank">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                        <!-- Discord icon removed as requested -->
-                        <a href="https://github.com/Syntax-Syndicate-Ltd" target="_blank">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://www.threads.net/@syntax_syndicate_" target="_blank">
-                            <i class="fab fa-threads"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="footer-links">
-                    <div class="link-group">
-                        <h3>Resources</h3>
-                        <a href="/index.html#notes">Study Materials</a>
-                        <a href="/index.html#roadmaps">Tech Roadmaps</a>
-                        <a href="/blogs.html">Blog & Articles</a>
-                        <a href="/reels.html">Opportunities</a>
-                    </div>
-                    
-                    <div class="link-group">
-                        <h3>Community</h3>
-                        <a href="https://discord.gg/bhRS3vfz" target="_blank">Join Discord</a>
-                        <a href="https://whatsapp.com/channel/0029Vb6vHvW8V0tgHZa4Ar2u" target="_blank">Join Internships Channel</a>
-                        <a href="https://chat.whatsapp.com/HVOr8nmlq8aELHmKYzF39x" target="_blank">Join gaming community</a>
-                        <a href="/coming_soon.html">More from us</a>
-                    </div>
-                    
-                    <div class="link-group">
-                        <h3>Company</h3>
-                        <a href="/admins.html">Community Admins</a>
-                        <a href="/about.html">About Us</a>
-                        <a href="/contact.html">Contact</a>
-                        <a href="https://feedbacks.syntaxsyndicate.co.in/" target="_blank">Feedbacks</a>
-                        
-                    </div>
-                </div>
+      <div class="footer-container">
+        <div class="footer-main">
+          <div class="footer-brand">
+            <div class="logo">
+              <div class="logo-icon">
+                <i class="fas fa-code"></i>
+              </div>
+              <span class="logo-text"
+                >Syntax <span class="logo-highlight">Syndicate</span></span
+              >
             </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2025 Syntax Syndicate. All rights reserved. Designed for tech learners.</p>
-                <div class="footer-extra">
-                    <a href="/code_of_conduct.html">Code of Conduct</a>
-                </div>
+            <p class="footer-description">
+              A tech community for modern learners providing study material,
+              tech roadmaps, and trending tech content.
+            </p>
+            <div class="footer-social">
+              <!-- Updated Social Links -->
+              <a
+                href="https://www.instagram.com/syntax_syndicate_?igsh=bmF5bDVydzVscHM="
+                target="_blank"
+              >
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a
+                href="https://www.linkedin.com/company/syntax-syndicate/"
+                target="_blank"
+              >
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a
+                href="https://www.youtube.com/@SyntaxSyndicateOfficial"
+                target="_blank"
+              >
+                <i class="fab fa-youtube"></i>
+              </a>
+              <!-- Discord icon removed as requested -->
+              <a href="https://github.com/Syntax-Syndicate-Ltd" target="_blank">
+                <i class="fab fa-github"></i>
+              </a>
+              <a
+                href="https://www.threads.net/@syntax_syndicate_"
+                target="_blank"
+              >
+                <i class="fab fa-threads"></i>
+              </a>
             </div>
+          </div>
+
+          <div class="footer-links">
+            <div class="link-group">
+              <h3>Resources</h3>
+              <a href="/index.html#notes">Study Materials</a>
+              <a href="/index.html#roadmaps">Tech Roadmaps</a>
+              <a href="/blogs.html">Blog & Articles</a>
+              <a href="/reels.html">Opportunities</a>
+            </div>
+
+            <div class="link-group">
+              <h3>Community</h3>
+              <a href="https://discord.gg/bhRS3vfz" target="_blank"
+                >Join Discord</a
+              >
+              <a
+                href="https://whatsapp.com/channel/0029Vb6vHvW8V0tgHZa4Ar2u"
+                target="_blank"
+                >Join Internships Channel</a
+              >
+              <a
+                href="https://chat.whatsapp.com/HVOr8nmlq8aELHmKYzF39x"
+                target="_blank"
+                >Join gaming community</a
+              >
+              <a href="/coming_soon.html">More from us</a>
+            </div>
+
+            <div class="link-group">
+              <h3>Company</h3>
+              <a href="/admins.html">Community Admins</a>
+              <a href="/about.html">About Us</a>
+              <a href="/contact.html">Contact</a>
+              <a href="https://feedbacks.syntaxsyndicate.co.in/" target="_blank"
+                >Feedbacks</a
+              >
+            </div>
+          </div>
         </div>
+
+        <div class="footer-bottom">
+          <p>
+            &copy; 2025 Syntax Syndicate. All rights reserved. Designed for tech
+            learners.
+          </p>
+          <div class="footer-extra">
+            <a href="/code_of_conduct.html">Code of Conduct</a>
+          </div>
+        </div>
+      </div>
     </footer>
   </body>
 </html>
