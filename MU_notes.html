@@ -103,7 +103,7 @@
       }
 
       .note-card {
-        background: rgba(20, 20, 20, 0.75);
+        background: rgba(168, 0, 0, 0.75);
         backdrop-filter: blur(14px);
         border-radius: 16px;
         padding: 1rem;
@@ -282,32 +282,36 @@
       /* ==========================
    NOTES GRID & NOTE CARD
 ========================== */
-      .notes-grid {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 24px;
-        justify-content: center;
-        padding: 30px;
-      }
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  padding: 30px;
+  justify-items: center;
+}
 
-      .note-card {
-        background: rgba(20, 20, 20, 0.85);
-        backdrop-filter: blur(18px);
-        border-radius: 16px;
-        padding: 16px;
-        max-width: 360px;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        transition: transform 0.2s ease, box-shadow 0.3s ease;
-        cursor: pointer;
-      }
+/* Cards */
+.note-card {
+  background: rgba(30, 29, 29, 0.85);
+  backdrop-filter: blur(18px);
+  border-radius: 16px;
+  padding: 16px;
 
-      .note-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 12px 28px rgba(0, 255, 255, 0.2);
-      }
+  width: 100%;
+  max-width: 360px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.note-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(0, 255, 255, 0.2);
+}
 
       /* PDF PREVIEW */
       .note-card .pdf-preview {
@@ -798,9 +802,6 @@
             data-subject="Applied Chemistry"
             data-file="notes/sem1/applied-chemistry/overview.pdf"
           >
-            <iframe
-              src="notes/sem1/applied-chemistry/overview.pdf#toolbar=0&navpanes=0"
-            ></iframe>
             <h3>Overview</h3>
             <span>Applied Chemistry</span>
             <button class="open-btn">Open to Study</button>
@@ -812,9 +813,6 @@
             data-subject="Applied Maths I"
             data-file="notes/sem1/applied-maths-1/Matrices.pdf"
           >
-            <iframe
-              src="notes/sem1/applied-maths-1/Matrices.pdf#toolbar=0&navpanes=0"
-            ></iframe>
             <h3>Matrices</h3>
             <span>Applied Maths I</span>
             <button class="open-btn">Open to Study</button>
@@ -826,9 +824,6 @@
             data-subject="Engineering Mechanics"
             data-file="notes/sem1/engineering-mechanics/centroid_of_standard_shapes.pdf"
           >
-            <iframe
-              src="notes/sem1/engineering-mechanics/centroid_of_standard_shapes.pdf#toolbar=0&navpanes=0"
-            ></iframe>
             <h3>centroid of standard shapes</h3>
             <span>Engineering Mechanics</span>
             <button class="open-btn">Open to Study</button>
@@ -840,9 +835,6 @@
             data-subject="Engineering Mechanics"
             data-file="notes/sem1/engineering-mechanics/Coplanar_Force_System_Mechanics.pdf"
           >
-            <iframe
-              src="notes/sem1/engineering-mechanics/Coplanar_Force_System_Mechanics.pdf#toolbar=0&navpanes=0"
-            ></iframe>
             <h3>Coplanar Force System Mechanics</h3>
             <span>Engineering Mechanics</span>
             <button class="open-btn">Open to Study</button>
@@ -854,9 +846,6 @@
             data-subject="Engineering Mechanics"
             data-file="notes/sem1/engineering-mechanics/Engineering_Mechanics_Full_Notes.pdf"
           >
-            <iframe
-              src="notes/sem1/engineering-mechanics/Engineering_Mechanics_Full_Notes.pdf#toolbar=0&navpanes=0"
-            ></iframe>
             <h3>Engineering Mechanics Full Notes</h3>
             <span>Engineering Mechanics</span>
             <button class="open-btn">Open to Study</button>
@@ -868,9 +857,6 @@
             data-subject="Engineering Mechanics"
             data-file="notes/sem1/engineering-mechanics/Centroid_and_Centre_of_Gravity.pdf"
           >
-            <iframe
-              src="notes/sem1/engineering-mechanics/Centroid_and_Centre_of_Gravity.pdf#toolbar=0&navpanes=0"
-            ></iframe>
             <h3>Centroid & Centre of Gravity</h3>
             <span>Engineering Mechanics</span>
             <button class="open-btn">Open to Study</button>
@@ -882,9 +868,6 @@
             data-subject="Engineering Mechanics"
             data-file="notes/sem1/engineering-mechanics/Mechanics_Exercise-2.1.pdf"
           >
-            <iframe
-              src="notes/sem1/engineering-mechanics/Mechanics_Exercise-2.1.pdf#toolbar=0&navpanes=0"
-            ></iframe>
             <h3>Mechanics Exercise 2.1</h3>
             <span>Engineering Mechanics</span>
             <button class="open-btn">Open to Study</button>
@@ -896,9 +879,6 @@
             data-subject="Engineering Mechanics"
             data-file="notes/sem1/engineering-mechanics/Mechanics_Exercise-2.2.pdf"
           >
-            <iframe
-              src="notes/sem1/engineering-mechanics/Mechanics_Exercise-2.2.pdf#toolbar=0&navpanes=0"
-            ></iframe>
             <h3>Mechanics Exercise 2.2</h3>
             <span>Engineering Mechanics</span>
             <button class="open-btn">Open to Study</button>
@@ -910,9 +890,6 @@
             data-subject="Engineering Mechanics"
             data-file="notes/sem1/engineering-mechanics/Mechanics_Exercise-2.3.pdf"
           >
-            <iframe
-              src="notes/sem1/engineering-mechanics/Mechanics_Exercise-2.3.pdf#toolbar=0&navpanes=0"
-            ></iframe>
             <h3>Mechanics Exercise 2.3</h3>
             <span>Engineering Mechanics</span>
             <button class="open-btn">Open to Study</button>
@@ -924,9 +901,6 @@
             data-subject="Engineering Mechanics"
             data-file="notes/sem1/engineering-mechanics/Mechanics-3.1.pdf"
           >
-            <iframe
-              src="notes/sem1/engineering-mechanics/Mechanics-3.1.pdf#toolbar=0&navpanes=0"
-            ></iframe>
             <h3>Mechanics Exercise 3.1</h3>
             <span>Engineering Mechanics</span>
             <button class="open-btn">Open to Study</button>
@@ -938,9 +912,6 @@
             data-subject="Engineering Mechanics"
             data-file="notes/sem1/engineering-mechanics/Mechanics-3.2.pdf"
           >
-            <iframe
-              src="notes/sem1/engineering-mechanics/Mechanics-3.2.pdf#toolbar=0&navpanes=0"
-            ></iframe>
             <h3>Mechanics Exercise 3.2</h3>
             <span>Engineering Mechanics</span>
             <button class="open-btn">Open to Study</button>
@@ -952,9 +923,6 @@
             data-subject="BEEE"
             data-file="notes/sem1/beee/AC_Circuit.pdf"
           >
-            <iframe
-              src="notes/sem1/beee/AC_Circuit.pdf#toolbar=0&navpanes=0"
-            ></iframe>
             <h3>AC Circuits</h3>
             <span>BEEE</span>
             <button class="open-btn">Open to Study</button>
@@ -965,9 +933,6 @@
             data-subject="BEEE"
             data-file="notes/sem1/beee/AC_Circuits_One.pdf"
           >
-            <iframe
-              src="notes/sem1/beee/AC_Circuits_One.pdf#toolbar=0&navpanes=0"
-            ></iframe>
             <h3>AC Circuits Fundamentals</h3>
             <span>BEEE</span>
             <button class="open-btn">Open to Study</button>
@@ -978,9 +943,6 @@
             data-subject="BEEE"
             data-file="notes/sem1/beee/DC_Circuit.pdf"
           >
-            <iframe
-              src="notes/sem1/beee/DC_Circuit.pdf#toolbar=0&navpanes=0"
-            ></iframe>
             <h3>DC Circuits</h3>
             <span>BEEE</span>
             <button class="open-btn">Open to Study</button>
@@ -991,9 +953,6 @@
             data-subject="BEEE"
             data-file="notes/sem1/beee/Transformer.pdf"
           >
-            <iframe
-              src="notes/sem1/beee/Transformer.pdf#toolbar=0&navpanes=0"
-            ></iframe>
             <h3>Transformers</h3>
             <span>BEEE</span>
             <button class="open-btn">Open to Study</button>
