@@ -364,34 +364,37 @@
         transform: translateY(-2px);
         box-shadow: 0 6px 18px rgba(0, 255, 255, 0.3);
       }
-      /* NOTES POPUP */
-      .notes-popup {
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.85);
-        display: none;
-        justify-content: center;
-        align-items: center;
-        z-index: 9998;
-        overflow-y: auto;
-        padding: 20px;
-        box-sizing: border-box;
-      }
+      /* FULLSCREEN BACKDROP */
+.notes-popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 9999;
 
-      .notes-popup .popup-content {
-        background: rgba(20, 20, 20, 0.95);
-        border-radius: 16px;
-        padding: 20px;
-        width: 100%;
-        max-width: 1200px;
-        max-height: min(95vh, auto); /* fits screen but doesn't break content */
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        overflow-y: auto;
-        box-sizing: border-box;
-        position: relative;
-      }
+  display: none;
+  padding: 16px;
+  box-sizing: border-box;
+
+  /* THIS makes the popup itself scroll */
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* POPUP BOX */
+.notes-popup .popup-content {
+  background: rgba(20, 20, 20, 0.95);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 1200px;
+
+  /* Prevent it from being taller than viewport */
+  min-height: fit-content;
+  margin: auto;
+
+  padding: 20px;
+  box-sizing: border-box;
+}
+
 
       .notes-popup .close-popup {
         position: absolute;
@@ -642,11 +645,6 @@
 
         <!-- 🔽 GLOBAL FILTERS -->
         <div class="global-filters">
-          <select id="yearFilter">
-            <option value="">Select Year</option>
-            <option value="year-1">1st Year</option>
-            <option value="year-2">2st Year</option>
-          </select>
 
           <select id="branchFilter">
             <option value="">Select Branch</option>
@@ -658,6 +656,7 @@
             <option value="">Select Semester</option>
             <option value="sem-1">Semester 1</option>
             <option value="sem-2">Semester 2</option>
+            <option value="sem-3">Semester 3</option>
             <option value="sem-4">Semester 4</option>
           </select>
         </div>
@@ -759,15 +758,45 @@
             <h3>Laser Notes</h3>
             <button class="open-btn">Open to Study</button>
           </div>
+          
+          <!-- 🔬 APPLIED PHYSICS -->
           <div
             class="note-card"
             data-subject="Applied Physics"
-            data-file="notes/sem1/applied-physics/Laser_notes.pdf"
+            data-file="notes/sem1/applied-physics/Interference_in_thin_film.pdf"
           >
             <iframe
-              src="notes/sem1/applied-physics/Laser_notes.pdf#toolbar=0&navpanes=0"
+              src="notes/sem1/applied-physics/Interference_in_thin_film.pdf#toolbar=0&navpanes=0"
             ></iframe>
-            <span>Applied Physics</span>
+            <span>Interference in thin film</span>
+            <h3>Laser Notes</h3>
+            <button class="open-btn">Open to Study</button>
+          </div>
+
+          <!-- 🔬 APPLIED PHYSICS -->
+          <div
+            class="note-card"
+            data-subject="Applied Physics"
+            data-file="notes/sem1/applied-physics/Fibre_Optics.pdf"
+          >
+            <iframe
+              src="notes/sem1/applied-physics/Fibre_Optics.pdf#toolbar=0&navpanes=0"
+            ></iframe>
+            <span>Fibre Optics</span>
+            <h3>Laser Notes</h3>
+            <button class="open-btn">Open to Study</button>
+          </div>
+
+          <!-- 🔬 APPLIED PHYSICS -->
+          <div
+            class="note-card"
+            data-subject="Applied Physics"
+            data-file="notes/sem1/applied-physics/Electrodynamics.pdf"
+          >
+            <iframe
+              src="notes/sem1/applied-physics/Electrodynamicss.pdf#toolbar=0&navpanes=0"
+            ></iframe>
+            <span>Electrodynamics</span>
             <h3>Laser Notes</h3>
             <button class="open-btn">Open to Study</button>
           </div>
@@ -804,12 +833,124 @@
           <div
             class="note-card"
             data-subject="Engineering Mechanics"
-            data-file="notes/sem1/engineering-mechanics/overview.pdf"
+            data-file="notes/sem1/engineering-mechanics/centroid_of_standard_shapes.pdf"
           >
             <iframe
-              src="notes/sem1/engineering-mechanics/overview.pdf#toolbar=0&navpanes=0"
+              src="notes/sem1/engineering-mechanics/centroid_of_standard_shapes.pdf#toolbar=0&navpanes=0"
             ></iframe>
-            <h3>Overview</h3>
+            <h3>centroid of standard shapes</h3>
+            <span>Engineering Mechanics</span>
+            <button class="open-btn">Open to Study</button>
+          </div>
+
+          <!-- ⚙ ENGINEERING MECHANICS -->
+          <div
+            class="note-card"
+            data-subject="Engineering Mechanics"
+            data-file="notes/sem1/engineering-mechanics/Coplanar_Force_System_Mechanics.pdf"
+          >
+            <iframe
+              src="notes/sem1/engineering-mechanics/Coplanar_Force_System_Mechanics.pdf#toolbar=0&navpanes=0"
+            ></iframe>
+            <h3>Coplanar Force System Mechanics</h3>
+            <span>Engineering Mechanics</span>
+            <button class="open-btn">Open to Study</button>
+          </div>
+
+          <!-- ⚙ ENGINEERING MECHANICS -->
+          <div
+            class="note-card"
+            data-subject="Engineering Mechanics"
+            data-file="notes/sem1/engineering-mechanics/Engineering_Mechanics_Full_Notes.pdf"
+          >
+            <iframe
+              src="notes/sem1/engineering-mechanics/Engineering_Mechanics_Full_Notes.pdf#toolbar=0&navpanes=0"
+            ></iframe>
+            <h3>Engineering Mechanics Full Notes</h3>
+            <span>Engineering Mechanics</span>
+            <button class="open-btn">Open to Study</button>
+          </div>
+
+          <!-- ⚙ ENGINEERING MECHANICS -->
+          <div
+            class="note-card"
+            data-subject="Engineering Mechanics"
+            data-file="notes/sem1/engineering-mechanics/Centroid_and_Centre_of_Gravity.pdf"
+          >
+            <iframe
+              src="notes/sem1/engineering-mechanics/Centroid_and_Centre_of_Gravity.pdf#toolbar=0&navpanes=0"
+            ></iframe>
+            <h3>Centroid & Centre of Gravity</h3>
+            <span>Engineering Mechanics</span>
+            <button class="open-btn">Open to Study</button>
+          </div>
+
+          <!-- ⚙ ENGINEERING MECHANICS -->
+          <div
+            class="note-card"
+            data-subject="Engineering Mechanics"
+            data-file="notes/sem1/engineering-mechanics/Mechanics_Exercise-2.1.pdf"
+          >
+            <iframe
+              src="notes/sem1/engineering-mechanics/Mechanics_Exercise-2.1.pdf#toolbar=0&navpanes=0"
+            ></iframe>
+            <h3>Mechanics Exercise 2.1</h3>
+            <span>Engineering Mechanics</span>
+            <button class="open-btn">Open to Study</button>
+          </div>
+
+          <!-- ⚙ ENGINEERING MECHANICS -->
+          <div
+            class="note-card"
+            data-subject="Engineering Mechanics"
+            data-file="notes/sem1/engineering-mechanics/Mechanics_Exercise-2.2.pdf"
+          >
+            <iframe
+              src="notes/sem1/engineering-mechanics/Mechanics_Exercise-2.2.pdf#toolbar=0&navpanes=0"
+            ></iframe>
+            <h3>Mechanics Exercise 2.2</h3>
+            <span>Engineering Mechanics</span>
+            <button class="open-btn">Open to Study</button>
+          </div>
+
+          <!-- ⚙ ENGINEERING MECHANICS -->
+          <div
+            class="note-card"
+            data-subject="Engineering Mechanics"
+            data-file="notes/sem1/engineering-mechanics/Mechanics_Exercise-2.3.pdf"
+          >
+            <iframe
+              src="notes/sem1/engineering-mechanics/Mechanics_Exercise-2.3.pdf#toolbar=0&navpanes=0"
+            ></iframe>
+            <h3>Mechanics Exercise 2.3</h3>
+            <span>Engineering Mechanics</span>
+            <button class="open-btn">Open to Study</button>
+          </div>
+
+          <!-- ⚙ ENGINEERING MECHANICS -->
+          <div
+            class="note-card"
+            data-subject="Engineering Mechanics"
+            data-file="notes/sem1/engineering-mechanics/Mechanics-3.1.pdf"
+          >
+            <iframe
+              src="notes/sem1/engineering-mechanics/Mechanics-3.1.pdf#toolbar=0&navpanes=0"
+            ></iframe>
+            <h3>Mechanics Exercise 3.1</h3>
+            <span>Engineering Mechanics</span>
+            <button class="open-btn">Open to Study</button>
+          </div>
+
+          <!-- ⚙ ENGINEERING MECHANICS -->
+          <div
+            class="note-card"
+            data-subject="Engineering Mechanics"
+            data-file="notes/sem1/engineering-mechanics/Mechanics-3.2.pdf"
+          >
+            <iframe
+              src="notes/sem1/engineering-mechanics/Mechanics-3.2.pdf#toolbar=0&navpanes=0"
+            ></iframe>
+            <h3>Mechanics Exercise 3.2</h3>
             <span>Engineering Mechanics</span>
             <button class="open-btn">Open to Study</button>
           </div>
@@ -1224,19 +1365,17 @@
         viewer.src = "";
       };
       document.addEventListener("DOMContentLoaded", function () {
-        const yearFilter = document.getElementById("yearFilter");
         const branchFilter = document.getElementById("branchFilter");
         const semFilter = document.getElementById("semFilter");
 
         function scrollToSection() {
-          const year = yearFilter.value;
           const branch = branchFilter.value;
           const sem = semFilter.value;
 
-          if (!year || !branch || !sem) return;
+          if (!branch || !sem) return;
 
           const target = document.querySelector(
-            `.highlight-target[data-year="${year}"][data-branch="${branch}"][data-sem="${sem}"]`
+            `.highlight-target[data-branch="${branch}"][data-sem="${sem}"]`
           );
 
           if (target) {
@@ -1247,7 +1386,6 @@
           }
         }
 
-        yearFilter.addEventListener("change", scrollToSection);
         branchFilter.addEventListener("change", scrollToSection);
         semFilter.addEventListener("change", scrollToSection);
       });
@@ -1394,6 +1532,7 @@
           behavior: "smooth",
         });
       }
+      
     </script>
 
     <!-- Footer -->

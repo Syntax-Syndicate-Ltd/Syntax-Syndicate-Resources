@@ -22,6 +22,44 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5116839186846142"
      crossorigin="anonymous"></script>
     <link rel="icon" href="/favicon.png" type="image/png">
+    <style>
+        .notes-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 360px));
+  gap: 2rem;
+  justify-content: center;
+}
+
+/* Tablets */
+@media (max-width: 900px) {
+  .notes-grid {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 1rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .notes-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 0 1rem;
+  }
+
+  .roadmap-card {
+    width: 100%;
+  }
+
+  .roadmap-title {
+    font-size: 1.1rem;
+  }
+
+  .roadmap-description {
+    font-size: 0.9rem;
+  }
+}
+
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -621,13 +659,8 @@
         </div>
 
         <!-- Centered Grid with controlled gap -->
-        <div class="notes-grid" style="
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 360px));
-            gap: 2rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        ">
+<div class="notes-grid">
+
             <!-- College Card 1 -->
             <a href="coming_soon.html" class="roadmap-card fade-in">
                 <div class="roadmap-icon">
