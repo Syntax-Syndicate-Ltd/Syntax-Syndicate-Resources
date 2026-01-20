@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Development Notes - HTML & CSS</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #0e277e;
+            --secondary-color: #0e0884;
+            --accent-color: #4cc9f0;
+            --dark-color: #03071e;
+            --light-color: #f8f9fa;
+            --code-bg: #1e1e2e;
+            --code-text: #f8f8f2;
+            --code-keyword: #ff79c6;
+            --code-string: #f1fa8c;
+            --code-comment: #6272a4;
+            --code-tag: #50fa7b;
+            --code-attribute: #8be9fd;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ffffff;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: var(--accent-color) !important;
+        }
+        
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--accent-color);
+            border-radius: 3px;
+        }
+        
+        .section-title {
+            font-weight: 700;
+            color: var(--dark-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--primary-color);
+            display: inline-block;
+        }
+        
+        .card {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+        
+        .card-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            font-weight: 600;
+            border: none;
+            padding: 1rem 1.5rem;
+        }
+        
+        .card-body {
+            padding: 1.5rem;
+        }
+        
+        .code-block {
+            background-color: var(--code-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .code-block pre {
+            margin: 0;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: var(--code-text);
+            white-space: pre;
+            overflow-x: auto;
+        }
+        
+        .code-block code {
+            font-family: inherit;
+        }
+        
+        .code-block .code-lang {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--code-text);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .tip-box {
+            background-color: rgba(76, 201, 240, 0.15);
+            border-left: 4px solid var(--accent-color);
+            padding: 1rem 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+        
+        .tip-box h5 {
+            color: var(--primary-color);
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .tip-box h5 i {
+            margin-right: 0.5rem;
+            color: var(--accent-color);
+        }
+        
+        .note-box {
+            background-color: rgba(255, 193, 7, 0.15);
+            border-left: 4px solid #ffc107;
+            padding: 1rem 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+        
+        .note-box h5 {
+            color: #856404;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .note-box h5 i {
+            margin-right: 0.5rem;
+            color: #ffc107;
+        }
+        
+        .example-box {
+            background-color: rgba(40, 167, 69, 0.15);
+            border-left: 4px solid #28a745;
+            padding: 1rem 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+        
+        .example-box h5 {
+            color: #155724;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .example-box h5 i {
+            margin-right: 0.5rem;
+            color: #28a745;
+        }
+        
+        .resource-card {
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .resource-card .card-body {
+            padding: 1.5rem;
+        }
+        
+        .resource-card h5 {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .resource-card a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            font-weight: 500;
+        }
+        
+        .resource-card a:hover {
+            color: var(--primary-color);
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .content-section {
+            padding: 3rem 0;
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .syntax-highlight {
+            color: var(--code-keyword);
+        }
+        
+        .syntax-string {
+            color: var(--code-string);
+        }
+        
+        .syntax-comment {
+            color: var(--code-comment);
+            font-style: italic;
+        }
+        
+        .syntax-tag {
+            color: var(--code-tag);
+        }
+        
+        .syntax-attribute {
+            color: var(--code-attribute);
+        }
+        
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .code-block {
+                padding: 1rem;
+            }
+            
+            .code-block pre {
+                font-size: 0.85rem;
+            }
+        }
+        .back-home-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: linear-gradient(135deg, #00e5ff, #6c63ff);
+  border-radius: 999px;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 12px 32px rgba(0, 229, 255, 0.35);
+  z-index: 9999;
+  transition: all 0.3s ease;
+}
+
+.back-home-btn i {
+  font-size: 1.1rem;
+}
+
+.back-home-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 45px rgba(0, 229, 255, 0.55);
+}
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="bi bi-code-slash"></i> WebDev Notes </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#html-section">HTML Notes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#css-section">CSS Notes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#resources">Resources</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="py-5 bg-gradient text-white">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h1 class="display-5 fw-bold mb-3" style="color:#000000">HTML & CSS Notes - Powered By Syntax Syndicate</h1>
+                    <p class="lead mb-4" style="color:#000000">Master HTML and CSS with our comprehensive, beginner-friendly notes. Step-by-step tutorials, examples, and best practices to kickstart your web development journey.</p>
+                    <div class="d-flex gap-3">
+                        <a href="#html-section" class="btn btn-outline-dark btn-lg">Start Learning HTML</a>
+                        <a href="#css-section" class="btn btn-outline-dark btn-lg">Explore CSS</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <i class="bi bi-laptop" style="font-size: 10rem; opacity: 0.7;"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HTML Notes Section -->
+    <section id="html-section" class="content-section">
+        <div class="container">
+            <h2 class="section-title" style="color: #000000;">HTML Notes</h2>
+            
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h4 class="mb-0"><i class="bi bi-file-earmark-code me-2"></i>Introduction to HTML</h4>
+                </div>
+                <div class="card-body">
+                    <p>HTML (HyperText Markup Language) is the standard markup language for creating web pages. It describes the structure of a web page using elements and tags.</p>
+                    
+                    <div class="tip-box">
+                        <h5><i class="bi bi-lightbulb"></i> Quick Tip</h5>
+                        <p>HTML stands for HyperText Markup Language. It's not a programming language but a markup language that tells browsers how to display content.</p>
+                    </div>
+                    
+                    <h5>Key Concepts:</h5>
+                    <ul>
+                        <li><strong>Elements:</strong> Building blocks of HTML pages</li>
+                        <li><strong>Tags:</strong> Labels used to mark up elements</li>
+                        <li><strong>Attributes:</strong> Provide additional information about elements</li>
+                        <li><strong>Nesting:</strong> Placing elements inside other elements</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h4 class="mb-0"><i class="bi bi-file-earmark-code me-2"></i>HTML Document Structure</h4>
+                </div>
+                <div class="card-body">
+                    <p>Every HTML document follows a basic structure:</p>
+                    
+                    <div class="code-block">
+                        <span class="code-lang">HTML</span>
+                        <pre><code><span class="syntax-tag">&lt;!DOCTYPE html&gt;</span>
+<span class="syntax-tag">&lt;html&gt;</span>
+<span class="syntax-tag">&lt;head&gt;</span>
+    <span class="syntax-tag">&lt;title&gt;</span>Page Title<span class="syntax-tag">&lt;/title&gt;</span>
+    <span class="syntax-tag">&lt;meta</span> <span class="syntax-attribute">charset</span>=<span class="syntax-string">"UTF-8"</span><span class="syntax-tag">&gt;</span>
+    <span class="syntax-tag">&lt;meta</span> <span class="syntax-attribute">name</span>=<span class="syntax-string">"viewport"</span> <span class="syntax-attribute">content</span>=<span class="syntax-string">"width=device-width, initial-scale=1.0"</span><span class="syntax-tag">&gt;</span>
+    <span class="syntax-comment">&lt;!-- Link to CSS files --&gt;</span>
+    <span class="syntax-tag">&lt;link</span> <span class="syntax-attribute">rel</span>=<span class="syntax-string">"stylesheet"</span> <span class="syntax-attribute">href</span>=<span class="syntax-string">"styles.css"</span><span class="syntax-tag">&gt;</span>
+<span class="syntax-tag">&lt;/head&gt;</span>
+<span class="syntax-tag">&lt;body&gt;</span>
+    <span class="syntax-comment">&lt;!-- Page content goes here --&gt;</span>
+    <span class="syntax-tag">&lt;h1&gt;</span>My First Heading<span class="syntax-tag">&lt;/h1&gt;</span>
+    <span class="syntax-tag">&lt;p&gt;</span>My first paragraph.<span class="syntax-tag">&lt;/p&gt;</span>
+<span class="syntax-tag">&lt;/body&gt;</span>
+<span class="syntax-tag">&lt;/html&gt;</span></code></pre>
+                    </div>
+                    
+                    <div class="note-box">
+                        <h5><i class="bi bi-info-circle"></i> Important Note</h5>
+                        <p>The <code>&lt;!DOCTYPE html&gt;</code> declaration defines the document type and HTML version. It must appear at the very beginning of the document.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h4 class="mb-0"><i class="bi bi-file-earmark-code me-2"></i>HTML Elements and Tags</h4>
+                </div>
+                <div class="card-body">
+                    <p>HTML elements are defined by a start tag, content, and an end tag:</p>
+                    
+                    <div class="code-block">
+                        <span class="code-lang">HTML</span>
+                        <pre><code><span class="syntax-tag">&lt;tagname&gt;</span>Content goes here...<span class="syntax-tag">&lt;/tagname&gt;</span></code></pre>
+                    </div>
+                    
+                    <h5>Common HTML Elements:</h5>
+                    <ul>
+                        <li><strong>Headings:</strong> <code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code></li>
+                        <li><strong>Paragraphs:</strong> <code>&lt;p&gt;</code></li>
+                        <li><strong>Links:</strong> <code>&lt;a&gt;</code></li>
+                        <li><strong>Images:</strong> <code>&lt;img&gt;</code></li>
+                        <li><strong>Lists:</strong> <code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code>, <code>&lt;li&gt;</code></li>
+                        <li><strong>Divisions:</strong> <code>&lt;div&gt;</code></li>
+                        <li><strong>Spans:</strong> <code>&lt;span&gt;</code></li>
+                    </ul>
+                    
+                    <div class="example-box">
+                        <h5><i class="bi bi-code-square"></i> Example</h5>
+                        <div class="code-block">
+                            <span class="code-lang">HTML</span>
+                            <pre><code><span class="syntax-tag">&lt;h1&gt;</span>This is a Heading 1<span class="syntax-tag">&lt;/h1&gt;</span>
+<span class="syntax-tag">&lt;h2&gt;</span>This is a Heading 2<span class="syntax-tag">&lt;/h2&gt;</span>
+<span class="syntax-tag">&lt;p&gt;</span>This is a paragraph.<span class="syntax-tag">&lt;/p&gt;</span>
+<span class="syntax-tag">&lt;a</span> <span class="syntax-attribute">href</span>=<span class="syntax-string">"https://example.com"</span><span class="syntax-tag">&gt;</span>This is a link<span class="syntax-tag">&lt;/a&gt;</span>
+<span class="syntax-tag">&lt;img</span> <span class="syntax-attribute">src</span>=<span class="syntax-string">"image.jpg"</span> <span class="syntax-attribute">alt</span>=<span class="syntax-string">"Description"</span><span class="syntax-tag">&gt;</span></code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h4 class="mb-0"><i class="bi bi-file-earmark-code me-2"></i>HTML Attributes</h4>
+                </div>
+                <div class="card-body">
+                    <p>Attributes provide additional information about HTML elements. They are always specified in the start tag and usually come in name/value pairs.</p>
+                    
+                    <div class="code-block">
+                        <span class="code-lang">HTML</span>
+                        <pre><code><span class="syntax-tag">&lt;element</span> <span class="syntax-attribute">attribute</span>=<span class="syntax-string">"value"</span><span class="syntax-tag">&gt;</span>Content<span class="syntax-tag">&lt;/element&gt;</span></code></pre>
+                    </div>
+                    
+                    <h5>Common Attributes:</h5>
+                    <ul>
+                        <li><strong>id:</strong> Specifies a unique id for an element</li>
+                        <li><strong>class:</strong> Specifies one or more class names for an element</li>
+                        <li><strong>style:</strong> Specifies an inline CSS style for an element</li>
+                        <li><strong>title:</strong> Specifies extra information about an element</li>
+                        <li><strong>src:</strong> Specifies the source URL for an image</li>
+                        <li><strong>href:</strong> Specifies the URL for a link</li>
+                        <li><strong>alt:</strong> Specifies alternative text for an image</li>
+                    </ul>
+                    
+                    <div class="example-box">
+                        <h5><i class="bi bi-code-square"></i> Example</h5>
+                        <div class="code-block">
+                            <span class="code-lang">HTML</span>
+                            <pre><code><span class="syntax-tag">&lt;a</span> <span class="syntax-attribute">href</span>=<span class="syntax-string">"https://example.com"</span> <span class="syntax-attribute">title</span>=<span class="syntax-string">"Visit Example"</span><span class="syntax-tag">&gt;</span>Link<span class="syntax-tag">&lt;/a&gt;</span>
+<span class="syntax-tag">&lt;img</span> <span class="syntax-attribute">src</span>=<span class="syntax-string">"logo.png"</span> <span class="syntax-attribute">alt</span>=<span class="syntax-string">"Company Logo"</span> <span class="syntax-attribute">width</span>=<span class="syntax-string">"200"</span><span class="syntax-tag">&gt;</span>
+<span class="syntax-tag">&lt;p</span> <span class="syntax-attribute">class</span>=<span class="syntax-string">"highlight"</span> <span class="syntax-attribute">id</span>=<span class="syntax-string">"intro"</span><span class="syntax-tag">&gt;</span>Introduction paragraph<span class="syntax-tag">&lt;/p&gt;</span></code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h4 class="mb-0"><i class="bi bi-file-earmark-code me-2"></i>HTML Lists</h4>
+                </div>
+                <div class="card-body">
+                    <p>HTML supports ordered, unordered, and description lists.</p>
+                    
+                    <h5>Unordered List (Bullet Points):</h5>
+                    <div class="code-block">
+                        <span class="code-lang">HTML</span>
+                        <pre><code><span class="syntax-tag">&lt;ul&gt;</span>
+    <span class="syntax-tag">&lt;li&gt;</span>Item 1<span class="syntax-tag">&lt;/li&gt;</span>
+    <span class="syntax-tag">&lt;li&gt;</span>Item 2<span class="syntax-tag">&lt;/li&gt;</span>
+    <span class="syntax-tag">&lt;li&gt;</span>Item 3<span class="syntax-tag">&lt;/li&gt;</span>
+<span class="syntax-tag">&lt;/ul&gt;</span></code></pre>
+                    </div>
+                    
+                    <h5>Ordered List (Numbered):</h5>
+                    <div class="code-block">
+                        <span class="code-lang">HTML</span>
+                        <pre><code><span class="syntax-tag">&lt;ol&gt;</span>
+    <span class="syntax-tag">&lt;li&gt;</span>First item<span class="syntax-tag">&lt;/li&gt;</span>
+    <span class="syntax-tag">&lt;li&gt;</span>Second item<span class="syntax-tag">&lt;/li&gt;</span>
+    <span class="syntax-tag">&lt;li&gt;</span>Third item<span class="syntax-tag">&lt;/li&gt;</span>
+<span class="syntax-tag">&lt;/ol&gt;</span></code></pre>
+                    </div>
+                    
+                    <h5>Description List:</h5>
+                    <div class="code-block">
+                        <span class="code-lang">HTML</span>
+                        <pre><code><span class="syntax-tag">&lt;dl&gt;</span>
+    <span class="syntax-tag">&lt;dt&gt;</span>Term 1<span class="syntax-tag">&lt;/dt&gt;</span>
+    <span class="syntax-tag">&lt;dd&gt;</span>Description for Term 1<span class="syntax-tag">&lt;/dd&gt;</span>
+    <span class="syntax-tag">&lt;dt&gt;</span>Term 2<span class="syntax-tag">&lt;/dt&gt;</span>
+    <span class="syntax-tag">&lt;dd&gt;</span>Description for Term 2<span class="syntax-tag">&lt;/dd&gt;</span>
+<span class="syntax-tag">&lt;/dl&gt;</span></code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h4 class="mb-0"><i class="bi bi-file-earmark-code me-2"></i>HTML Tables</h4>
+                </div>
+                <div class="card-body">
+                    <p>HTML tables are used to display data in rows and columns.</p>
+                    
+                    <div class="code-block">
+                        <span class="code-lang">HTML</span>
+                        <pre><code><span class="syntax-tag">&lt;table&gt;</span>
+    <span class="syntax-tag">&lt;thead&gt;</span>
+        <span class="syntax-tag">&lt;tr&gt;</span>
+            <span class="syntax-tag">&lt;th&gt;</span>Header 1<span class="syntax-tag">&lt;/th&gt;</span>
+            <span class="syntax-tag">&lt;th&gt;</span>Header 2<span class="syntax-tag">&lt;/th&gt;</span>
+            <span class="syntax-tag">&lt;th&gt;</span>Header 3<span class="syntax-tag">&lt;/th&gt;</span>
+        <span class="syntax-tag">&lt;/tr&gt;</span>
+    <span class="syntax-tag">&lt;/thead&gt;</span>
+    <span class="syntax-tag">&lt;tbody&gt;</span>
+        <span class="syntax-tag">&lt;tr&gt;</span>
+            <span class="syntax-tag">&lt;td&gt;</span>Row 1, Cell 1<span class="syntax-tag">&lt;/td&gt;</span>
+            <span class="syntax-tag">&lt;td&gt;</span>Row 1, Cell 2<span class="syntax-tag">&lt;/td&gt;</span>
+            <span class="syntax-tag">&lt;td&gt;</span>Row 1, Cell 3<span class="syntax-tag">&lt;/td&gt;</span>
+        <span class="syntax-tag">&lt;/tr&gt;</span>
+        <span class="syntax-tag">&lt;tr&gt;</span>
+            <span class="syntax-tag">&lt;td&gt;</span>Row 2, Cell 1<span class="syntax-tag">&lt;/td&gt;</span>
+            <span class="syntax-tag">&lt;td&gt;</span>Row 2, Cell 2<span class="syntax-tag">&lt;/td&gt;</span>
+            <span class="syntax-tag">&lt;td&gt;</span>Row 2, Cell 3<span class="syntax-tag">&lt;/td&gt;</span>
+        <span class="syntax-tag">&lt;/tr&gt;</span>
+    <span class="syntax-tag">&lt;/tbody&gt;</span>
+<span class="syntax-tag">&lt;/table&gt;</span></code></pre>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <h5><i class="bi bi-lightbulb"></i> Quick Tip</h5>
+                        <p>Use <code>&lt;thead&gt;</code> for table headers, <code>&lt;tbody&gt;</code> for table body, and <code>&lt;tfoot&gt;</span> for table footer. This improves accessibility and structure.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h4 class="mb-0"><i class="bi bi-file-earmark-code me-2"></i>HTML Forms</h4>
+                </div>
+                <div class="card-body">
+                    <p>HTML forms are used to collect user input. They contain various input elements like text fields, checkboxes, radio buttons, submit buttons, etc.</p>
+                    
+                    <div class="code-block">
+                        <span class="code-lang">HTML</span>
+                        <pre><code><span class="syntax-tag">&lt;form</span> <span class="syntax-attribute">action</span>=<span class="syntax-string">"/submit-form"</span> <span class="syntax-attribute">method</span>=<span class="syntax-string">"post"</span><span class="syntax-tag">&gt;</span>
+    <span class="syntax-tag">&lt;div</span> <span class="syntax-attribute">class</span>=<span class="syntax-string">"form-group"</span><span class="syntax-tag">&gt;</span>
+        <span class="syntax-tag">&lt;label</span> <span class="syntax-attribute">for</span>=<span class="syntax-string">"name"</span><span class="syntax-tag">&gt;</span>Name:<span class="syntax-tag">&lt;/label&gt;</span>
+        <span class="syntax-tag">&lt;input</span> <span class="syntax-attribute">type</span>=<span class="syntax-string">"text"</span> <span class="syntax-attribute">id</span>=<span class="syntax-string">"name"</span> <span class="syntax-attribute">name</span>=<span class="syntax-string">"name"</span><span class="syntax-tag">&gt;</span>
+    <span class="syntax-tag">&lt;/div&gt;</span>
+    
+    <span class="syntax-tag">&lt;div</span> <span class="syntax-attribute">class</span>=<span class="syntax-string">"form-group"</span><span class="syntax-tag">&gt;</span>
+        <span class="syntax-tag">&lt;label</span> <span class="syntax-attribute">for</span>=<span class="syntax-string">"email"</span><span class="syntax-tag">&gt;</span>Email:<span class="syntax-tag">&lt;/label&gt;</span>
+        <span class="syntax-tag">&lt;input</span> <span class="syntax-attribute">type</span>=<span class="syntax-string">"email"</span> <span class="syntax-attribute">id</span>=<span class="syntax-string">"email"</span> <span class="syntax-attribute">name</span>=<span class="syntax-string">"email"</span><span class="syntax-tag">&gt;</span>
+    <span class="syntax-tag">&lt;/div&gt;</span>
+    
+    <span class="syntax-tag">&lt;div</span> <span class="syntax-attribute">class</span>=<span class="syntax-string">"form-group"</span><span class="syntax-tag">&gt;</span>
+        <span class="syntax-tag">&lt;label</span> <span class="syntax-attribute">for</span>=<span class="syntax-string">"password"</span><span class="syntax-tag">&gt;</span>Password:<span class="syntax-tag">&lt;/label&gt;</span>
+        <span class="syntax-tag">&lt;input</span> <span class="syntax-attribute">type</span>=<span class="syntax-string">"password"</span> <span class="syntax-attribute">id</span>=<span class="syntax-string">"password"</span> <span class="syntax-attribute">name</span>=<span class="syntax-string">"password"</span><span class="syntax-tag">&gt;</span>
+    <span class="syntax-tag">&lt;/div&gt;</span>
+    
+    <span class="syntax-tag">&lt;div</span> <span class="syntax-attribute">class</span>=<span class="syntax-string">"form-group"</span><span class="syntax-tag">&gt;</span>
+        <span class="syntax-tag">&lt;label&gt;</span>Gender:<span class="syntax-tag">&lt;/label&gt;</span>
+        <span class="syntax-tag">&lt;div&gt;</span>
+            <span class="syntax-tag">&lt;input</span> <span class="syntax-attribute">type</span>=<span class="syntax-string">"radio"</span> <span class="syntax-attribute">id</span>=<span class="syntax-string">"male"</span> <span class="syntax-attribute">name</span>=<span class="syntax-string">"gender"</span> <span class="syntax-attribute">value</span>=<span class="syntax-string">"male"</span><span class="syntax-tag">&gt;</span>
+            <span class="syntax-tag">&lt;label</span> <span class="syntax-attribute">for</span>=<span class="syntax-string">"male"</span><span class="syntax-tag">&gt;</span>Male<span class="syntax-tag">&lt;/label&gt;</span>
+        <span class="syntax-tag">&lt;/div&gt;</span>
+        <span class="syntax-tag">&lt;div&gt;</span>
+            <span class="syntax-tag">&lt;input</span> <span class="syntax-attribute">type</span>=<span class="syntax-string">"radio"</span> <span class="syntax-attribute">id</span>=<span class="syntax-string">"female"</span> <span class="syntax-attribute">name</span>=<span class="syntax-string">"gender"</span> <span class="syntax-attribute">value</span>=<span class="syntax-string">"female"</span><span class="syntax-tag">&gt;</span>
+            <span class="syntax-tag">&lt;label</span> <span class="syntax-attribute">for</span>=<span class="syntax-string">"female"</span><span class="syntax-tag">&gt;</span>Female<span class="syntax-tag">&lt;/label&gt;</span>
+        <span class="syntax-tag">&lt;/div&gt;</span>
+    <span class="syntax-tag">&lt;/div&gt;</span>
+    
+    <span class="syntax-tag">&lt;div</span> <span class="syntax-attribute">class</span>=<span class="syntax-string">"form-group"</span><span class="syntax-tag">&gt;</span>
+        <span class="syntax-tag">&lt;label</span> <span class="syntax-attribute">for</span>=<span class="syntax-string">"hobbies"</span><span class="syntax-tag">&gt;</span>Hobbies:<span class="syntax-tag">&lt;/label&gt;</span>
+        <span class="syntax-tag">&lt;select</span> <span class="syntax-attribute">id</span>=<span class="syntax-string">"hobbies"</span> <span class="syntax-attribute">name</span>=<span class="syntax-string">"hobbies"</span> <span class="syntax-attribute">multiple</span><span class="syntax-tag">&gt;</span>
+            <span class="syntax-tag">&lt;option</span> <span class="syntax-attribute">value</span>=<span class="syntax-string">"reading"</span><span class="syntax-tag">&gt;</span>Reading<span class="syntax-tag">&lt;/option&gt;</span>
+            <span class="syntax-tag">&lt;option</span> <span class="syntax-attribute">value</span>=<span class="syntax-string">"sports"</span><span class="syntax-tag">&gt;</span>Sports<span class="syntax-tag">&lt;/option&gt;</span>
+            <span class="syntax-tag">&lt;option</span> <span class="syntax-attribute">value</span>=<span class="syntax-string">"music"</span><span class="syntax-tag">&gt;</span>Music<span class="syntax-tag">&lt;/option&gt;</span>
+        <span class="syntax-tag">&lt;/select&gt;</span>
+    <span class="syntax-tag">&lt;/div&gt;</span>
+    
+    <span class="syntax-tag">&lt;div</span> <span class="syntax-attribute">class</span>=<span class="syntax-string">"form-group"</span><span class="syntax-tag">&gt;</span>
+        <span class="syntax-tag">&lt;label&gt;</span>Interests:<span class="syntax-tag">&lt;/label&gt;</span>
+        <span class="syntax-tag">&lt;div&gt;</span>
+            <span class="syntax-tag">&lt;input</span> <span class="syntax-attribute">type</span>=<span class="syntax-string">"checkbox"</span> <span class="syntax-attribute">id</span>=<span class="syntax-string">"coding"</span> <span class="syntax-attribute">name</span>=<span class="syntax-string">"interests"</span> <span class="syntax-attribute">value</span>=<span class="syntax-string">"coding"</span><span class="syntax-tag">&gt;</span>
+            <span class="syntax-tag">&lt;label</span> <span class="syntax-attribute">for</span>=<span class="syntax-string">"coding"</span><span class="syntax-tag">&gt;</span>Coding<span class="syntax-tag">&lt;/label&gt;</span>
+        <span class="syntax-tag">&lt;/div&gt;</span>
+        <span class="syntax-tag">&lt;div&gt;</span>
+            <span class="syntax-tag">&lt;input</span> <span class="syntax-attribute">type</span>=<span class="syntax-string">"checkbox"</span> <span class="syntax-attribute">id</span>=<span class="syntax-string">"design"</span> <span class="syntax-attribute">name</span>=<span class="syntax-string">"interests"</span> <span class="syntax-attribute">value</span>=<span class="syntax-string">"design"</span><span class="syntax-tag">&gt;</span>
+            <span class="syntax-tag">&lt;label</span> <span class="syntax-attribute">for</span>=<span class="syntax-string">"design"</span><span class="syntax-tag">&gt;</span>Design<span class="syntax-tag">&lt;/label&gt;</span>
+        <span class="syntax-tag">&lt;/div&gt;</span>
+    <span class="syntax-tag">&lt;/div&gt;</span>
+    
+    <span class="syntax-tag">&lt;div</span> <span class="syntax-attribute">class</span>=<span class="syntax-string">"form-group"</span><span class="syntax-tag">&gt;</span>
+        <span class="syntax-tag">&lt;label</span> <span class="syntax-attribute">for</span>=<span class="syntax-string">"message"</span><span class="syntax-tag">&gt;</span>Message:<span class="syntax-tag">&lt;/label&gt;</span>
+        <span class="syntax-tag">&lt;textarea</span> <span class="syntax-attribute">id</span>=<span class="syntax-string">"message"</span> <span class="syntax-attribute">name</span>=<span class="syntax-string">"message"</span> <span class="syntax-attribute">rows</span>=<span class="syntax-string">"4"</span><span class="syntax-tag">&gt;&lt;/textarea&gt;</span>
+    <span class="syntax-tag">&lt;/div&gt;</span>
+    
+    <span class="syntax-tag">&lt;button</span> <span class="syntax-attribute">type</span>=<span class="syntax-string">"submit"</span><span class="syntax-tag">&gt;</span>Submit<span class="syntax-tag">&lt;/button&gt;</span>
+<span class="syntax-tag">&lt;/form&gt;</span></code></pre>
+                    </div>
+                    
+                    <div class="note-box">
+                        <h5><i class="bi bi-info-circle"></i> Important Note</h5>
+                        <p>The <code>action</code> attribute specifies where to send the form data when the form is submitted. The <code>method</code> attribute specifies the HTTP method to use (GET or POST).</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h4 class="mb-0"><i class="bi bi-file-earmark-code me-2"></i>HTML5 Semantic Elements</h4>
+                </div>
+                <div class="card-body">
+                    <p>HTML5 introduced semantic elements that clearly define different parts of a web page, making it more accessible and SEO-friendly.</p>
+                    
+                    <h5>Common Semantic Elements:</h5>
+                    <ul>
+                        <li><strong>&lt;header&gt;</strong> - Represents introductory content</li>
+                        <li><strong>&lt;nav&gt;</strong> - Defines navigation links</li>
+                        <li><strong>&lt;main&gt;</strong> - Specifies the main content</li>
+                        <li><strong>&lt;section&gt;</strong> - Defines a section in a document</li>
+                        <li><strong>&lt;article&gt;</strong> - Defines independent content</li>
+                        <li><strong>&lt;aside&gt;</strong> - Defines content aside from main content</li>
+                        <li><strong>&lt;footer&gt;</strong> - Defines a footer for a section or page</li>
+                        <li><strong>&lt;figure&gt;</strong> - Specifies self-contained content</li>
+                        <li><strong>&lt;figcaption&gt;</strong> - Defines a caption for a figure</li>
+                        <li><strong>&lt;time&gt;</strong> - Defines a specific time</li>
+                    </ul>
+                    
+                    <div class="example-box">
+                        <h5><i class="bi bi-code-square"></i> Example</h5>
+                        <div class="code-block">
+                            <span class="code-lang">HTML</span>
+                            <pre><code><span class="syntax-tag">&lt;!DOCTYPE html&gt;</span>
+<span class="syntax-tag">&lt;html&gt;</span>
+<span class="syntax-tag">&lt;head&gt;</span>
+    <span class="syntax-tag">&lt;title&gt;</span>Semantic HTML Example<span class="syntax-tag">&lt;/title&gt;</span>
+<span class="syntax-tag">&lt;/head&gt;</span>
+<span class="syntax-tag">&lt;body&gt;</span>
+    <span class="syntax-tag">&lt;header&gt;</span>
+        <span class="syntax-tag">&lt;h1&gt;</span>Website Title<span class="syntax-tag">&lt;/h1&gt;</span>
+        <span class="syntax-tag">&lt;nav&gt;</span>
+            <span class="syntax-tag">&lt;ul&gt;</span>
+                <span class="syntax-tag">&lt;li&gt;</span><span class="syntax-tag">&lt;a</span> <span class="syntax-attribute">href</span>=<span class="syntax-string">"#"</span><span class="syntax-tag">&gt;</span>Home<span class="syntax-tag">&lt;/a&gt;</span><span class="syntax-tag">&lt;/li&gt;</span>
+                <span class="syntax-tag">&lt;li&gt;</span><span class="syntax-tag">&lt;a</span> <span class="syntax-attribute">href</span>=<span class="syntax-string">"#"</span><span class="syntax-tag">&gt;</span>About<span class="syntax-tag">&lt;/a&gt;</span><span class="syntax-tag">&lt;/li&gt;</span>
+                <span class="syntax-tag">&lt;li&gt;</span><span class="syntax-tag">&lt;a</span> <span class="syntax-attribute">href</span>=<span class="syntax-string">"#"</span><span class="syntax-tag">&gt;</span>Contact<span class="syntax-tag">&lt;/a&gt;</span><span class="syntax-tag">&lt;/li&gt;</span>
+            <span class="syntax-tag">&lt;/ul&gt;</span>
+        <span class="syntax-tag">&lt;/nav&gt;</span>
+    <span class="syntax-tag">&lt;/header&gt;</span>
+    
+    <span class="syntax-tag">&lt;main&gt;</span>
+        <span class="syntax-tag">&lt;section&gt;</span>
+            <span class="syntax-tag">&lt;h2&gt;</span>Section Title<span class="syntax-tag">&lt;/h2&gt;</span>
+            <span class="syntax-tag">&lt;article&gt;</span>
+                <span class="syntax-tag">&lt;h3&gt;</span>Article Title<span class="syntax-tag">&lt;/h3&gt;</span>
+                <span class="syntax-tag">&lt;p&gt;</span>Article content goes here...<span class="syntax-tag">&lt;/p&gt;</span>
+            <span class="syntax-tag">&lt;/article&gt;</span>
+        <span class="syntax-tag">&lt;/section&gt;</span>
+        
+        <span class="syntax-tag">&lt;aside&gt;</span>
+            <span class="syntax-tag">&lt;h3&gt;</span>Related Links<span class="syntax-tag">&lt;/h3&gt;</span>
+            <span class="syntax-tag">&lt;ul&gt;</span>
+                <span class="syntax-tag">&lt;li&gt;</span><span class="syntax-tag">&lt;a</span> <span class="syntax-attribute">href</span>=<span class="syntax-string">"#"</span><span class="syntax-tag">&gt;</span>Link 1<span class="syntax-tag">&lt;/a&gt;</span><span class="syntax-tag">&lt;/li&gt;</span>
+                <span class="syntax-tag">&lt;li&gt;</span><span class="syntax-tag">&lt;a</span> <span class="syntax-attribute">href</span>=<span class="syntax-string">"#"</span><span class="syntax-tag">&gt;</span>Link 2<span class="syntax-tag">&lt;/a&gt;</span><span class="syntax-tag">&lt;/li&gt;</span>
+            <span class="syntax-tag">&lt;/ul&gt;</span>
+        <span class="syntax-tag">&lt;/aside&gt;</span>
+    <span class="syntax-tag">&lt;/main&gt;</span>
+    
+    <span class="syntax-tag">&lt;footer&gt;</span>
+        <span class="syntax-tag">&lt;p&gt;</span>&copy; 2023 Website Name. All rights reserved.<span class="syntax-tag">&lt;/p&gt;</span>
+    <span class="syntax-tag">&lt;/footer&gt;</span>
+<span class="syntax-tag">&lt;/body&gt;</span>
+<span class="syntax-tag">&lt;/html&gt;</span></code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CSS Notes Section -->
+    <section id="css-section" class="content-section bg-light">
+        <div class="container">
+            <h2 class="section-title">CSS Notes</h2>
+            
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h4 class="mb-0"><i class="bi bi-palette me-2"></i>Introduction to CSS</h4>
+                </div>
+                <div class="card-body">
+                    <p>CSS (Cascading Style Sheets) is used to style and layout web pages. It controls the presentation of HTML elements, including colors, fonts, spacing, and positioning.</p>
+                    
+                    <div class="tip-box">
+                        <h5><i class="bi bi-lightbulb"></i> Quick Tip</h5>
+                        <p>CSS stands for Cascading Style Sheets. The "cascading" part means that styles can fall down from parent elements to child elements, creating inheritance.</p>
+                    </div>
+                    
+                    <h5>Key Concepts:</h5>
+                    <ul>
+                        <li><strong>Selectors:</strong> Patterns used to select elements to style</li>
+                        <li><strong>Properties:</strong> Style attributes that can be applied to elements</li>
+                        <li><strong>Values:</strong> Specific settings for properties</li>
+                        <li><strong>Cascading:</strong> How styles are applied based on specificity and inheritance</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h4 class="mb-0"><i class="bi bi-palette me-2"></i>CSS Syntax</h4>
+                </div>
+                <div class="card-body">
+                    <p>CSS consists of style rules that are interpreted by the browser and applied to the corresponding elements in your document.</p>
+                    
+                    <div class="code-block">
+                        <span class="code-lang">CSS</span>
+                        <pre><code><span class="syntax-tag">selector</span> {
+    <span class="syntax-attribute">property</span>: <span class="syntax-string">value</span>;
+    <span class="syntax-attribute">property</span>: <span class="syntax-string">value</span>;
+}</code></pre>
+                    </div>
+                    
+                    <div class="example-box">
+                        <h5><i class="bi bi-code-square"></i> Example</h5>
+                        <div class="code-block">
+                            <span class="code-lang">CSS</span>
+                            <pre><code><span class="syntax-tag">p</span> {
+    <span class="syntax-attribute">color</span>: <span class="syntax-string">#333333</span>;
+    <span class="syntax-attribute">font-size</span>: <span class="syntax-string">16px</span>;
+    <span class="syntax-attribute">line-height</span>: <span class="syntax-string">1.5</span>;
+}
+
+<span class="syntax-tag">h1</span> {
+    <span class="syntax-attribute">color</span>: <span class="syntax-string">#2c3e50</span>;
+    <span class="syntax-attribute">font-size</span>: <span class="syntax-string">32px</span>;
+    <span class="syntax-attribute">margin-bottom</span>: <span class="syntax-string">20px</span>;
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h4 class="mb-0"><i class="bi bi-palette me-2"></i>CSS Selectors</h4>
+                </div>
+                <div class="card-body">
+                    <p>Selectors are patterns used to select the elements you want to style. CSS has various types of selectors:</p>
+                    
+                    <h5>Common Selectors:</h5>
+                    <ul>
+                        <li><strong>Element Selector:</strong> Selects elements based on the element name</li>
+                        <li><strong>Class Selector:</strong> Selects elements with a specific class attribute</li>
+                        <li><strong>ID Selector:</strong> Selects elements with a specific id attribute</li>
+                        <li><strong>Grouping Selector:</strong> Selects all elements with the same style definitions</li>
+                        <li><strong>Universal Selector:</strong> Selects all elements</li>
+                    </ul>
+                    
+                    <div class="code-block">
+                        <span class="code-lang">CSS</span>
+                        <pre><code><span class="syntax-comment">/* Element Selector */</span>
+<span class="syntax-tag">p</span> {
+    <span class="syntax-attribute">color</span>: <span class="syntax-string">blue</span>;
+}
+
+<span class="syntax-comment">/* Class Selector */</span>
+<span class="syntax-tag">.highlight</span> {
+    <span class="syntax-attribute">background-color</span>: <span class="syntax-string">yellow</span>;
+}
+
+<span class="syntax-comment">/* ID Selector */</span>
+<span class="syntax-tag">#header</span> {
+    <span class="syntax-attribute">font-size</span>: <span class="syntax-string">24px</span>;
+}
+
+<span class="syntax-comment">/* Grouping Selector */</span>
+<span class="syntax-tag">h1, h2, h3</span> {
+    <span class="syntax-attribute">font-family</span>: <span class="syntax-string">Arial, sans-serif</span>;
+}
+
+<span class="syntax-comment">/* Universal Selector */</span>
+<span class="syntax-tag">*</span> {
+    <span class="syntax-attribute">box-sizing</span>: <span class="syntax-string">border-box</span>;
+}</code></pre>
+                    </div>
+                    
+                    <h5>Advanced Selectors:</h5>
+                    <ul>
+                        <li><strong>Descendant Selector:</strong> Selects elements that are descendants of a specified element</li>
+                        <li><strong>Child Selector:</strong> Selects elements that are direct children of a specified element</li>
+                        <li><strong>Adjacent Sibling Selector:</strong> Selects elements that are adjacent siblings of a specified element</li>
+                        <li><strong>General Sibling Selector:</strong> Selects elements that are siblings of a specified element</li>
+                        <li><strong>Attribute Selector:</strong> Selects elements based on attribute values</li>
+                        <li><strong>Pseudo-class Selector:</strong> Selects elements based on a certain state</li>
+                        <li><strong>Pseudo-element Selector:</strong> Selects and styles a part of an element</li>
+                    </ul>
+                    
+                    <div class="code-block">
+                        <span class="code-lang">CSS</span>
+                        <pre><code><span class="syntax-comment">/* Descendant Selector */</span>
+<span class="syntax-tag">div p</span> {
+    <span class="syntax-attribute">color</span>: <span class="syntax-string">green</span>;
+}
+
+<span class="syntax-comment">/* Child Selector */</span>
+<span class="syntax-tag">ul > li</span> {
+    <span class="syntax-attribute">list-style-type</span>: <span class="syntax-string">square</span>;
+}
+
+<span class="syntax-comment">/* Adjacent Sibling Selector */</span>
+<span class="syntax-tag">h1 + p</span> {
+    <span class="syntax-attribute">font-weight</span>: <span class="syntax-string">bold</span>;
+}
+
+<span class="syntax-comment">/* General Sibling Selector */</span>
+<span class="syntax-tag">h1 ~ p</span> {
+    <span class="syntax-attribute">margin-top</span>: <span class="syntax-string">10px</span>;
+}
+
+<span class="syntax-comment">/* Attribute Selector */</span>
+<span class="syntax-tag">input[type="text"]</span> {
+    <span class="syntax-attribute">border</span>: <span class="syntax-string">1px solid #ccc</span>;
+}
+
+<span class="syntax-comment">/* Pseudo-class Selector */</span>
+<span class="syntax-tag">a:hover</span> {
+    <span class="syntax-attribute">color</span>: <span class="syntax-string">red</span>;
+}
+
+<span class="syntax-comment">/* Pseudo-element Selector */</span>
+<span class="syntax-tag">p::first-line</span> {
+    <span class="syntax-attribute">font-weight</span>: <span class="syntax-string">bold</span>;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h4 class="mb-0"><i class="bi bi-palette me-2"></i>CSS Box Model</h4>
+                </div>
+                <div class="card-body">
+                    <p>The CSS box model is essentially a box that wraps around every HTML element. It consists of: content, padding, border, and margin.</p>
+                    
+                    <div class="code-block">
+                        <span class="code-lang">CSS</span>
+                        <pre><code><span class="syntax-tag">div</span> {
+    <span class="syntax-attribute">width</span>: <span class="syntax-string">300px</span>;
+    <span class="syntax-attribute">padding</span>: <span class="syntax-string">20px</span>;
+    <span class="syntax-attribute">border</span>: <span class="syntax-string">5px solid gray</span>;
+    <span class="syntax-attribute">margin</span>: <span class="syntax-string">10px</span>;
+}</code></pre>
+                    </div>
+                    
+                    <h5>Box Model Components:</h5>
+                    <ul>
+                        <li><strong>Content:</strong> The actual content of the box (text, images, etc.)</li>
+                        <li><strong>Padding:</strong> Clears an area around the content (transparent)</li>
+                        <li><strong>Border:</strong> A border that goes around the padding and content</li>
+                        <li><strong>Margin:</strong> Clears an area outside the border (transparent)</li>
+                    </ul>
+                    
+                    <div class="tip-box">
+                        <h5><i class="bi bi-lightbulb"></i> Quick Tip</h5>
+                        <p>Use <code>box-sizing: border-box;</code> to include padding and border in the element's total width and height. This makes layout calculations easier.</p>
+                    </div>
+                    
+                    <div class="code-block">
+                        <span class="code-lang">CSS</span>
+                        <pre><code><span class="syntax-tag">*</span> {
+    <span class="syntax-attribute">box-sizing</span>: <span class="syntax-string">border-box</span>;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h4 class="mb-0"><i class="bi bi-palette me-2"></i>CSS Layout</h4>
+                </div>
+                <div class="card-body">
+                    <p>CSS provides various methods to control the layout of web pages:</p>
+                    
+                    <h5>Display Property:</h5>
+                    <div class="code-block">
+                        <span class="code-lang">CSS</span>
+                        <pre><code><span class="syntax-tag">div</span> {
+    <span class="syntax-attribute">display</span>: <span class="syntax-string">block</span>; <span class="syntax-comment">/* Default for div */</span>
+}
+
+<span class="syntax-tag">span</span> {
+    <span class="syntax-attribute">display</span>: <span class="syntax-string">inline</span>; <span class="syntax-comment">/* Default for span */</span>
+}
+
+<span class="syntax-tag">li</span> {
+    <span class="syntax-attribute">display</span>: <span class="syntax-string">inline-block</span>; <span class="syntax-comment">/* Combines block and inline */</span>
+}
+
+<span class="syntax-tag">.hidden</span> {
+    <span class="syntax-attribute">display</span>: <span class="syntax-string">none</span>; <span class="syntax-comment">/* Hides the element */</span>
+}</code></pre>
+                    </div>
+                    
+                    <h5>Position Property:</h5>
+                    <div class="code-block">
+                        <span class="code-lang">CSS</span>
+                        <pre><code><span class="syntax-tag">.static</span> {
+    <span class="syntax-attribute">position</span>: <span class="syntax-string">static</span>; <span class="syntax-comment">/* Default position */</span>
+}
+
+<span class="syntax-tag">.relative</span> {
+    <span class="syntax-attribute">position</span>: <span class="syntax-string">relative</span>;
+    <span class="syntax-attribute">top</span>: <span class="syntax-string">10px</span>;
+    <span class="syntax-attribute">left</span>: <span class="syntax-string">20px</span>;
+}
+
+<span class="syntax-tag">.absolute</span> {
+    <span class="syntax-attribute">position</span>: <span class="syntax-string">absolute</span>;
+    <span class="syntax-attribute">top</span>: <span class="syntax-string">50px</span>;
+    <span class="syntax-attribute">left</span>: <span class="syntax-string">100px</span>;
+}
+
+<span class="syntax-tag">.fixed</span> {
+    <span class="syntax-attribute">position</span>: <span class="syntax-string">fixed</span>;
+    <span class="syntax-attribute">bottom</span>: <span class="syntax-string">0</span>;
+    <span class="syntax-attribute">right</span>: <span class="syntax-string">0</span>;
+}
+
+<span class="syntax-tag">.sticky</span> {
+    <span class="syntax-attribute">position</span>: <span class="syntax-string">sticky</span>;
+    <span class="syntax-attribute">top</span>: <span class="syntax-string">0</span>;
+}</code></pre>
+                    </div>
+                    
+                    <h5>Float Property:</h5>
+                    <div class="code-block">
+                        <span class="code-lang">CSS</span>
+                        <pre><code><span class="syntax-tag">.float-left</span> {
+    <span class="syntax-attribute">float</span>: <span class="syntax-string">left</span>;
+    <span class="syntax-attribute">width</span>: <span class="syntax-string">50%</span>;
+}
+
+<span class="syntax-tag">.float-right</span> {
+    <span class="syntax-attribute">float</span>: <span class="syntax-string">right</span>;
+    <span class="syntax-attribute">width</span>: <span class="syntax-string">50%</span>;
+}
+
+<span class="syntax-tag">.clearfix::after</span> {
+    <span class="syntax-attribute">content</span>: <span class="syntax-string">""</span>;
+    <span class="syntax-attribute">display</span>: <span class="syntax-string">table</span>;
+    <span class="syntax-attribute">clear</span>: <span class="syntax-string">both</span>;
+}</code></pre>
+                    </div>
+                    
+                    <h5>Flexbox Layout:</h5>
+                    <div class="code-block">
+                        <span class="code-lang">CSS</span>
+                        <pre><code><span class="syntax-tag">.container</span> {
+    <span class="syntax-attribute">display</span>: <span class="syntax-string">flex</span>;
+    <span class="syntax-attribute">flex-direction</span>: <span class="syntax-string">row</span>; <span class="syntax-comment">/* row | row-reverse | column | column-reverse */</span>
+    <span class="syntax-attribute">justify-content</span>: <span class="syntax-string">space-between</span>; <span class="syntax-comment">/* flex-start | flex-end | center | space-between | space-around */</span>
+    <span class="syntax-attribute">align-items</span>: <span class="syntax-string">center</span>; <span class="syntax-comment">/* flex-start | flex-end | center | baseline | stretch */</span>
+    <span class="syntax-attribute">flex-wrap</span>: <span class="syntax-string">wrap</span>; <span class="syntax-comment">/* nowrap | wrap | wrap-reverse */</span>
+}
+
+<span class="syntax-tag">.item</span> {
+    <span class="syntax-attribute">flex</span>: <span class="syntax-string">1</span>; <span class="syntax-comment">/* shorthand for flex-grow, flex-shrink, flex-basis */</span>
+    <span class="syntax-attribute">align-self</span>: <span class="syntax-string">flex-start</span>; <span class="syntax-comment">/* auto | flex-start | flex-end | center | baseline | stretch */</span>
+}</code></pre>
+                    </div>
+                    
+                    <h5>Grid Layout:</h5>
+                    <div class="code-block">
+                        <span class="code-lang">CSS</span>
+                        <pre><code><span class="syntax-tag">.grid-container</span> {
+    <span class="syntax-attribute">display</span>: <span class="syntax-string">grid</span>;
+    <span class="syntax-attribute">grid-template-columns</span>: <span class="syntax-string">1fr 2fr 1fr</span>; <span class="syntax-comment">/* Define columns */</span>
+    <span class="syntax-attribute">grid-template-rows</span>: <span class="syntax-string">auto 200px</span>; <span class="syntax-comment">/* Define rows */</span>
+    <span class="syntax-attribute">gap</span>: <span class="syntax-string">20px</span>; <span class="syntax-comment">/* Gap between grid items */</span>
+}
+
+<span class="syntax-tag">.grid-item</span> {
+    <span class="syntax-attribute">grid-column</span>: <span class="syntax-string">1 / 3</span>; <span class="syntax-comment">/* Column start and end */</span>
+    <span class="syntax-attribute">grid-row</span>: <span class="syntax-string">1 / 2</span>; <span class="syntax-comment">/* Row start and end */</span>
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h4 class="mb-0"><i class="bi bi-palette me-2"></i>CSS Responsive Design</h4>
+                </div>
+                <div class="card-body">
+                    <p>Responsive web design makes web pages render well on a variety of devices and window or screen sizes.</p>
+                    
+                    <h5>Media Queries:</h5>
+                    <div class="code-block">
+                        <span class="code-lang">CSS</span>
+                        <pre><code><span class="syntax-comment">/* For screens smaller than 768px */</span>
+<span class="syntax-keyword">@media</span> (<span class="syntax-attribute">max-width</span>: <span class="syntax-string">768px</span>) {
+    <span class="syntax-tag">body</span> {
+        <span class="syntax-attribute">font-size</span>: <span class="syntax-string">14px</span>;
+    }
+    
+    <span class="syntax-tag">.container</span> {
+        <span class="syntax-attribute">width</span>: <span class="syntax-string">100%</span>;
+        <span class="syntax-attribute">padding</span>: <span class="syntax-string">0 15px</span>;
+    }
+    
+    <span class="syntax-tag">.nav-menu</span> {
+        <span class="syntax-attribute">display</span>: <span class="syntax-string">none</span>;
+    }
+}
+
+<span class="syntax-comment">/* For screens between 769px and 1024px */</span>
+<span class="syntax-keyword">@media</span> (<span class="syntax-attribute">min-width</span>: <span class="syntax-string">769px</span>) <span class="syntax-keyword">and</span> (<span class="syntax-attribute">max-width</span>: <span class="syntax-string">1024px</span>) {
+    <span class="syntax-tag">.sidebar</span> {
+        <span class="syntax-attribute">width</span>: <span class="syntax-string">30%</span>;
+    }
+    
+    <span class="syntax-tag">.main-content</span> {
+        <span class="syntax-attribute">width</span>: <span class="syntax-string">70%</span>;
+    }
+}
+
+<span class="syntax-comment">/* For screens larger than 1024px */</span>
+<span class="syntax-keyword">@media</span> (<span class="syntax-attribute">min-width</span>: <span class="syntax-string">1025px</span>) {
+    <span class="syntax-tag">.container</span> {
+        <span class="syntax-attribute">max-width</span>: <span class="syntax-string">1200px</span>;
+        <span class="syntax-attribute">margin</span>: <span class="syntax-string">0 auto</span>;
+    }
+}</code></pre>
+                    </div>
+                    
+                    <h5>Responsive Units:</h5>
+                    <div class="code-block">
+                        <span class="code-lang">CSS</span>
+                        <pre><code><span class="syntax-tag">.container</span> {
+    <span class="syntax-attribute">width</span>: <span class="syntax-string">100%</span>; <span class="syntax-comment">/* Percentage of parent element */</span>
+    <span class="syntax-attribute">max-width</span>: <span class="syntax-string">1200px</span>;
+}
+
+<span class="syntax-tag">.text</span> {
+    <span class="syntax-attribute">font-size</span>: <span class="syntax-string">16px</span>; <span class="syntax-comment">/* Fixed size */</span>
+}
+
+<span class="syntax-tag">.responsive-text</span> {
+    <span class="syntax-attribute">font-size</span>: <span class="syntax-string">1rem</span>; <span class="syntax-comment">/* Relative to root font size */</span>
+}
+
+<span class="syntax-tag">.padding</span> {
+    <span class="syntax-attribute">padding</span>: <span class="syntax-string">2vw</span>; <span class="syntax-comment">/* Relative to viewport width */</span>
+}
+
+<span class="syntax-tag">.margin</span> {
+    <span class="syntax-attribute">margin</span>: <span class="syntax-string">5vh</span>; <span class="syntax-comment">/* Relative to viewport height */</span>
+}</code></pre>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <h5><i class="bi bi-lightbulb"></i> Quick Tip</h5>
+                        <p>Use a mobile-first approach when designing responsive websites. Start with styles for small screens and then use media queries to enhance the design for larger screens.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h4 class="mb-0"><i class="bi bi-palette me-2"></i>CSS Animations and Transitions</h4>
+                </div>
+                <div class="card-body">
+                    <p>CSS allows you to create animations and transitions to enhance user experience.</p>
+                    
+                    <h5>Transitions:</h5>
+                    <div class="code-block">
+                        <span class="code-lang">CSS</span>
+                        <pre><code><span class="syntax-tag">.button</span> {
+    <span class="syntax-attribute">background-color</span>: <span class="syntax-string">#4361ee</span>;
+    <span class="syntax-attribute">color</span>: <span class="syntax-string">white</span>;
+    <span class="syntax-attribute">padding</span>: <span class="syntax-string">10px 20px</span>;
+    <span class="syntax-attribute">border</span>: <span class="syntax-string">none</span>;
+    <span class="syntax-attribute">border-radius</span>: <span class="syntax-string">4px</span>;
+    <span class="syntax-attribute">transition</span>: <span class="syntax-string">background-color 0.3s ease, transform 0.2s ease</span>;
+}
+
+<span class="syntax-tag">.button:hover</span> {
+    <span class="syntax-attribute">background-color</span>: <span class="syntax-string">#3f37c9</span>;
+    <span class="syntax-attribute">transform</span>: <span class="syntax-string">translateY(-2px)</span>;
+}</code></pre>
+                    </div>
+                    
+                    <h5>Animations:</h5>
+                    <div class="code-block">
+                        <span class="code-lang">CSS</span>
+                        <pre><code><span class="syntax-keyword">@keyframes</span> fadeIn {
+    <span class="syntax-keyword">from</span> {
+        <span class="syntax-attribute">opacity</span>: <span class="syntax-string">0</span>;
+    }
+    <span class="syntax-keyword">to</span> {
+        <span class="syntax-attribute">opacity</span>: <span class="syntax-string">1</span>;
+    }
+}
+
+<span class="syntax-keyword">@keyframes</span> slideIn {
+    <span class="syntax-keyword">0%</span> {
+        <span class="syntax-attribute">transform</span>: <span class="syntax-string">translateX(-100%)</span>;
+    }
+    <span class="syntax-keyword">100%</span> {
+        <span class="syntax-attribute">transform</span>: <span class="syntax-string">translateX(0)</span>;
+    }
+}
+
+<span class="syntax-tag">.fade-in</span> {
+    <span class="syntax-attribute">animation</span>: <span class="syntax-string">fadeIn 1s ease-in-out</span>;
+}
+
+<span class="syntax-tag">.slide-in</span> {
+    <span class="syntax-attribute">animation</span>: <span class="syntax-string">slideIn 0.5s ease-out</span>;
+}</code></pre>
+                    </div>
+                    
+                    <h5>Transforms:</h5>
+                    <div class="code-block">
+                        <span class="code-lang">CSS</span>
+                        <pre><code><span class="syntax-tag">.rotate</span> {
+    <span class="syntax-attribute">transform</span>: <span class="syntax-string">rotate(45deg)</span>;
+}
+
+<span class="syntax-tag">.scale</span> {
+    <span class="syntax-attribute">transform</span>: <span class="syntax-string">scale(1.5)</span>;
+}
+
+<span class="syntax-tag">.translate</span> {
+    <span class="syntax-attribute">transform</span>: <span class="syntax-string">translate(50px, 20px)</span>;
+}
+
+<span class="syntax-tag">.skew</span> {
+    <span class="syntax-attribute">transform</span>: <span class="syntax-string">skew(10deg, 5deg)</span>;
+}
+
+<span class="syntax-tag">.multiple-transforms</span> {
+    <span class="syntax-attribute">transform</span>: <span class="syntax-string">rotate(30deg) scale(1.2) translate(10px, 10px)</span>;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section id="resources" class="content-section">
+        <div class="container">
+            <h2 class="section-title">Learning Resources</h2>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card resource-card h-100">
+                        <div class="card-body">
+                            <div class="feature-icon">
+                                <i class="bi bi-book"></i>
+                            </div>
+                            <h5>HTML Documentation</h5>
+                            <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank">Visit MDN HTML Docs <i class="bi bi-box-arrow-up-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card resource-card h-100">
+                        <div class="card-body">
+                            <div class="feature-icon">
+                                <i class="bi bi-palette"></i>
+                            </div>
+                            <h5>CSS Documentation</h5>
+                            <p>Complete CSS reference from MDN Web Docs. Learn about all CSS properties, values, and selectors.</p>
+                            <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank">Visit MDN CSS Docs <i class="bi bi-box-arrow-up-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card resource-card h-100">
+                        <div class="card-body">
+                            <div class="feature-icon">
+                                <i class="bi bi-code-slash"></i>
+                            </div>
+                            <h5>Syntax Syndicate Whatsapp Community</h5>
+                            <p>Beginner to advance sessions, screencasts and more.</p>
+                            <a href="https://chat.whatsapp.com/E4uMWsORJwwAd4vt1Dx8ZZ?mode=ac_t
+" target="_blank">Join Community <i class="bi bi-box-arrow-up-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card resource-card h-100">
+                        <div class="card-body">
+                            <div class="feature-icon">
+                                <i class="bi bi-youtube"></i>
+                            </div>
+                            <h5>YouTube Tutorials</h5>
+                            <p>Free video tutorials on web development. Great for visual learners who prefer step-by-step video guides.</p>
+                            <a href="https://youtube.com/playlist?list=PLfqMhTWNBTe0PY9xunOzsP5kmYIz2Hu7i&si=mI-ZC9zzZ248U_eK" target="_blank">Watch Tutorials <i class="bi bi-box-arrow-up-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card resource-card h-100">
+                        <div class="card-body">
+                            <div class="feature-icon">
+                                <i class="bi bi-pencil-square"></i>
+                            </div>
+                            <h5>CodePen</h5>
+                            <p>Online code editor and community. Test your HTML and CSS code in real-time and get inspired by others.</p>
+                            <a href="https://codepen.io/" target="_blank">Try CodePen <i class="bi bi-box-arrow-up-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card resource-card h-100">
+                        <div class="card-body">
+                            <div class="feature-icon">
+                                <i class="bi bi-laptop"></i>
+                            </div>
+                            <h5>freeCodeCamp</h5>
+                            <p>Free coding bootcamp with certifications. Comprehensive curriculum covering HTML, CSS, and responsive design.</p>
+                            <a href="https://www.freecodecamp.org/learn/responsive-web-design/" target="_blank">Start Course <i class="bi bi-box-arrow-up-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Syntax Syndicate's - Web Development Learning Hub</h5>
+                    <p>Comprehensive notes and resources for learning HTML and CSS.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p>&copy; 2025 Syntax Syndicate. All rights reserved.</p>
+                    <div class="social-links">
+                        <a href="https://github.com/Syntax-Syndicate-Ltd" class="text-white mx-2"><i class="bi bi-github"></i></a>
+                        <a href="https://www.linkedin.com/company/syntax-syndicate/" class="text-white"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+<a href="/index.html" class="back-home-btn">
+  <i class="fas fa-home"></i>
+  <span>Back to Home</span>
+</a>
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Back to top button functionality
+        const backToTopButton = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('active');
+            } else {
+                backToTopButton.classList.remove('active');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update active nav link
+                    document.querySelectorAll('.nav-link').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                }
+            });
+        });
+        
+        // Update active nav link on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const scrollY = window.pageYOffset;
+            
+            sections.forEach(section => {
+                const sectionHeight = section.offsetHeight;
+                const sectionTop = section.offsetTop - 100;
+                const sectionId = section.getAttribute('id');
+                
+                if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                    document.querySelectorAll('.nav-link').forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${sectionId}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            }); 
+        });
+    </script>
+</body>
+</html>
+
