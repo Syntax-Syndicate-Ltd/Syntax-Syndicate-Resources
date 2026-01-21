@@ -25,6 +25,8 @@
         user-select: none;
       }
 
+
+
       .notes-page {
         padding: 120px 0 80px;
         background: var(--bg-primary);
@@ -285,8 +287,8 @@
 .notes-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
-  padding: 30px;
+  gap: 18px;              /* tighter spacing */
+  padding: 12px;          /* reduced from 30px */
   justify-items: center;
 }
 
@@ -615,6 +617,8 @@ box-shadow:
           font-size: 0.9rem;
         }
       }
+
+
     </style>
   </head>
 
@@ -636,13 +640,13 @@ box-shadow:
           <a href="/index.html#about" class="nav-link">About</a>
           <a href="/index.html#blog" class="nav-link">Blog</a>
           <a href="/index.html#roadmaps" class="nav-link">Roadmaps</a>
+          <a href="/index.html#resources" class="nav-link">Resources</a>
           <a href="#opportunities" class="nav-link">Opportunities</a>
           <a href="/index.html#notes" class="nav-link">Notes</a>
-          <a href="/index.html#join" class="nav-link">Community</a>
         </div>
 
         <div class="nav-actions">
-          <a href="#join" class="btn btn-primary btn-join">Join Now</a>
+          <a href="/index.html#join" class="btn btn-primary btn-join">Join Now</a>
         </div>
 
         <button class="mobile-menu-btn" id="mobileMenuBtn">
@@ -1146,6 +1150,143 @@ box-shadow:
           </div>
         </div>
 
+
+        
+        <!-- 📚 YEAR / BRANCH / SEM SECTION -->
+        <div
+          class="year-section highlight-target"
+          data-year="year-2"
+          data-branch="ai&ds engineering"
+          data-sem="sem-3"
+        >
+          <h3 class="year-title">2nd Year – AI&DS Engineering (Semester 3)</h3>
+
+          <!-- SUBJECT CARDS GRID -->
+          <div class="subject-cards-grid sem3-filter">
+            <div class="subject-card" data-subject="Analysis Of Algorithms">
+              <h4>Analysis Of Algorithms</h4>
+              <p>Concepts, notes</p>
+              <button
+                class="view-notes-btn"
+                data-subject="Analysis Of Algorithms"
+              >
+                View Notes
+              </button>
+            </div>
+
+            <div class="subject-card" data-subject="Computer Organisation & Architecture">
+              <h4>Computer Organisation & Architecture</h4>
+              <p>theory, exam-oriented</p>
+              <button class="view-notes-btn" data-subject="Computer Organisation & Architecture">
+                View Notes
+              </button>
+            </div>
+
+            <div
+              class="subject-card"
+              data-subject="Maths for Computer Science"
+            >
+              <h4>Maths for Computer Science</h4>
+              <p>Detailed Notes</p>
+              <button
+                class="view-notes-btn"
+                data-subject="Maths for Computer Science"
+              >
+                View Notes
+              </button>
+            </div>
+
+            <div class="subject-card" data-subject="Discrete Structures & Graph Theory">
+              <h4>Discrete Structures & Graph Theory</h4>
+              <p>Detailed Notes</p>
+              <button
+                class="view-notes-btn"
+                data-subject="Discrete Structures & Graph Theory"
+              >
+                View Notes
+              </button>
+            </div>
+
+            <div class="subject-card" data-subject="Entrepeunership Development">
+              <h4>Entrepeunership Development</h4>
+              <p>Detailed Notes</p>
+              <button
+                class="view-notes-btn"
+                data-subject="Entrepeunership Development"
+              >
+                View Notes
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 📦 NOTES POPUP -->
+        <div id="notesPopup" class="notes-popup">
+          <div class="popup-content">
+            <span class="close-popup">&times;</span>
+            <h3 id="popupTitle">Subject Notes</h3>
+            <div class="notes-grid" id="popupGrid"></div>
+          </div>
+        </div>
+
+        <!-- 📦 PDF POPUP -->
+        <div id="pdfModal" class="pdf-popup">
+          <div class="pdf-content">
+            <span class="close-modal">&times;</span>
+            <iframe id="pdfViewer" src="" frameborder="0"></iframe>
+          </div>
+        </div>
+
+        <!-- HIDDEN NOTES STORAGE -->
+        <div class="notes-storage sem1-grid" style="display: none">
+          <!-- Analysis Of Algorithms -->
+          <div
+            class="note-card"
+            data-subject="Analysis Of Algorithms"
+            data-file="notes/sem4/applied-physics/Laser_notes.pdf"
+          >
+            
+            <h3>Analysis Of Algorithms</h3>
+            <span>Chp1 Notes</span>
+            <button class="open-btn">Open to Study</button>
+          </div>
+
+          <!-- Computer Organisation & Architecture -->
+          <div
+            class="note-card"
+            data-subject="Computer Organisation & Architecture"
+            data-file="notes/sem4/Operating Systems/overview.pdf"
+          >
+            <span>Chp1</span>
+            <h3>Computer Organisation & Architecture</h3>
+            <button class="open-btn">Open to Study</button>
+          </div>
+
+          <!-- Maths for Computer Science -->
+          <div
+            class="note-card"
+            data-subject="Maths for Computer Science"
+            data-file="notes/sem4/Database Management Systems/overview.pdf"
+          >
+            
+            <h3>Maths for Computer Science</h3>
+            <span>Chp1 Notes</span>
+            <button class="open-btn">Open to Study</button>
+          </div>
+
+          <!-- Discrete Structures & Graph Theory -->
+          <div
+            class="note-card"
+            data-subject="Discrete Structures & Graph Theory"
+            data-file="notes/sem4/Business Model Development/overview.pdf"
+          >
+            <h3>Overview</h3>
+            <span>Discrete Structures & Graph Theory</span>
+            <button class="open-btn">Open to Study</button>
+          </div>
+        </div>
+
+
         <!-- 📚 YEAR / BRANCH / SEM SECTION -->
         <div
           class="year-section highlight-target"
@@ -1201,6 +1342,17 @@ box-shadow:
               </button>
             </div>
 
+            <div class="subject-card" data-subject="Open Elective">
+              <h4>Open Elective</h4>
+              <p>Detailed Notes</p>
+              <button
+                class="view-notes-btn"
+                data-subject="Open Elective"
+              >
+                View Notes
+              </button>
+            </div>
+
             <div class="subject-card" data-subject="Business Model Development">
               <h4>Business Model Development</h4>
               <p>Detailed Notes</p>
@@ -1211,6 +1363,7 @@ box-shadow:
                 View Notes
               </button>
             </div>
+
           </div>
         </div>
 
@@ -1239,11 +1392,9 @@ box-shadow:
             data-subject="Computational Theory"
             data-file="notes/sem4/applied-physics/Laser_notes.pdf"
           >
-            <iframe
-              src="notes/sem4/Computational Theory/.pdf#toolbar=0&navpanes=0"
-            ></iframe>
+            
+            <h3>Coming Soon</h3>
             <span>Computational Theory</span>
-            <h3>Chp1 Notes</h3>
             <button class="open-btn">Open to Study</button>
           </div>
 
@@ -1253,10 +1404,7 @@ box-shadow:
             data-subject="Operating Systems"
             data-file="notes/sem4/Operating Systems/overview.pdf"
           >
-            <iframe
-              src="notes/sem4/Operating Systems/overview.pdf#toolbar=0&navpanes=0"
-            ></iframe>
-            <h3>Overview</h3>
+            <h3>Coming Soon</h3>
             <span>Operating Systems</span>
             <button class="open-btn">Open to Study</button>
           </div>
@@ -1267,29 +1415,47 @@ box-shadow:
             data-subject="Database Management Systems"
             data-file="notes/sem4/Database Management Systems/overview.pdf"
           >
-            <iframe
-              src="notes/sem4/Database Management Systems/.pdf#toolbar=0&navpanes=0"
-            ></iframe>
+          <h3>Coming Soon</h3>
             <span>Database Management Systems</span>
-            <h3>Chp1 Notes</h3>
+            
             <button class="open-btn">Open to Study</button>
           </div>
-
-          <!-- Operating Systems -->
+          <!-- Multidisciplinary Minor -->
+          <div
+            class="note-card"
+            data-subject="Multidisciplinary Minor"
+            data-file="notes/sem4/Database Management Systems/overview.pdf"
+          >
+          <h3>Coming Soon</h3>
+            <span>Multidisciplinary Minor</span>
+            
+            <button class="open-btn">Open to Study</button>
+          </div>
+          <!-- Open Elective -->
+          <div
+            class="note-card"
+            data-subject="Open Elective"
+            data-file="notes/sem4/Business Model Development/overview.pdf"
+          >
+            <h3>Coming Soon</h3>
+            <span>Open Elective</span>
+            <button class="open-btn">Open to Study</button>
+          </div>
+          <!-- Business Model Development -->
           <div
             class="note-card"
             data-subject="Business Model Development"
             data-file="notes/sem4/Business Model Development/overview.pdf"
           >
-            <iframe
-              src="notes/sem4/Business Model Development/overview.pdf#toolbar=0&navpanes=0"
-            ></iframe>
-            <h3>Overview</h3>
+            <h3>Coming Soon</h3>
             <span>Business Model Development</span>
             <button class="open-btn">Open to Study</button>
           </div>
         </div>
       </div>
+    </section>
+
+          </div>
     </section>
 
     <!-- MODAL -->
@@ -1299,7 +1465,7 @@ box-shadow:
         <iframe id="pdfViewer"></iframe>
       </div>
     </div>
-
+    </body>
     <script>
       const popup = document.getElementById("notesPopup");
       const popupGrid = document.getElementById("popupGrid");
