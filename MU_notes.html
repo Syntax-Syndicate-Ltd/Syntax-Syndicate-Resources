@@ -1710,6 +1710,58 @@ box-shadow:
           behavior: "smooth",
         });
       }
+      
+      /* ================================
+   Disable Keyboard Shortcuts
+   F12, Ctrl+Shift+I/J/C, Ctrl+U, Ctrl+S
+================================ */
+      document.addEventListener("keydown", function (e) {
+        // F12
+        if (e.key === "F12") {
+          e.preventDefault();
+        }
+
+        // Ctrl+Shift+I (Inspect)
+        if (e.ctrlKey && e.shiftKey && e.key === "I") {
+          e.preventDefault();
+        }
+
+        // Ctrl+Shift+J (Console)
+        if (e.ctrlKey && e.shiftKey && e.key === "J") {
+          e.preventDefault();
+        }
+
+        // Ctrl+Shift+C (Element picker)
+        if (e.ctrlKey && e.shiftKey && e.key === "C") {
+          e.preventDefault();
+        }
+
+        // Ctrl+U (View source)
+        if (e.ctrlKey && e.key === "u") {
+          e.preventDefault();
+        }
+
+        // Ctrl+S (Save page)
+        if (e.ctrlKey && e.key === "s") {
+          e.preventDefault();
+        }
+      });
+
+      /* ================================
+   Detect DevTools Open (optional)
+   Redirect or clear page
+================================ */
+      setInterval(function () {
+        const threshold = 160;
+
+        if (
+          window.outerWidth - window.innerWidth > threshold ||
+          window.outerHeight - window.innerHeight > threshold
+        ) {
+          document.body.innerHTML = "";
+          window.location.href = "about:blank"; // or redirect
+        }
+      }, 1000);
     </script>
 
     <!-- Footer -->

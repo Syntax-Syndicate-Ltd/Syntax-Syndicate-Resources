@@ -378,8 +378,6 @@
           </div>
         </div>
 
-
-        
         <div class="cert-grid">
           <div class="cert-card" data-code="SS-PY-2026-004">
             <!-- VERIFIED BADGE -->
@@ -424,7 +422,6 @@
           </div>
         </div>
 
-        
         <div class="cert-grid">
           <div class="cert-card" data-code="SS-PY-2026-005">
             <!-- VERIFIED BADGE -->
@@ -468,8 +465,6 @@
             </div>
           </div>
         </div>
-
-
 
         <div class="cert-grid">
           <div class="cert-card" data-code="SS-PY-2026-006">
@@ -515,8 +510,6 @@
           </div>
         </div>
 
-
-
         <div class="cert-grid">
           <div class="cert-card" data-code="SS-PY-2026-007">
             <!-- VERIFIED BADGE -->
@@ -561,9 +554,6 @@
           </div>
         </div>
 
-
-
-
         <div class="cert-grid">
           <div class="cert-card" data-code="SS-PY-2026-008">
             <!-- VERIFIED BADGE -->
@@ -579,7 +569,7 @@
 
             <!-- USER INFO -->
             <div class="cert-meta">
-              <p><strong>Issued To:</strong> Bhupesh Mahendra Lodhi </p>
+              <p><strong>Issued To:</strong> Bhupesh Mahendra Lodhi</p>
               <p><strong>Completed On:</strong> 19 Jan 2026</p>
             </div>
 
@@ -608,8 +598,6 @@
           </div>
         </div>
 
-
-
         <div class="cert-grid">
           <div class="cert-card" data-code="SS-PY-2026-009">
             <!-- VERIFIED BADGE -->
@@ -625,7 +613,7 @@
 
             <!-- USER INFO -->
             <div class="cert-meta">
-              <p><strong>Issued To:</strong> Anurag Santosh Amale </p>
+              <p><strong>Issued To:</strong> Anurag Santosh Amale</p>
               <p><strong>Completed On:</strong> 19 Jan 2026</p>
             </div>
 
@@ -654,7 +642,6 @@
           </div>
         </div>
 
-
         <div class="cert-grid">
           <div class="cert-card" data-code="SS-PY-2026-010">
             <!-- VERIFIED BADGE -->
@@ -670,7 +657,7 @@
 
             <!-- USER INFO -->
             <div class="cert-meta">
-              <p><strong>Issued To:</strong> Vinit Madhukar Chaudhari </p>
+              <p><strong>Issued To:</strong> Vinit Madhukar Chaudhari</p>
               <p><strong>Completed On:</strong> 19 Jan 2026</p>
             </div>
 
@@ -714,7 +701,7 @@
 
             <!-- USER INFO -->
             <div class="cert-meta">
-              <p><strong>Issued To:</strong> Sanskriti Shahaji Chavan </p>
+              <p><strong>Issued To:</strong> Sanskriti Shahaji Chavan</p>
               <p><strong>Completed On:</strong> 19 Jan 2026</p>
             </div>
 
@@ -743,7 +730,6 @@
           </div>
         </div>
 
-
         <div class="cert-grid">
           <div class="cert-card" data-code="SS-PY-2026-012">
             <!-- VERIFIED BADGE -->
@@ -759,7 +745,7 @@
 
             <!-- USER INFO -->
             <div class="cert-meta">
-              <p><strong>Issued To:</strong> Shivam Yadav  </p>
+              <p><strong>Issued To:</strong> Shivam Yadav</p>
               <p><strong>Completed On:</strong> 19 Jan 2026</p>
             </div>
 
@@ -788,7 +774,7 @@
           </div>
         </div>
 
-          <div class="cert-grid">
+        <div class="cert-grid">
           <div class="cert-card" data-code="SS-PY-2026-013">
             <!-- VERIFIED BADGE -->
             <div class="verified-badge">
@@ -803,7 +789,7 @@
 
             <!-- USER INFO -->
             <div class="cert-meta">
-              <p><strong>Issued To:</strong> Mihir Milind Jadhav </p>
+              <p><strong>Issued To:</strong> Mihir Milind Jadhav</p>
               <p><strong>Completed On:</strong> 19 Jan 2026</p>
             </div>
 
@@ -832,8 +818,7 @@
           </div>
         </div>
 
-
-          <div class="cert-grid">
+        <div class="cert-grid">
           <div class="cert-card" data-code="SS-PY-2026-014">
             <!-- VERIFIED BADGE -->
             <div class="verified-badge">
@@ -848,7 +833,7 @@
 
             <!-- USER INFO -->
             <div class="cert-meta">
-              <p><strong>Issued To:</strong> Atharva Vijayan Padinhar </p>
+              <p><strong>Issued To:</strong> Atharva Vijayan Padinhar</p>
               <p><strong>Completed On:</strong> 19 Jan 2026</p>
             </div>
 
@@ -876,11 +861,6 @@
             </div>
           </div>
         </div>
-
-
-
-
-
 
         <div class="no-result" id="noResult">
           ❌ No certificate exists for this code
@@ -1120,6 +1100,65 @@
         a.click();
         document.body.removeChild(a);
       }
+
+      /* ================================
+   Disable Right Click
+================================ */
+      document.addEventListener("contextmenu", function (e) {
+        e.preventDefault();
+      });
+
+      /* ================================
+   Disable Keyboard Shortcuts
+   F12, Ctrl+Shift+I/J/C, Ctrl+U, Ctrl+S
+================================ */
+      document.addEventListener("keydown", function (e) {
+        // F12
+        if (e.key === "F12") {
+          e.preventDefault();
+        }
+
+        // Ctrl+Shift+I (Inspect)
+        if (e.ctrlKey && e.shiftKey && e.key === "I") {
+          e.preventDefault();
+        }
+
+        // Ctrl+Shift+J (Console)
+        if (e.ctrlKey && e.shiftKey && e.key === "J") {
+          e.preventDefault();
+        }
+
+        // Ctrl+Shift+C (Element picker)
+        if (e.ctrlKey && e.shiftKey && e.key === "C") {
+          e.preventDefault();
+        }
+
+        // Ctrl+U (View source)
+        if (e.ctrlKey && e.key === "u") {
+          e.preventDefault();
+        }
+
+        // Ctrl+S (Save page)
+        if (e.ctrlKey && e.key === "s") {
+          e.preventDefault();
+        }
+      });
+
+      /* ================================
+   Detect DevTools Open (optional)
+   Redirect or clear page
+================================ */
+      setInterval(function () {
+        const threshold = 160;
+
+        if (
+          window.outerWidth - window.innerWidth > threshold ||
+          window.outerHeight - window.innerHeight > threshold
+        ) {
+          document.body.innerHTML = "";
+          window.location.href = "about:blank"; // or redirect
+        }
+      }, 1000);
     </script>
   </body>
 </html>
