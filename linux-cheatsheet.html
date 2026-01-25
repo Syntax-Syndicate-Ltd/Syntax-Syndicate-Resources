@@ -1,0 +1,3456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linux Command Reference | Administrator's Guide</title>
+    <meta property="og:title" content="Linux Command Reference | Administrator's Guide">
+<link rel="icon" href="/favicon.png" type="image/png">
+    <meta name="description" content="Comprehensive Linux command reference for system administrators and DevOps engineers.">
+    <style>
+:root {
+    /* GitHub Dark / VS Code Theme Palette */
+    --bg-body: #0d1117;
+    --bg-card: #161b22;
+    --bg-header: #010409;
+    --border-color: #30363d;
+    --text-primary: #c9d1d9;
+    --text-secondary: #8b949e;
+    --accent-color: #58a6ff;
+    --code-bg: #1f2428;
+    --code-text: #79c0ff;
+    --danger-color: #f85149;
+    --success-color: #3fb950;
+    --warning-color: #d29922;
+
+    --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+
+    --nav-height: 64px;
+}
+
+/* ---------------- RESET ---------------- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: clamp(14px, 1.1vw, 16px);
+}
+
+body {
+    background-color: var(--bg-body);
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    line-height: 1.6;
+}
+
+/* ---------------- TYPOGRAPHY ---------------- */
+h1, h2, h3, h4 {
+    font-weight: 600;
+    margin-bottom: 0.5em;
+}
+
+h1 {
+    font-size: clamp(1.3rem, 2.5vw, 1.6rem);
+}
+
+h2 {
+    font-size: clamp(1.4rem, 3vw, 1.75rem);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5em;
+    margin-top: clamp(2rem, 6vw, 3rem);
+    margin-bottom: clamp(1.5rem, 4vw, 2rem);
+    color: var(--accent-color);
+}
+
+h3 {
+    font-size: clamp(1.1rem, 2.2vw, 1.25rem);
+}
+
+p {
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+}
+
+ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+}
+
+li {
+    margin-bottom: 0.4rem;
+}
+
+strong {
+    color: var(--text-primary);
+}
+
+code {
+    font-family: var(--font-mono);
+    background-color: var(--code-bg);
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+    font-size: 0.9em;
+    color: var(--code-text);
+}
+
+/* ---------------- HEADER / NAV ---------------- */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    height: var(--nav-height);
+    background-color: var(--bg-header);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 clamp(1rem, 4vw, 1.5rem);
+}
+
+.brand {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.brand span {
+    color: var(--accent-color);
+}
+
+.nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+select.nav-dropdown {
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 0.4rem 2rem 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238b949e' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.5rem center;
+    background-size: 1em;
+}
+
+/* Mobile toggle */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    font-size: 1.6rem;
+    z-index: 1002;
+}
+
+/* ---------------- MAIN LAYOUT ---------------- */
+main {
+    max-width: min(92vw, 960px);
+    margin: 0 auto;
+    padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1rem, 4vw, 2rem);
+}
+
+/* ---------------- COMMAND CARDS ---------------- */
+.command-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: clamp(1.2rem, 3vw, 1.5rem);
+    margin-bottom: 2rem;
+}
+
+.cmd-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.cmd-name {
+    font-family: var(--font-mono);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    background: rgba(88, 166, 255, 0.1);
+    padding: 0.15rem 0.6rem;
+    border-radius: 6px;
+}
+
+.syntax-block {
+    font-family: var(--font-mono);
+    background-color: var(--bg-body);
+    border: 1px solid var(--border-color);
+    padding: 1rem;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 0.9rem;
+}
+
+/* ---------------- CALLOUTS ---------------- */
+.warning-box,
+.tip-box {
+    margin-top: 1rem;
+    padding: 0.8rem;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.9rem;
+}
+
+.warning-box {
+    border-left: 3px solid var(--danger-color);
+    background: rgba(248, 81, 73, 0.1);
+}
+
+.tip-box {
+    border-left: 3px solid var(--success-color);
+    background: rgba(63, 185, 80, 0.1);
+}
+
+/* ---------------- FOOTER ---------------- */
+footer {
+    text-align: center;
+    padding: clamp(2rem, 5vw, 3rem) 1rem;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* ---------------- MOBILE ---------------- */
+@media (max-width: 768px) {
+    .nav-dropdown {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .drawer {
+        position: fixed;
+        top: var(--nav-height);
+        left: 0;
+        width: 100%;
+        height: calc(100vh - var(--nav-height));
+        background-color: var(--bg-header);
+        transform: translateY(-100%);
+        transition: transform 0.3s ease;
+        z-index: 999;
+        padding: 1rem;
+        overflow-y: auto;
+    }
+
+    .drawer.active {
+        transform: translateY(0);
+    }
+
+    .drawer ul {
+        list-style: none;
+        margin: 0;
+    }
+
+    .drawer a {
+        display: block;
+        padding: 0.9rem 0;
+        border-bottom: 1px solid var(--border-color);
+        color: var(--text-primary);
+        text-decoration: none;
+        font-size: 1rem;
+    }
+}
+
+.search-container {
+    max-width: 900px;
+    margin: 1.5rem auto;
+    padding: 0 1rem;
+}
+
+#command-search {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    font-family: monospace;
+    background: #0f111a;
+    color: #eaeaea;
+    border: 1px solid #2a2d3a;
+    border-radius: 6px;
+    outline: none;
+}
+
+#command-search::placeholder {
+    color: #8a8f98;
+}
+
+#command-search:focus {
+    border-color: #4c9aff;
+}
+/* ---------------- BACK TO HOME FLOATING BUTTON ---------------- */
+.back-home-btn {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 1001;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+
+    padding: 0.6rem 0.9rem;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    font-weight: 600;
+
+    color: var(--text-primary);
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 999px;
+
+    text-decoration: none;
+    cursor: pointer;
+
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+    transition: 
+        background-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        color 0.2s ease;
+}
+
+.back-home-btn:hover {
+    background-color: rgba(88, 166, 255, 0.12);
+    color: var(--accent-color);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+}
+
+.back-home-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Slightly smaller on mobile */
+@media (max-width: 768px) {
+    .back-home-btn {
+        bottom: 1rem;
+        right: 1rem;
+        font-size: 0.85rem;
+        padding: 0.5rem 0.8rem;
+    }
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <div class="brand">
+            <span>&gt;_</span> LinuxRef by Syntax Syndicate
+        </div>
+        
+        <div class="nav-controls">
+            <!-- Desktop Dropdown -->
+            <select class="nav-dropdown" id="desktop-nav" aria-label="Jump to Section">
+                <option value="" disabled selected>Jump to Section...</option>
+                <option value="#file-mgmt">File & Directory Management</option>
+                <option value="#file-viewing">File Viewing & Reading</option>
+                <option value="#permissions">Permissions & Ownership</option>
+                <option value="#search">Search & File Discovery</option>
+                <option value="#text-processing">Text Processing</option>
+                <option value="#compression">Compression & Archiving</option>
+                <option value="#disk">Disk & Filesystem Management</option>
+                <option value="#process">Process Management</option>
+                <option value="#sysinfo">System Information & Hardware</option>
+                <option value="#users">User & Group Management</option>
+                <option value="#networking">Networking</option>
+                <option value="#pkg-apt">Package Management: APT</option>
+                <option value="#pkg-dnf">Package Management: DNF/YUM</option>
+                <option value="#pkg-pacman">Package Management: Pacman</option>
+                <option value="#pkg-snap">Package Management: Snap</option>
+                <option value="#pkg-flatpak">Package Management: Flatpak</option>
+                <option value="#shell-builtins">Shell Built-in Commands</option>
+                <option value="#io-redirection">Input / Output Redirection & Pipes</option>
+                <option value="#env-vars">Environment Variables</option>
+                <option value="#system-control">System Control & Power</option>
+                <option value="#scheduling">Job Scheduling & Automation</option>
+                <option value="#logs">Logs & Monitoring</option>
+                <option value="#dev-tools">Development & Debugging Tools</option>
+                <option value="#containers">Containers & Virtualization</option>
+                <option value="#kernel">Device & Kernel Module Management</option>
+                <option value="#misc">Miscellaneous Utilities</option>
+            </select>
+
+            <!-- Mobile Toggle -->
+            <button class="menu-toggle" id="menu-btn" aria-label="Toggle Menu">☰</button>
+        </div>
+    </header>
+
+    <!-- Mobile Drawer Menu -->
+    <nav class="drawer" id="mobile-drawer">
+        <ul>
+            <li><a href="#file-mgmt">File & Directory Management</a></li>
+            <li><a href="#file-viewing">File Viewing & Reading</a></li>
+            <li><a href="#permissions">Permissions & Ownership</a></li>
+            <li><a href="#search">Search & File Discovery</a></li>
+            <li><a href="#text-processing">Text Processing</a></li>
+            <li><a href="#compression">Compression & Archiving</a></li>
+            <li><a href="#disk">Disk & Filesystem Management</a></li>
+            <li><a href="#process">Process Management</a></li>
+            <li><a href="#sysinfo">System Information & Hardware</a></li>
+            <li><a href="#users">User & Group Management</a></li>
+            <li><a href="#networking">Networking</a></li>
+            <li><a href="#pkg-apt">Package Management: APT</a></li>
+            <li><a href="#pkg-dnf">Package Management: DNF/YUM</a></li>
+            <li><a href="#pkg-pacman">Package Management: Pacman</a></li>
+            <li><a href="#pkg-snap">Package Management: Snap</a></li>
+            <li><a href="#pkg-flatpak">Package Management: Flatpak</a></li>
+            <li><a href="#shell-builtins">Shell Built-in Commands</a></li>
+            <li><a href="#io-redirection">Input / Output Redirection & Pipes</a></li>
+            <li><a href="#env-vars">Environment Variables</a></li>
+            <li><a href="#system-control">System Control & Power</a></li>
+            <li><a href="#scheduling">Job Scheduling & Automation</a></li>
+            <li><a href="#logs">Logs & Monitoring</a></li>
+            <li><a href="#dev-tools">Development & Debugging Tools</a></li>
+            <li><a href="#containers">Containers & Virtualization</a></li>
+            <li><a href="#kernel">Device & Kernel Module Management</a></li>
+            <li><a href="#misc">Miscellaneous Utilities</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="search-container">
+    <input 
+        type="search" 
+        id="command-search" 
+        placeholder="Search command (e.g. ls, grep, chmod...)"
+        aria-label="Search Linux commands"
+    >
+</div>
+
+
+        <!-- SECTION 1 -->
+        <section id="file-mgmt">
+            <h2>File & Directory Management</h2>
+            
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">ls</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>List directory contents. It is the primary way to see what files and folders exist in the current or a specified directory.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Constantly. Use it to verify file creation, check permissions, or navigate the filesystem.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">ls [options] [directory]</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Important Options</h4>
+                    <ul>
+                        <li><code>-l</code> : Long listing format (shows permissions, owner, size, date).</li>
+                        <li><code>-a</code> : All (includes hidden files starting with a dot).</li>
+                        <li><code>-h</code> : Human-readable sizes (e.g., 1K, 234M, 2G).</li>
+                        <li><code>-t</code> : Sort by modification time.</li>
+                    </ul>
+                </div>
+                <div class="tip-box">
+                    <p><strong>Beginner Tip:</strong> Use <code>ls -lah</code> as your go-to command for a detailed view of all files, including hidden ones.</p>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">cd</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Change the current working directory.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>When you need to navigate to a specific folder to perform operations on files inside it.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">cd [directory]</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Important Options</h4>
+                    <ul>
+                        <li><code>cd ~</code> : Navigate to the home directory.</li>
+                        <li><code>cd ..</code> : Navigate up one level (parent directory).</li>
+                        <li><code>cd -</code> : Go back to the previous directory.</li>
+                    </ul>
+                </div>
+                <div class="tip-box">
+                    <p><strong>Beginner Tip:</strong> Typing just <code>cd</code> and hitting Enter always takes you back to your home folder, no matter where you are.</p>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">pwd</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Print Working Directory. It displays the full path of the directory you are currently in.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>When you get lost in deep directory structures or need to copy the path for a script.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">pwd</div>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">mkdir</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Make Directory. Creates new folders.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Organizing files or setting up project structures.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">mkdir [options] directory_name</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Important Options</h4>
+                    <ul>
+                        <li><code>-p</code> : Parents (creates nested directories in one go, e.g., <code>mkdir -p a/b/c</code>).</li>
+                        <li><code>-v</code> : Verbose (prints a message for each created directory).</li>
+                    </ul>
+                </div>
+                <div class="tip-box">
+                    <p><strong>Beginner Tip:</strong> Always use <code>-p</code> in scripts to avoid errors if the directory already exists.</p>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">cp</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Copy files or directories.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Backing up configuration files before editing or duplicating data.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">cp [options] source destination</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Important Options</h4>
+                    <ul>
+                        <li><code>-r</code> : Recursive (required to copy directories).</li>
+                        <li><code>-i</code> : Interactive (prompts before overwriting).</li>
+                        <li><code>-v</code> : Verbose (shows what is being copied).</li>
+                        <li><code>-a</code> : Archive mode (preserves permissions, times, and symbolic links).</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">mv</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Move (rename) files or directories.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Moving files into folders or renaming them to correct typos.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">mv [options] source destination</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Important Options</h4>
+                    <ul>
+                        <li><code>-i</code> : Interactive (prompts before overwriting).</li>
+                        <li><code>-v</code> : Verbose.</li>
+                        <li><code>-n</code> : No clobber (do not overwrite an existing file).</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">rm</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Remove files or directories.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Cleaning up temporary files, cache, or unwanted data.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">rm [options] file</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Important Options</h4>
+                    <ul>
+                        <li><code>-r</code> or <code>-R</code> : Recursive (removes directories and their contents).</li>
+                        <li><code>-f</code> : Force (ignores nonexistent files and prompts).</li>
+                        <li><code>-i</code> : Interactive (prompts for every removal).</li>
+                    </ul>
+                </div>
+                <div class="warning-box">
+                    <p><strong>Warning:</strong> <code>rm -rf /</code> will wipe your entire operating system. Deleted files are generally not recoverable from the command line.</p>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">touch</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Update the access/modification timestamp of a file. If the file does not exist, it creates an empty one.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Quickly creating a dummy file for testing or forcing a build system to recognize a change.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">touch [options] filename</div>
+                </div>
+            </article>
+        </section>
+
+        <!-- SECTION 2 -->
+        <section id="file-viewing">
+            <h2>File Viewing & Reading</h2>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">cat</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Concatenate and print files to the screen.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Reading short files, combining multiple files, or quickly checking script content.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">cat [options] file</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Important Options</h4>
+                    <ul>
+                        <li><code>-n</code> : Number all output lines.</li>
+                        <li><code>-b</code> : Number non-empty output lines.</li>
+                        <li><code>-s</code> : Squeeze blank lines (suppresses repeated empty lines).</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">less</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>View file contents one page at a time (with scrolling/searching).</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Reading large log files or long configuration files. It is preferred over <code>more</code>.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">less filename</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Controls</h4>
+                    <ul>
+                        <li><code>Space</code> / <code>f</code> : Forward one page.</li>
+                        <li><code>b</code> : Backward one page.</li>
+                        <li><code>/pattern</code> : Search for text.</li>
+                        <li><code>q</code> : Quit.</li>
+                    </ul>
+                </div>
+                <div class="tip-box">
+                    <p><strong>Beginner Tip:</strong> You can pipe output to less (e.g., <code>ls -lah | less</code>) to browse through long directory listings.</p>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">head</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Output the first part of files.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Checking the header of a CSV file or the first few lines of a log to see recent events.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">head [options] file</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Important Options</h4>
+                    <ul>
+                        <li><code>-n 20</code> : Show the first 20 lines (default is 10).</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">tail</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Output the last part of files.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Monitoring active log files (like <code>/var/log/syslog</code>) in real-time.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">tail [options] file</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Important Options</h4>
+                    <ul>
+                        <li><code>-n 50</code> : Show the last 50 lines.</li>
+                        <li><code>-f</code> : Follow (output appended data as the file grows).</li>
+                    </ul>
+                </div>
+                <div class="tip-box">
+                    <p><strong>Beginner Tip:</strong> <code>tail -f</code> is your best friend for debugging application crashes or server issues live.</p>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">nano</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>A simple, beginner-friendly text editor.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Making quick edits to config files when you don't know Vim.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">nano filename</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Important Options</h4>
+                    <ul>
+                        <li><code>Ctrl + O</code> : Save (WriteOut).</li>
+                        <li><code>Ctrl + X</code> : Exit.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">vim</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>A highly configurable, modal text editor.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Editing files over slow SSH connections, writing scripts, or system administration tasks where efficiency is key.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">vim filename</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Modes & Commands</h4>
+                    <ul>
+                        <li><code>i</code> : Insert mode (start typing).</li>
+                        <li><code>Esc</code> : Normal mode (stop typing).</li>
+                        <li><code>:w</code> : Save.</li>
+                        <li><code>:q</code> : Quit.</li>
+                        <li><code>:q!</code> : Quit without saving.</li>
+                    </ul>
+                </div>
+                <div class="warning-box">
+                    <p><strong>Gotcha:</strong> If you get stuck in Vim, press <code>Esc</code>, then type <code>:q!</code> and hit Enter to force exit.</p>
+                </div>
+            </article>
+        </section>
+
+        <!-- SECTION 3 -->
+        <section id="permissions">
+            <h2>Permissions & Ownership</h2>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">chmod</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Change file mode bits (permissions).</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Making a script executable (<code>+x</code>) or restricting access to sensitive files.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">chmod [options] mode file</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Important Options</h4>
+                    <ul>
+                        <li><code>u+x</code> : Add execute permission for user (owner).</li>
+                        <li><code>g-r</code> : Remove read permission for group.</li>
+                        <li><code>755</code> : Numeric mode. Owner: rwx, Group: r-x, Others: r-x.</li>
+                        <li><code>-R</code> : Recursive (apply to all files in a directory).</li>
+                    </ul>
+                </div>
+                <div class="tip-box">
+                    <p><strong>Beginner Tip:</strong> <code>chmod +x script.sh</code> is the most common usage to make a script run.</p>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">chown</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Change file owner and group.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>When you transfer files between users or need a web server (like www-data) to own a specific directory.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">chown [options] user:group file</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Important Options</h4>
+                    <ul>
+                        <li><code>user:group</code> : Set both user and group.</li>
+                        <li><code>:group</code> : Change only the group.</li>
+                        <li><code>-R</code> : Recursive.</li>
+                    </ul>
+                </div>
+                <div class="warning-box">
+                    <p><strong>Warning:</strong> You cannot give away files to other users (e.g., a regular user cannot chown a file to 'root'). Only root can do that.</p>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">chgrp</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Change group ownership.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Adding a file to a specific team group for collaboration.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">chgrp [options] group file</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Important Options</h4>
+                    <ul>
+                        <li><code>-R</code> : Recursive.</li>
+                        <li><code>-v</code> : Verbose.</li>
+                    </ul>
+                </div>
+            </article>
+             <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">umask</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Sets the default permission mask for creating new files and directories.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Ensuring secure defaults in a shell environment (e.g., forcing new files to be readable only by the owner).</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">umask [mode]</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Common Values</h4>
+                    <ul>
+                        <li><code>022</code> : Default. New files are 644 (rw-r--r--), dirs are 755.</li>
+                        <li><code>077</code> : Private. New files are 600 (rw-------), dirs are 700.</li>
+                    </ul>
+                </div>
+            </article>
+        </section>
+
+        <!-- SECTION 4 -->
+        <section id="search">
+            <h2>Search & File Discovery</h2>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">find</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Search for files in a directory hierarchy.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Locating specific files by name, size, type, or modification time anywhere on the disk.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">find [path] [options]</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Common Examples</h4>
+                    <ul>
+                        <li><code>find . -name "filename.txt"</code> : Search current dir.</li>
+                        <li><code>find / -type d -name "logs"</code> : Find directories named logs.</li>
+                        <li><code>find . -size +100M</code> : Find files larger than 100MB.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">grep</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Print lines matching a pattern. It searches text, not filenames.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Finding a specific configuration setting in a file or searching for an error code in logs.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">grep [options] "pattern" file</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Important Options</h4>
+                    <ul>
+                        <li><code>-i</code> : Case insensitive.</li>
+                        <li><code>-r</code> : Recursive (search all files in a directory).</li>
+                        <li><code>-v</code> : Invert match (show lines that do NOT match).</li>
+                        <li><code>-n</code> : Show line numbers.</li>
+                        <li><code>-E</code> : Extended regex (useful for complex patterns).</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">locate</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Find files by name quickly using a pre-built database.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>When you need to find a file instantly and don't care if it was created 1 minute ago.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">locate [options] filename</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Gotchas</h4>
+                    <p>You must run <code>updatedb</code> (as root) periodically to refresh the database. It will not find newly created files until the database updates.</p>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">which</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Locate a command (shows the full path of the executable).</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Checking which version of a binary is actually running (e.g., checking if Python is in <code>/usr/bin</code> or <code>/usr/local/bin</code>).</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">which command_name</div>
+                </div>
+            </article>
+            
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">whereis</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Locate the binary, source, and manual page files for a command.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>More thorough than <code>which</code>; useful when finding documentation or header files.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">whereis command_name</div>
+                </div>
+            </article>
+        </section>
+
+        <!-- SECTION 5 -->
+        <section id="text-processing">
+            <h2>Text Processing</h2>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">sed</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Stream Editor. Used for filtering and transforming text.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Replacing a specific string in a file or deleting lines matching a pattern automatically.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">sed [options] 'command' file</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Common Examples</h4>
+                    <ul>
+                        <li><code>sed 's/old/new/g' file.txt</code> : Replace all occurrences of "old" with "new".</li>
+                        <li><code>sed '5d' file.txt</code> : Delete the 5th line.</li>
+                        <li><code>-i</code> : Edit file in-place (save changes to the file).</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">awk</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>A powerful programming language for pattern scanning and processing.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Extracting specific columns from a text file (like CSV) or log output based on delimiters.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">awk 'program' file</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Common Examples</h4>
+                    <ul>
+                        <li><code>awk '{print $1}' file.txt</code> : Print the first column.</li>
+                        <li><code>awk -F: '{print $1}' /etc/passwd</code> : Print the first field using colon as separator.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">sort</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Sort lines of text files.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Organizing log files, lists of names, or analyzing data.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">sort [options] file</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Important Options</h4>
+                    <ul>
+                        <li><code>-n</code> : Numeric sort (2 comes before 10).</li>
+                        <li><code>-r</code> : Reverse order.</li>
+                        <li><code>-u</code> : Unique lines (remove duplicates).</li>
+                        <li><code>-k</code> : Sort by a specific column.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">uniq</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Report or omit repeated lines.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Finding unique occurrences in a log (e.g., counting unique IP addresses). Note: input must be sorted first.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">uniq [options]</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Important Options</h4>
+                    <ul>
+                        <li><code>-c</code> : Prefix lines by the number of occurrences.</li>
+                        <li><code>-d</code> : Only print duplicate lines.</li>
+                    </ul>
+                </div>
+            </article>
+            
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">diff</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Compare files line by line.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Seeing what changed between a backup file and the current version, or comparing code versions.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">diff [options] file1 file2</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Important Options</h4>
+                    <ul>
+                        <li><code>-u</code> : Unified format (easier to read).</li>
+                        <li><code>-q</code> : Brief (only report if files differ).</li>
+                        <li><code>-r</code> : Recursive (compare directories).</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">wc</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Word, line, character, and byte count.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Quickly counting lines in a file (e.g., how many entries in a log).</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">wc [options] file</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Important Options</h4>
+                    <ul>
+                        <li><code>-l</code> : Lines.</li>
+                        <li><code>-w</code> : Words.</li>
+                        <li><code>-c</code> : Bytes.</li>
+                    </ul>
+                </div>
+            </article>
+        </section>
+
+        <!-- SECTION 6 -->
+        <section id="compression">
+            <h2>Compression & Archiving</h2>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">tar</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Tape ARchive. Groups multiple files into one archive (often called a tarball).</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Creating backups or distributing software source code.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">tar [options] archive_name files</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Important Options</h4>
+                    <ul>
+                        <li><code>-c</code> : Create archive.</li>
+                        <li><code>-x</code> : Extract archive.</li>
+                        <li><code>-v</code> : Verbose.</li>
+                        <li><code>-f</code> : File (specify filename of the archive).</li>
+                        <li><code>-z</code> : Gzip compression (<code>.tar.gz</code>).</li>
+                        <li><code>-j</code> : Bzip2 compression (<code>.tar.bz2</code>).</li>
+                    </ul>
+                </div>
+                <div class="tip-box">
+                    <p><strong>Common Usage:</strong> <code>tar -czvf archive.tar.gz /path/to/dir</code></p>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">gzip</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Compress or expand files.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Reducing the size of a single file to save disk space or bandwidth.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">gzip [options] file</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Important Options</h4>
+                    <ul>
+                        <li><code>-d</code> : Decompress.</li>
+                        <li><code>-k</code> : Keep original file (don't delete it after compressing).</li>
+                        <li><code>-9</code> : Best compression (slowest).</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">zip</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Package and compress (archive) files. More common in Windows environments but supported on Linux.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>When you need to send files to Windows users.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">zip [options] archive.zip file1 file2</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Important Options</h4>
+                    <ul>
+                        <li><code>-r</code> : Recursive (include directories).</li>
+                    </ul>
+                </div>
+            </article>
+             <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">unzip</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Extract files from a ZIP archive.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Opening archives downloaded from the internet or received from Windows users.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">unzip [options] archive.zip</div>
+                </div>
+                 <div class="cmd-section">
+                    <h4>Important Options</h4>
+                    <ul>
+                        <li><code>-l</code> : List files without extracting.</li>
+                        <li><code>-d</code> : Specify destination directory.</li>
+                    </ul>
+                </div>
+            </article>
+        </section>
+
+        <!-- SECTION 7 -->
+        <section id="disk">
+            <h2>Disk & Filesystem Management</h2>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">df</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Report file system disk space usage.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Checking if a server is running out of disk space.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">df [options]</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Important Options</h4>
+                    <ul>
+                        <li><code>-h</code> : Human-readable (GB, MB).</li>
+                        <li><code>-T</code> : Print filesystem type.</li>
+                        <li><code>-i</code> : Show inodes (useful if you have space left but can't create files).</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">du</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Estimate file space usage.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Finding which specific directories are consuming the most space.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">du [options] directory</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Important Options</h4>
+                    <ul>
+                        <li><code>-h</code> : Human-readable.</li>
+                        <li><code>-s</code> : Summarize (total only).</li>
+                        <li><code>--max-depth=1</code> : Check only top-level directories.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">mount</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Mount a filesystem.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Attaching a USB drive, a new hard disk, or a network share (NFS/SMB) to the directory tree.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">mount [options] device directory</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Common Usage</h4>
+                    <ul>
+                        <li><code>mount /dev/sdb1 /mnt/usb</code></li>
+                    </ul>
+                </div>
+            </article>
+
+             <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">umount</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Unmount file systems.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Safely removing a drive before physically unplugging it.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">umount [options] directory</div>
+                </div>
+                <div class="warning-box">
+                    <p><strong>Warning:</strong> Never unplug a USB drive without running <code>umount</code> first, or you risk data corruption.</p>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">fdisk</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Manipulate disk partition table.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Creating new partitions on a fresh hard drive or modifying existing ones.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">fdisk [options] device</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Common Usage</h4>
+                    <ul>
+                        <li><code>fdisk -l</code> : List all partitions.</li>
+                    </ul>
+                </div>
+                <div class="warning-box">
+                    <p><strong>Warning:</strong> Modifying partitions destroys data. Use with extreme caution.</p>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">lsblk</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>List block devices.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Visualizing the hierarchy of storage devices and their partitions in a tree structure.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">lsblk [options]</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Important Options</h4>
+                    <ul>
+                        <li><code>-f</code> : Show filesystems.</li>
+                        <li><code>-m</code> : Show permissions/owner.</li>
+                    </ul>
+                </div>
+            </article>
+             <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">mkfs</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Build a Linux filesystem.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Formatting a partition (e.g., to ext4) after creating it with fdisk.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">mkfs -t [type] device</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Common Usage</h4>
+                    <ul>
+                        <li><code>mkfs.ext4 /dev/sdb1</code> : Format partition to ext4.</li>
+                    </ul>
+                </div>
+            </article>
+        </section>
+
+        <!-- SECTION 8 -->
+        <section id="process">
+            <h2>Process Management</h2>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">ps</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Report a snapshot of current processes.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Checking the Process ID (PID) of a running application to kill or debug it.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">ps [options]</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Important Options</h4>
+                    <ul>
+                        <li><code>aux</code> : View all processes for all users (BSD syntax).</li>
+                        <li><code>-ef</code> : View all processes full format (System V syntax).</li>
+                        <li><code>-u username</code> : Filter by specific user.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">top</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Display Linux processes. A dynamic, real-time view.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Monitoring server load, CPU usage, and RAM usage in real-time.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">top</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Controls</h4>
+                    <ul>
+                        <li><code>q</code> : Quit.</li>
+                        <li><code>Shift + M</code> : Sort by memory usage.</li>
+                        <li><code>Shift + P</code> : Sort by CPU usage.</li>
+                        <li><code>k</code> : Kill a process (requires PID).</li>
+                    </ul>
+                </div>
+            </article>
+            
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">htop</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Interactive process viewer. A more colorful, user-friendly version of <code>top</code>.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Preferred over top for easier interaction (mouse support in some versions, clearer layouts).</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">htop</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Controls</h4>
+                    <ul>
+                        <li><code>F10</code> : Quit.</li>
+                        <li><code>F9</code> : Kill process.</li>
+                        <li><code>u</code> : Show processes of a single user.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">kill</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Terminate a process.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Stopping a frozen or misbehaving program.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">kill [signal] PID</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Important Signals</h4>
+                    <ul>
+                        <li><code>-15</code> or <code>-TERM</code> : Terminate politely (asks app to close).</li>
+                        <li><code>-9</code> or <code>-KILL</code> : Force kill immediately.</li>
+                    </ul>
+                </div>
+                <div class="warning-box">
+                    <p><strong>Warning:</strong> Use <code>-9</code> only as a last resort. It does not allow the program to save data or clean up temporary files.</p>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">killall</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Kill processes by name.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Stopping all instances of a program (e.g., killing all Chrome tabs/processes at once).</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">killall [options] process_name</div>
+                </div>
+                 <div class="cmd-section">
+                    <h4>Important Options</h4>
+                    <ul>
+                        <li><code>-9</code> : Force kill.</li>
+                        <li><code>-i</code> : Interactive (ask before killing).</li>
+                    </ul>
+                </div>
+            </article>
+            
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">pkill</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Signal processes based on name and other attributes. More direct than killall.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Killing a process that matches a specific pattern (e.g., <code>pkill -f "python script.py"</code>).</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">pkill [options] pattern</div>
+                </div>
+            </article>
+            
+             <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">nohup</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Run a command immune to hangups (logout).</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Starting a long-running script or server that must stay alive even after you close the SSH session.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">nohup command &</div>
+                </div>
+            </article>
+        </section>
+
+        <!-- SECTION 9 -->
+        <section id="sysinfo">
+            <h2>System Information & Hardware</h2>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">uname</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Print system information.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Checking kernel version or system architecture (e.g., 64-bit vs 32-bit).</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">uname [options]</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Important Options</h4>
+                    <ul>
+                        <li><code>-a</code> : Print all information.</li>
+                        <li><code>-r</code> : Kernel release.</li>
+                        <li><code>-m</code> : Machine hardware name.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">hostname</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Show or set the system's host name.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Identifying which server you are currently logged into.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">hostname [options]</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Important Options</h4>
+                    <ul>
+                        <li><code>-I</code> : Display IP address(es).</li>
+                        <li><code>-i</code> : Display the network address of the hostname.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">uptime</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Tell how long the system has been running.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Checking system stability or seeing the load average.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">uptime</div>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">dmesg</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Print or control the kernel ring buffer (kernel messages).</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Debugging hardware issues (e.g., USB drives not detected, network driver errors).</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">dmesg [options]</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Important Options</h4>
+                    <ul>
+                        <li><code>| less</code> : Pipe to less to read easier.</li>
+                        <li><code>-T</code> : Print human-readable timestamps.</li>
+                        <li><code>-w</code> : Keep the buffer open and wait for new messages (like <code>tail -f</code>).</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">lscpu</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Display CPU information.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Checking core count, architecture, and CPU flags.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">lscpu</div>
+                </div>
+            </article>
+            
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">lsusb</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>List USB devices.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Verifying that a device is physically detected by the OS.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">lsusb</div>
+                </div>
+            </article>
+            
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">lspci</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>List all PCI devices.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Checking graphics cards, network adapters, and other motherboard hardware.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">lspci</div>
+                </div>
+            </article>
+        </section>
+
+        <!-- SECTION 10 -->
+        <section id="users">
+            <h2>User & Group Management</h2>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">useradd</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Create a new user.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Adding a new team member to a server or creating a service account.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">useradd [options] username</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Important Options</h4>
+                    <ul>
+                        <li><code>-m</code> : Create the user's home directory.</li>
+                        <li><code>-s</code> : Specify login shell (e.g., /bin/bash).</li>
+                        <li><code>-G</code> : Add user to supplementary groups.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">usermod</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Modify a user account.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Adding a user to the "sudo" or "docker" group, or locking an account.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">usermod [options] username</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Important Options</h4>
+                    <ul>
+                        <li><code>-aG</code> : Append to groups.</li>
+                        <li><code>-L</code> : Lock user account.</li>
+                        <li><code>-U</code> : Unlock user account.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">userdel</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Delete a user account.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Removing access for a departing employee.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">userdel [options] username</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Important Options</h4>
+                    <ul>
+                        <li><code>-r</code> : Remove home directory and mail spool.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">passwd</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Change user password.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Initial setup of a new user or resetting a lost password.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">passwd [options] [username]</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Important Options</h4>
+                    <ul>
+                        <li><code>-l</code> : Lock the password.</li>
+                        <li><code>-u</code> : Unlock the password.</li>
+                        <li><code>-e</code> : Expire the password immediately (forces change on next login).</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">groupadd</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Create a new group.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Organizing permissions for teams or specific services.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">groupadd groupname</div>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">id</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Print user and group information for the current user or specified user.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Checking your UID/GID or verifying which groups a user belongs to.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">id [username]</div>
+                </div>
+            </article>
+            
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">who</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Show who is logged on.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Checking if anyone else is currently using the server.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">who</div>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">w</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Show who is logged on and what they are doing.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>More detailed version of <code>who</code>. Shows the specific command each user is running and their load average.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">w</div>
+                </div>
+            </article>
+        </section>
+
+        <!-- SECTION 11 -->
+        <section id="networking">
+            <h2>Networking</h2>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">ping</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Send ICMP ECHO_REQUEST to network hosts.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Checking connectivity to a server or website (e.g., Google or DNS server) to see if the network is up.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">ping [options] host</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Important Options</h4>
+                    <ul>
+                        <li><code>-c 4</code> : Send 4 packets then stop.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">ip</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Show / manipulate routing, devices, policy routing, and tunnels.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Checking IP addresses, bringing interfaces up/down, and viewing routing tables. (Successor to <code>ifconfig</code>).</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Common Examples</h4>
+                    <ul>
+                        <li><code>ip a</code> : Show IP addresses and interfaces.</li>
+                        <li><code>ip link set eth0 up</code> : Bring interface up.</li>
+                        <li><code>ip route</code> : Show routing table.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">ssh</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>OpenSSH remote login client.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Securely logging into remote Linux servers.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">ssh user@hostname</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Important Options</h4>
+                    <ul>
+                        <li><code>-p 2222</code> : Specify port if not default (22).</li>
+                        <li><code>-i key.pem</code> : Use specific identity file (private key).</li>
+                        <li><code>-L</code> : Local port forwarding (tunneling).</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">scp</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Secure copy (remote file copy program).</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Transferring files between your local machine and a remote server securely.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">scp source user@dest:path</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Important Options</h4>
+                    <ul>
+                        <li><code>-r</code> : Recursive (copy directories).</li>
+                        <li><code>-P</code> : Port (note capital P).</li>
+                    </ul>
+                </div>
+            </article>
+            
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">rsync</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>A fast, versatile, remote (and local) file-copying tool.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Syncing directories, backups, and copying large files. It only copies the differences (delta encoding).</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">rsync [options] source dest</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Important Options</h4>
+                    <ul>
+                        <li><code>-a</code> : Archive mode (preserves permissions, times, symlinks).</li>
+                        <li><code>-v</code> : Verbose.</li>
+                        <li><code>-z</code> : Compress during transfer.</li>
+                        <li><code>--progress</code> : Show progress bar.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">netstat</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Print network connections, routing tables, interface statistics, etc. (Deprecated but widely used).</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Finding which ports are open or listening.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">netstat [options]</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Common Usage</h4>
+                    <ul>
+                        <li><code>netstat -tulpn</code> : Show TCP/UDP listening ports with numeric info and PID.</li>
+                    </ul>
+                </div>
+            </article>
+            
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">ss</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Another utility to investigate sockets (modern replacement for <code>netstat</code>).</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Faster and provides more details than netstat.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">ss [options]</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Common Usage</h4>
+                    <ul>
+                        <li><code>ss -tulpn</code> : Equivalent to netstat -tulpn.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">curl</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Transfer data from or to a server.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Testing APIs, downloading files, or checking HTTP headers.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">curl [options] URL</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Important Options</h4>
+                    <ul>
+                        <li><code>-I</code> : Fetch headers only.</li>
+                        <li><code>-O</code> : Save to file with remote name.</li>
+                        <li><code>-X POST</code> : Send a POST request.</li>
+                        <li><code>-d "data"</code> : Send data in body.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">wget</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Network downloader.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Downloading files from the web, specifically useful for recursive downloads.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">wget [options] URL</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Important Options</h4>
+                    <ul>
+                        <li><code>-c</code> : Resume broken download.</li>
+                        <li><code>-r</code> : Recursive download.</li>
+                    </ul>
+                </div>
+            </article>
+            
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">traceroute</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Print the route packets trace to a network host.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Diagnosing where packets are being dropped or delayed between you and a destination.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">traceroute host</div>
+                </div>
+            </article>
+            
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">nslookup</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Query Internet name servers interactively.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Checking DNS records (A, MX, etc.) for a domain.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">nslookup domain</div>
+                </div>
+            </article>
+        </section>
+
+        <!-- SECTION 12 -->
+        <section id="pkg-apt">
+            <h2>Package Management: APT (Debian/Ubuntu)</h2>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">apt update</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Resynchronize the package index files from their sources.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Before installing or upgrading any software. Ensures you have the latest list of versions.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">sudo apt update</div>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">apt upgrade</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Install newer versions of the packages you have installed.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Keeping the system secure and patched.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">sudo apt upgrade</div>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">apt install</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Install packages.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Installing new software like nginx, git, or vim.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">sudo apt install package_name</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Important Options</h4>
+                    <ul>
+                        <li><code>-y</code> : Assume "yes" to all prompts.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">apt remove</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Remove packages.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Uninstalling software.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">sudo apt remove package_name</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Gotchas</h4>
+                    <p>Leaves configuration files behind. Use <code>apt purge</code> to remove everything.</p>
+                </div>
+            </article>
+            
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">apt autoremove</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Remove automatically installed packages that are no longer needed.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Cleaning up the system after an upgrade or removing a major dependency.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">sudo apt autoremove</div>
+                </div>
+            </article>
+        </section>
+
+        <!-- SECTION 13 -->
+        <section id="pkg-dnf">
+            <h2>Package Management: DNF / YUM (RHEL/CentOS/Fedora)</h2>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">dnf install</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Install software packages.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Adding applications to Fedora, RHEL, or CentOS.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">sudo dnf install package</div>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">dnf update</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Update software packages.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>System maintenance.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">sudo dnf update</div>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">dnf remove</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Remove packages.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Uninstalling software.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">sudo dnf remove package</div>
+                </div>
+            </article>
+        </section>
+
+        <!-- SECTION 14 -->
+        <section id="pkg-pacman">
+            <h2>Package Management: Pacman (Arch Linux)</h2>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">pacman -Syu</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Synchronize package databases and upgrade packages.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Daily system maintenance on Arch.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">sudo pacman -Syu</div>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">pacman -S</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Install specific package(s).</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Installing software.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">sudo pacman -S package</div>
+                </div>
+            </article>
+
+             <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">pacman -R</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Remove package(s).</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Removing software. Use <code>-Rns</code> to remove dependencies and configs too.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">sudo pacman -R package</div>
+                </div>
+            </article>
+        </section>
+
+        <!-- SECTION 15 -->
+        <section id="pkg-snap">
+            <h2>Package Management: Snap</h2>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">snap install</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Install a snap package.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Installing apps that are sandboxed and distributed by Canonical across many distros.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">sudo snap install package_name</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Important Options</h4>
+                    <ul>
+                        <li><code>--classic</code> : Required for some snaps that need full system access (like VS Code).</li>
+                    </ul>
+                </div>
+            </article>
+            
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">snap remove</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Remove a snap package.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">sudo snap remove package_name</div>
+                </div>
+            </article>
+        </section>
+
+        <!-- SECTION 16 -->
+        <section id="pkg-flatpak">
+            <h2>Package Management: Flatpak</h2>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">flatpak install</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Install a Flatpak application.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Installing desktop apps in a sandboxed environment.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">flatpak install flathub com.app.Name</div>
+                </div>
+            </article>
+             <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">flatpak list</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>List installed Flatpak applications.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">flatpak list</div>
+                </div>
+            </article>
+        </section>
+
+        <!-- SECTION 17 -->
+        <section id="shell-builtins">
+            <h2>Shell Built-in Commands</h2>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">echo</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Display a line of text.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Printing text to the screen or appending text to a file.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">echo [string]</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Important Options</h4>
+                    <ul>
+                        <li><code>-n</code> : Do not output the trailing newline.</li>
+                        <li><code>-e</code> : Enable interpretation of backslash escapes (e.g., \n for newline).</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">history</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Display the command history list.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Recalling a command you typed earlier but forgot.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">history</div>
+                </div>
+                <div class="tip-box">
+                    <p><strong>Beginner Tip:</strong> Type <code>!100</code> (where 100 is the line number) to re-run that specific command. Press <code>Ctrl + R</code> to search history interactively.</p>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">alias</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Create an alias (a shortcut for a command).</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Shortening long commands or adding default flags (e.g., always making <code>rm</code> interactive).</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">alias name='command'</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Example</h4>
+                    <ul>
+                        <li><code>alias ll='ls -lah'</code></li>
+                    </ul>
+                </div>
+            </article>
+            
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">source</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Execute commands from a file in the current shell.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Applying changes to your shell configuration file (like <code>.bashrc</code>) without restarting the terminal.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">source filename</div>
+                </div>
+            </article>
+        </section>
+
+        <!-- SECTION 18 -->
+        <section id="io-redirection">
+            <h2>Input / Output Redirection & Pipes</h2>
+            
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">&gt; (Standard Output Redirection)</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Redirects output to a file, overwriting the file if it exists.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Saving the result of a command to a file.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Example</h4>
+                    <div class="syntax-block">ls -la &gt; filelist.txt</div>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">&gt;&gt; (Append Redirection)</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Redirects output to a file, appending to the end of the file.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Adding logs to an existing file.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Example</h4>
+                    <div class="syntax-block">echo "New entry" &gt;&gt; logfile.txt</div>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">&lt; (Input Redirection)</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Passes the content of a file as input to a command.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Reading commands from a file or processing file content line by line.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Example</h4>
+                    <div class="syntax-block">sort &lt; names.txt</div>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">| (Pipe)</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Connects the output of one command to the input of another.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Chaining commands together to perform complex operations (e.g., filtering output).</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Example</h4>
+                    <div class="syntax-block">cat error.log | grep "404"</div>
+                </div>
+            </article>
+            
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">xargs</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Build and execute command lines from standard input.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Passing a list of files (output from find) to another command (like rm or chmod).</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Example</h4>
+                    <div class="syntax-block">find . -name "*.tmp" | xargs rm</div>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">tee</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Reads from standard input and writes to standard output and files.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Viewing output on the screen while simultaneously saving it to a file.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Example</h4>
+                    <div class="syntax-block">ls -la | tee filelist.txt</div>
+                </div>
+            </article>
+        </section>
+
+        <!-- SECTION 19 -->
+        <section id="env-vars">
+            <h2>Environment Variables</h2>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">export</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Set an environment variable.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Setting the PATH, default editor, or API keys for the current session.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">export VARNAME=value</div>
+                </div>
+                <div class="tip-box">
+                    <p><strong>Beginner Tip:</strong> Add exports to your <code>~/.bashrc</code> or <code>~/.zshrc</code> file to make them permanent.</p>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">env</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Run a program in a modified environment or display the current environment.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Checking all currently set variables.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">env</div>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">printenv</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Print the values of the specified environment variables.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Checking a specific variable like <code>$HOME</code> or <code>$PATH</code>.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">printenv PATH</div>
+                </div>
+            </article>
+            
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">unset</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Unset values and attributes of shell variables.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Removing a variable from the current session.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">unset VARNAME</div>
+                </div>
+            </article>
+        </section>
+
+        <!-- SECTION 20 -->
+        <section id="system-control">
+            <h2>System Control & Power</h2>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">systemctl</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Control the systemd system and service manager.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Starting, stopping, restarting services (e.g., nginx, docker, ssh).</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">systemctl [command] [service]</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Common Commands</h4>
+                    <ul>
+                        <li><code>systemctl start service</code></li>
+                        <li><code>systemctl stop service</code></li>
+                        <li><code>systemctl restart service</code></li>
+                        <li><code>systemctl enable service</code> : Start on boot.</li>
+                        <li><code>systemctl status service</code></li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">shutdown</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Schedule a time for the system to be powered down.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Safely shutting down a server.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">shutdown [options] [time]</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Important Options</h4>
+                    <ul>
+                        <li><code>-h</code> : Halt (power off).</li>
+                        <li><code>-r</code> : Reboot.</li>
+                        <li><code>-c</code> : Cancel a pending shutdown.</li>
+                        <li><code>now</code> : Do it immediately.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">reboot</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Restart the system.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Applying kernel updates or flushing system state.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">sudo reboot</div>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">poweroff</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Power off the machine.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">sudo poweroff</div>
+                </div>
+            </article>
+        </section>
+
+        <!-- SECTION 21 -->
+        <section id="scheduling">
+            <h2>Job Scheduling & Automation</h2>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">crontab</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Maintain crontab files for individual users.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Scheduling scripts to run automatically at specific times (e.g., a daily backup at 2 AM).</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">crontab [options]</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Important Options</h4>
+                    <ul>
+                        <li><code>-e</code> : Edit the user's crontab.</li>
+                        <li><code>-l</code> : List the user's crontab.</li>
+                        <li><code>-r</code> : Remove the user's crontab.</li>
+                    </ul>
+                </div>
+                <div class="tip-box">
+                    <p><strong>Syntax:</strong> <code>* * * * * command</code> (Minute, Hour, Day of Month, Month, Day of Week).</p>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">at</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Queue, examine, or delete jobs for later execution.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Scheduling a one-time job to run in the future.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">at [time]</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Example</h4>
+                    <div class="syntax-block">echo "backup.sh" | at 5pm</div>
+                </div>
+            </article>
+        </section>
+
+        <!-- SECTION 22 -->
+        <section id="logs">
+            <h2>Logs & Monitoring</h2>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">journalctl</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Query the systemd journal.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Viewing boot logs, service logs, and kernel messages on systemd-based distros.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">journalctl [options]</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Important Options</h4>
+                    <ul>
+                        <li><code>-u service_name</code> : Filter by specific service.</li>
+                        <li><code>-f</code> : Follow log output (real-time).</li>
+                        <li><code>-b</code> : Show logs from current boot.</li>
+                        <li><code>-p err</code> : Filter by priority (error, warning, etc).</li>
+                    </ul>
+                </div>
+            </article>
+        </section>
+
+        <!-- SECTION 23 -->
+        <section id="dev-tools">
+            <h2>Development & Debugging Tools</h2>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">git</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Distributed version control system.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Managing source code.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">git [command]</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Common Commands</h4>
+                    <ul>
+                        <li><code>git init</code></li>
+                        <li><code>git clone url</code></li>
+                        <li><code>git add .</code></li>
+                        <li><code>git commit -m "msg"</code></li>
+                        <li><code>git push</code></li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">make</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>GNU build utility to maintain groups of programs.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Compiling software from source using a Makefile.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">make [target]</div>
+                </div>
+            </article>
+            
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">gcc</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>GNU Compiler Collection (C/C++).</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Compiling C or C++ code.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">gcc source.c -o output</div>
+                </div>
+            </article>
+            
+             <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">strace</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Trace system calls and signals.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Debugging why a program is failing, stuck, or trying to access files it shouldn't.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">strace command</div>
+                </div>
+            </article>
+        </section>
+
+        <!-- SECTION 24 -->
+        <section id="containers">
+            <h2>Containers & Virtualization</h2>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">docker</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Platform for developing, shipping, and running applications in containers.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Deploying applications in isolated environments.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">docker [command]</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Common Commands</h4>
+                    <ul>
+                        <li><code>docker run image</code> : Run a container.</li>
+                        <li><code>docker ps</code> : List running containers.</li>
+                        <li><code>docker images</code> : List images.</li>
+                        <li><code>docker exec -it container sh</code> : Open shell in container.</li>
+                    </ul>
+                </div>
+            </article>
+        </section>
+
+        <!-- SECTION 25 -->
+        <section id="kernel">
+            <h2>Device & Kernel Module Management</h2>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">lsmod</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Show the status of modules in the Linux Kernel.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Checking if a specific driver is currently loaded.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">lsmod</div>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">modprobe</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Add and remove modules from the Linux Kernel.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Manually loading a driver that isn't starting automatically.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">modprobe [options] module_name</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Common Usage</h4>
+                    <ul>
+                        <li><code>sudo modprobe module_name</code> : Load.</li>
+                        <li><code>sudo modprobe -r module_name</code> : Remove.</li>
+                    </ul>
+                </div>
+            </article>
+        </section>
+
+        <!-- SECTION 26 -->
+        <section id="misc">
+            <h2>Miscellaneous Utilities</h2>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">man</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Format and display the on-line manual pages.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>When you forget the options of a command or need deep technical details.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">man command</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Controls</h4>
+                    <ul>
+                        <li>Same as <code>less</code> (Space to page, q to quit).</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">clear</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Clear the terminal screen.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>When your terminal is too cluttered and you want a fresh workspace.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">clear</div>
+                </div>
+                <div class="tip-box">
+                    <p><strong>Beginner Tip:</strong> You can also press <code>Ctrl + L</code> for the same effect.</p>
+                </div>
+            </article>
+            
+             <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">exit</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Exit the shell.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Closing a terminal session or SSH connection.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">exit</div>
+                </div>
+            </article>
+            
+            <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">sudo</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Execute a command as another user (typically the superuser/root).</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Performing administrative tasks that require elevated privileges.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">sudo [command]</div>
+                </div>
+                 <div class="cmd-section">
+                    <h4>Important Options</h4>
+                    <ul>
+                        <li><code>-i</code> : Login shell (simulate initial login).</li>
+                        <li><code>-u user</code> : Run as a specific user.</li>
+                    </ul>
+                </div>
+            </article>
+            
+             <article class="command-card">
+                <div class="cmd-header">
+                    <code class="cmd-name">su</code>
+                </div>
+                <div class="cmd-section">
+                    <h4>What it does</h4>
+                    <p>Switch user.</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>When to use it</h4>
+                    <p>Changing to the root account or another user account entirely (rather than just running one command).</p>
+                </div>
+                <div class="cmd-section">
+                    <h4>Basic Syntax</h4>
+                    <div class="syntax-block">su [options] [username]</div>
+                </div>
+                <div class="cmd-section">
+                    <h4>Important Options</h4>
+                    <ul>
+                        <li><code>-</code> or <code>-l</code> : Make it a login shell (loads the user's environment).</li>
+                    </ul>
+                </div>
+            </article>
+        </section>
+<a href="index.html" class="back-home-btn" aria-label="Back to Home">
+    ⌂ Home
+</a>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Linux Reference Guide. Built for Developers by Syntax Syndicate</p>
+    </footer>
+    
+<script>
+    const drawer = document.getElementById("mobile-drawer");
+const menuBtn = document.getElementById("menu-btn");
+
+function handleResize() {
+    if (window.innerWidth > 768) {
+        // PC: force-hide drawer
+        drawer.classList.remove("active");
+        drawer.style.display = "none";
+        if (menuBtn) menuBtn.textContent = "☰";
+    } else {
+        // Mobile: allow drawer
+        drawer.style.display = "block";
+    }
+}
+
+// Run on load
+handleResize();
+
+// Run on resize
+window.addEventListener("resize", handleResize);
+document.addEventListener("DOMContentLoaded", () => {
+
+  const navSelect = document.getElementById('desktop-nav');
+  const menuBtn = document.getElementById('menu-btn');
+  const drawer = document.getElementById('mobile-drawer');
+  const drawerLinks = document.querySelectorAll('.drawer a');
+
+  // Desktop dropdown logic
+  navSelect?.addEventListener('change', function () {
+    const targetSection = document.querySelector(this.value);
+    if (targetSection) {
+      const yOffset = -80;
+      const y = targetSection.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+      this.value = "";
+    }
+  });
+
+  // Mobile menu toggle (MOBILE ONLY)
+  menuBtn.addEventListener('click', () => {
+    if (window.innerWidth > 768) return; // ⬅ prevent desktop opening
+
+    drawer.classList.toggle('active');
+    menuBtn.textContent = drawer.classList.contains('active') ? '✕' : '☰';
+  });
+
+  // Close drawer on link click
+  drawerLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      drawer.classList.remove('active');
+      menuBtn.textContent = '☰';
+    });
+  });
+
+  // Close on outside click
+  document.addEventListener('click', (e) => {
+    if (
+      window.innerWidth <= 768 &&
+      !drawer.contains(e.target) &&
+      !menuBtn.contains(e.target)
+    ) {
+      drawer.classList.remove('active');
+      menuBtn.textContent = '☰';
+    }
+  });
+
+  // Auto-close drawer when resizing to desktop
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 768) {
+      drawer.classList.remove('active');
+      menuBtn.textContent = '☰';
+    }
+  });
+
+});
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const searchInput = document.getElementById("command-search");
+    const commandCards = document.querySelectorAll(".command-card");
+    const sections = document.querySelectorAll("section");
+
+    if (!searchInput) {
+        console.error("Search input not found");
+        return;
+    }
+
+    searchInput.addEventListener("input", () => {
+        const query = searchInput.value.toLowerCase().trim();
+
+        commandCards.forEach(card => {
+            const cmdNameEl = card.querySelector(".cmd-name");
+            const commandName = cmdNameEl ? cmdNameEl.textContent.toLowerCase() : "";
+            const cardText = card.textContent.toLowerCase();
+
+            if (commandName.includes(query) || cardText.includes(query)) {
+                card.style.display = "block";
+            } else {
+                card.style.display = "none";
+            }
+        });
+
+        sections.forEach(section => {
+            const visibleCards = section.querySelectorAll(".command-card");
+            let hasVisible = false;
+
+            visibleCards.forEach(card => {
+                if (card.style.display !== "none") {
+                    hasVisible = true;
+                }
+            });
+
+            section.style.display = hasVisible ? "block" : "none";
+        });
+
+        // Reset when search is empty
+        if (query === "") {
+            commandCards.forEach(card => card.style.display = "block");
+            sections.forEach(section => section.style.display = "block");
+        }
+    });
+});
+</script>
+
+</body>
+</html>
