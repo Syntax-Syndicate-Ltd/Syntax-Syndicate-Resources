@@ -3,28 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SDE Roadmap | Software Development Engineer Path</title>
+    <title>Software Developer Roadmap | Syntax Syndicate</title>
+    <meta name="description" content="Complete roadmap to become a software developer covering DSA, projects, internships, and placements." />
+    <meta name="keywords" content="software developer roadmap, sde preparation, dsa notes, coding interview prep, placement guide" />
+    <link rel="canonical" href="https://syntaxsyndicate.co.in/SDE.html" />
+    <meta name="robots" content="index, follow" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5116839186846142"
-     crossorigin="anonymous"></script>
-         <link rel="icon" href="favicon.png" type="image/png">
-         <head>
-<title>Software Developer Roadmap | Syntax Syndicate</title>
-<meta name="description" content="Complete roadmap to become a software developer covering DSA, projects, internships, and placements." />
-<meta name="keywords" content="software developer roadmap, sde preparation, dsa notes, coding interview prep, placement guide" />
-<link rel="canonical" href="https://syntaxsyndicate.co.in/SDE.html" />
-<meta name="robots" content="index, follow" />
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-BHFQPMML9W"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-BHFQPMML9W');
-</script>
-</head>
-
+    <link rel="icon" href="favicon.png" type="image/png">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BHFQPMML9W"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-BHFQPMML9W');
+    </script>
     <style>
         /* CSS Variables for Theme */
         :root {
@@ -181,6 +174,7 @@
         .nav-controls {
             display: flex;
             align-items: center;
+            gap: 15px;
         }
 
         .theme-toggle {
@@ -208,6 +202,7 @@
         /* Hero Section */
         .hero {
             height: 100vh;
+            min-height: 500px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -270,15 +265,9 @@
         }
 
         @keyframes float {
-            0% {
-                transform: translateY(0) rotate(0deg);
-            }
-            50% {
-                transform: translateY(-50px) rotate(180deg);
-            }
-            100% {
-                transform: translateY(0) rotate(360deg);
-            }
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-50px) rotate(180deg); }
+            100% { transform: translateY(0) rotate(360deg); }
         }
 
         .hero-content {
@@ -299,12 +288,8 @@
         }
 
         @keyframes textGlow {
-            0% {
-                text-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
-            }
-            100% {
-                text-shadow: 0 0 20px rgba(0, 217, 255, 0.8), 0 0 30px rgba(255, 0, 200, 0.6);
-            }
+            0% { text-shadow: 0 0 10px rgba(0, 217, 255, 0.5); }
+            100% { text-shadow: 0 0 20px rgba(0, 217, 255, 0.8), 0 0 30px rgba(255, 0, 200, 0.6); }
         }
 
         .hero p {
@@ -318,6 +303,7 @@
             display: flex;
             justify-content: center;
             gap: 20px;
+            flex-wrap: wrap;
         }
 
         .btn {
@@ -329,6 +315,7 @@
             position: relative;
             overflow: hidden;
             z-index: 1;
+            display: inline-block;
         }
 
         .btn-primary {
@@ -394,7 +381,7 @@
         /* About SDE Section */
         .about-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
         }
 
@@ -488,7 +475,7 @@
         }
 
         .resource-card:hover {
-            transform: translateY(-10px) rotateX(5deg);
+            transform: translateY(-10px);
             box-shadow: 0 15px 40px rgba(0, 217, 255, 0.2);
         }
 
@@ -571,6 +558,8 @@
         .course-icon {
             color: var(--accent-1);
             transition: transform 0.3s ease;
+            flex-shrink: 0;
+            margin-left: 10px;
         }
 
         .course-content {
@@ -610,7 +599,7 @@
         }
 
         /* YouTube Section */
-        .youtube-container {
+        .youtube-wrapper {
             position: relative;
             overflow: hidden;
         }
@@ -623,12 +612,14 @@
 
         .youtube-card {
             min-width: 300px;
+            max-width: 300px;
             background-color: var(--card-bg);
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 1px solid rgba(0, 217, 255, 0.1);
+            flex-shrink: 0;
         }
 
         .youtube-card:hover {
@@ -703,6 +694,7 @@
         .youtube-link i {
             margin-right: 8px;
             font-size: 0.8rem;
+            flex-shrink: 0;
         }
 
         .carousel-controls {
@@ -730,6 +722,13 @@
             background-color: var(--accent-1);
             color: var(--primary-bg);
             box-shadow: var(--glow);
+        }
+
+        /* Mobile YouTube Grid (shows instead of carousel on small screens) */
+        .youtube-grid-mobile {
+            display: none;
+            grid-template-columns: 1fr;
+            gap: 20px;
         }
 
         /* Roadmap Section */
@@ -784,6 +783,7 @@
             border-radius: 50%;
             background-color: var(--accent-1);
             box-shadow: var(--glow);
+            z-index: 1;
         }
 
         .timeline-item:nth-child(odd)::after {
@@ -886,6 +886,8 @@
         .accordion-icon {
             color: var(--accent-1);
             transition: transform 0.3s ease;
+            flex-shrink: 0;
+            margin-left: 10px;
         }
 
         .accordion-content {
@@ -897,7 +899,7 @@
 
         .accordion-content.active {
             padding: 20px;
-            max-height: 500px;
+            max-height: 600px;
         }
 
         .accordion-content ul {
@@ -908,12 +910,14 @@
         .accordion-content li {
             margin-bottom: 10px;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
+            gap: 8px;
         }
 
         .accordion-content li i {
-            margin-right: 10px;
             color: var(--accent-3);
+            margin-top: 3px;
+            flex-shrink: 0;
         }
 
         .accordion-content a {
@@ -929,12 +933,13 @@
         /* Back to Top Button */
         .back-to-top {
             position: fixed;
-            bottom: 30px;
+            bottom: 90px;
             right: 30px;
             width: 50px;
             height: 50px;
-            background-color: var(--accent-1);
-            color: var(--primary-bg);
+            background-color: var(--secondary-bg);
+            color: var(--accent-1);
+            border: 2px solid var(--accent-1);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -944,7 +949,8 @@
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s ease;
-            z-index: 100;
+            z-index: 99;
+            font-size: 1.2rem;
         }
 
         .back-to-top.visible {
@@ -953,6 +959,8 @@
         }
 
         .back-to-top:hover {
+            background-color: var(--accent-1);
+            color: var(--primary-bg);
             transform: translateY(-5px);
             box-shadow: var(--glow-strong);
         }
@@ -976,13 +984,14 @@
             color: var(--accent-1);
             margin-bottom: 20px;
             display: inline-block;
+            text-decoration: none;
         }
 
         .footer-links {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 30px;
+            gap: 20px 30px;
             margin-bottom: 30px;
         }
 
@@ -1033,29 +1042,93 @@
             border-top: 1px solid rgba(0, 0, 0, 0.1);
         }
 
-        /* Responsive Styles */
-        @media (max-width: 992px) {
+        /* Floating Back to Home Button */
+        .back-home-btn {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: linear-gradient(135deg, #00e5ff, #6c63ff);
+            border-radius: 999px;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 12px 32px rgba(0, 229, 255, 0.35);
+            z-index: 9999;
+            transition: all 0.3s ease;
+        }
+
+        .back-home-btn i {
+            font-size: 1.1rem;
+        }
+
+        .back-home-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 45px rgba(0, 229, 255, 0.55);
+        }
+
+        /* =====================
+           RESPONSIVE STYLES
+        ===================== */
+
+        /* Large tablets / small desktops */
+        @media (max-width: 1024px) {
             .hero h1 {
                 font-size: 2.8rem;
+            }
+
+            .resources-grid {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            }
+        }
+
+        /* Tablets */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            /* Timeline goes single-column */
+            .roadmap-timeline::before {
+                left: 20px;
+                transform: none;
             }
 
             .timeline-item {
                 width: 100%;
                 left: 0 !important;
                 text-align: left !important;
-                padding: 20px 20px 20px 60px;
-            }
-
-            .roadmap-timeline::before {
-                left: 30px;
+                padding: 10px 20px 10px 55px;
+                margin-bottom: 30px;
             }
 
             .timeline-item::after {
-                left: 20px !important;
+                left: 10px !important;
+                right: auto !important;
+                top: 20px;
+            }
+
+            .timeline-content h3 {
+                font-size: 1.1rem;
+            }
+
+            /* YouTube carousel: show fewer cards */
+            .youtube-card {
+                min-width: 260px;
+                max-width: 260px;
             }
         }
 
+        /* Mobile landscape / large phones */
         @media (max-width: 768px) {
+            section {
+                padding: 70px 0;
+            }
+
             .nav-links {
                 display: none;
                 position: absolute;
@@ -1066,6 +1139,11 @@
                 flex-direction: column;
                 padding: 20px;
                 box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+                border-top: 1px solid rgba(0, 217, 255, 0.1);
+            }
+
+            [data-theme="light"] .nav-links {
+                background-color: var(--primary-bg);
             }
 
             .nav-links.active {
@@ -1074,6 +1152,7 @@
 
             .nav-links li {
                 margin: 10px 0;
+                margin-left: 0;
             }
 
             .mobile-menu-btn {
@@ -1081,83 +1160,115 @@
             }
 
             .hero h1 {
-                font-size: 2.2rem;
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
             }
 
             .cta-buttons {
                 flex-direction: column;
                 align-items: center;
+                gap: 15px;
             }
 
             .btn {
                 width: 200px;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .hero h1 {
-                font-size: 1.8rem;
+                text-align: center;
             }
 
             .section-title h2 {
                 font-size: 2rem;
             }
 
-            .about-card {
-                padding: 20px;
+            .about-container {
+                grid-template-columns: 1fr;
             }
 
+            /* Switch YouTube to scrollable grid on mobile */
+            .youtube-wrapper .youtube-carousel {
+                display: none;
+            }
+
+            .carousel-controls {
+                display: none;
+            }
+
+            .youtube-grid-mobile {
+                display: grid;
+            }
+
+            .youtube-grid-mobile .youtube-card {
+                min-width: unset;
+                max-width: unset;
+                width: 100%;
+            }
+
+            .accordion-header h3 {
+                font-size: 1rem;
+            }
+
+            .back-to-top {
+                bottom: 90px;
+                right: 16px;
+                width: 42px;
+                height: 42px;
+            }
+
+            .back-home-btn {
+                bottom: 16px;
+                right: 16px;
+                padding: 12px 16px;
+                font-size: 0.85rem;
+            }
+
+            .back-home-btn i {
+                font-size: 1rem;
+            }
+        }
+
+        /* Small phones */
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+            }
+
+            .section-title h2 {
+                font-size: 1.7rem;
+            }
+
+            .about-card,
             .resource-card {
                 padding: 20px;
             }
 
             .timeline-content {
-                padding: 20px;
+                padding: 15px;
+            }
+
+            .timeline-content h3 {
+                font-size: 1rem;
+                flex-wrap: wrap;
+            }
+
+            .resources-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-links {
+                gap: 12px 20px;
+            }
+
+            .social-icons a {
+                width: 36px;
+                height: 36px;
             }
         }
-        /* FLOATING BACK TO HOME BUTTON */
-.back-home-btn {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  background: linear-gradient(135deg, #00e5ff, #6c63ff);
-  border-radius: 999px;
-  padding: 14px 20px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: #fff;
-  font-size: 0.95rem;
-  font-weight: 600;
-  text-decoration: none;
-  box-shadow: 0 12px 32px rgba(0, 229, 255, 0.35);
-  z-index: 9999;
-  transition: all 0.3s ease;
-}
-
-.back-home-btn i {
-  font-size: 1.1rem;
-}
-
-.back-home-btn:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 18px 45px rgba(0, 229, 255, 0.55);
-}
-
-/* MOBILE OPTIMIZATION */
-@media (max-width: 600px) {
-  .back-home-btn {
-    bottom: 16px;
-    right: 16px;
-    padding: 12px 16px;
-    font-size: 0.85rem;
-  }
-
-  .back-home-btn i {
-    font-size: 1rem;
-  }
-}
-
     </style>
 </head>
 <body>
@@ -1172,7 +1283,7 @@
         <div class="nav-container">
             <a href="#" class="logo"><i class="fas fa-laptop-code"></i> SYNTAX SYNDICATE</a>
             
-            <ul class="nav-links">
+            <ul class="nav-links" id="nav-links">
                 <li><a href="#about">About SDE</a></li>
                 <li><a href="#resources">Resources</a></li>
                 <li><a href="#courses">Courses</a></li>
@@ -1182,10 +1293,10 @@
             </ul>
             
             <div class="nav-controls">
-                <button class="theme-toggle" id="theme-toggle">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
                     <i class="fas fa-moon"></i>
                 </button>
-                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
@@ -1231,7 +1342,7 @@
                     </div>
                     <h3>What Do They Do?</h3>
                     <p>Software Development Engineers are responsible for:</p>
-                    <ul style="color: var(--text-secondary); padding-left: 20px; margin-top: 10px;">
+                    <ul style="color: var(--text-secondary); padding-left: 20px; margin-top: 10px; line-height: 2;">
                         <li>Designing and implementing software solutions</li>
                         <li>Writing clean, efficient, and maintainable code</li>
                         <li>Collaborating with cross-functional teams</li>
@@ -1246,77 +1357,63 @@
                     </div>
                     <h3>Salary in India</h3>
                     <p>The average salary for Software Development Engineers in India varies based on experience, company, and location:</p>
-                    <ul style="color: var(--text-secondary); padding-left: 20px; margin-top: 10px;">
-                        <li>Fresher: ₹5-10 LPA</li>
-                        <li>1-4 years experience: ₹10-20 LPA</li>
-                        <li>5-9 years experience: ₹20-40 LPA</li>
+                    <ul style="color: var(--text-secondary); padding-left: 20px; margin-top: 10px; line-height: 2;">
+                        <li>Fresher: ₹5–10 LPA</li>
+                        <li>1–4 years experience: ₹10–20 LPA</li>
+                        <li>5–9 years experience: ₹20–40 LPA</li>
                         <li>10+ years experience: ₹40+ LPA</li>
                     </ul>
-                    <span class="salary-highlight">Top companies offer ₹15-25 LPA for freshers</span>
+                    <span class="salary-highlight">Top companies offer ₹15–25 LPA for freshers</span>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Resources Section -->
-    <section id="resources" class="parallax">
+    <section id="resources">
         <div class="container">
             <div class="section-title">
                 <h2>Core Resources</h2>
             </div>
             <div class="resources-grid">
                 <div class="resource-card">
-                    <div class="resource-icon">
-                        <i class="fas fa-book"></i>
-                    </div>
+                    <div class="resource-icon"><i class="fas fa-book"></i></div>
                     <h3>Cracking the Coding Interview</h3>
-                    <p>By Gayle Laakmann McDowell - Essential preparation for technical interviews at top tech companies.</p>
+                    <p>By Gayle Laakmann McDowell — Essential preparation for technical interviews at top tech companies.</p>
                     <a href="https://www.amazon.in/Cracking-Coding-Interview-Programming-Questions/dp/0984782850" target="_blank" class="resource-link">Explore Book</a>
                 </div>
                 <div class="resource-card">
-                    <div class="resource-icon">
-                        <i class="fas fa-book-open"></i>
-                    </div>
+                    <div class="resource-icon"><i class="fas fa-book-open"></i></div>
                     <h3>Introduction to Algorithms (CLRS)</h3>
                     <p>The comprehensive guide to algorithms and data structures used in computer science.</p>
                     <a href="https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/" target="_blank" class="resource-link">Explore Book</a>
                 </div>
                 <div class="resource-card">
-                    <div class="resource-icon">
-                        <i class="fas fa-cogs"></i>
-                    </div>
+                    <div class="resource-icon"><i class="fas fa-cogs"></i></div>
                     <h3>System Design Interview</h3>
-                    <p>By Alex Xu - Master the system design interview with real-world examples and case studies.</p>
-                    <a href="https://www.amazon.in/System-Design-Interview-insiders-Colour/dp/9355426844/ref=sr_1_1?crid=1V9LSNC5O8Y8H&dib=eyJ2IjoiMSJ9.R5bQmrAqMOECpq1G6Tnx-Nr7namfjo51bvISMd7WHvpMT0srIvYFegBt900pcp7YUmmQo0AJg_qxRO1iMcGBxaE879gIf_c54lWl2_Gcrj4XGDNe1MPi2Is7A4_E_xYIvX7h9zmqv6e_SP2aRRxJzxoS7oeOj0XUK4WUGyLvTIBHHDhzdvUcYmUMGAId7N5heabuVijU2Gvm-ATRVu2zr6NCQMBzyjrE19kjUVTcMmI.TNHqlNNnxl-VTCCuuS2yOUJvJppwFeuQuwwwapHx3xc&dib_tag=se&keywords=System+Design+Interview+%28Alex+Xu%29&nsdOptOutParam=true&qid=1757405995&sprefix=system+design+interview+alex+xu+%2Caps%2C231&sr=8-1" target="_blank" class="resource-link">Explore Book</a>
+                    <p>By Alex Xu — Master the system design interview with real-world examples and case studies.</p>
+                    <a href="https://www.amazon.in/System-Design-Interview-insiders-Colour/dp/9355426844/" target="_blank" class="resource-link">Explore Book</a>
                 </div>
                 <div class="resource-card">
-                    <div class="resource-icon">
-                        <i class="fas fa-laptop-code"></i>
-                    </div>
+                    <div class="resource-icon"><i class="fas fa-laptop-code"></i></div>
                     <h3>LeetCode</h3>
                     <p>Practice coding problems, prepare for interviews, and compete in coding challenges.</p>
                     <a href="https://leetcode.com/" target="_blank" class="resource-link">Visit Website</a>
                 </div>
                 <div class="resource-card">
-                    <div class="resource-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
+                    <div class="resource-icon"><i class="fas fa-code"></i></div>
                     <h3>HackerRank</h3>
                     <p>Solve coding challenges, learn new skills, and prepare for technical interviews.</p>
                     <a href="https://www.hackerrank.com/" target="_blank" class="resource-link">Visit Website</a>
                 </div>
                 <div class="resource-card">
-                    <div class="resource-icon">
-                        <i class="fas fa-laptop"></i>
-                    </div>
+                    <div class="resource-icon"><i class="fas fa-laptop"></i></div>
                     <h3>GeeksforGeeks</h3>
                     <p>Comprehensive resource for computer science topics, coding practice, and interview preparation.</p>
                     <a href="https://www.geeksforgeeks.org/" target="_blank" class="resource-link">Visit Website</a>
                 </div>
                 <div class="resource-card">
-                    <div class="resource-icon">
-                        <i class="fas fa-chalkboard-teacher"></i>
-                    </div>
+                    <div class="resource-icon"><i class="fas fa-chalkboard-teacher"></i></div>
                     <h3>InterviewBit</h3>
                     <p>Structured path to prepare for coding interviews with company-specific questions.</p>
                     <a href="https://www.interviewbit.com/" target="_blank" class="resource-link">Visit Website</a>
@@ -1412,171 +1509,173 @@
             <div class="section-title">
                 <h2>YouTube Learning Hub</h2>
             </div>
-            <div class="youtube-container">
-                <div class="youtube-carousel">
+
+            <!-- Desktop carousel -->
+            <div class="youtube-wrapper">
+                <div class="youtube-carousel" id="youtube-carousel">
                     <div class="youtube-card">
-                        <div class="youtube-thumbnail">
-                            <i class="fab fa-youtube"></i>
-                        </div>
+                        <div class="youtube-thumbnail"><i class="fab fa-youtube"></i></div>
                         <div class="youtube-info">
                             <h3>Apna College</h3>
                             <p>Comprehensive programming tutorials and DSA content in Hindi.</p>
                             <div class="youtube-links">
-                                <a href="https://www.youtube.com/playlist?list=PLfqMhTWNBTe0b2nM6JHVCnAkhQRGiZMSJ" target="_blank" class="youtube-link">
-                                    <i class="fas fa-play-circle"></i> C++ Placement Course
-                                </a>
-                                <a href="https://www.youtube.com/playlist?list=PLfqMhTWNBTe3LtFWcvwpqTkUSlB32kJop" target="_blank" class="youtube-link">
-                                    <i class="fas fa-play-circle"></i> Java + DSA + Interview Placement Course
-                                </a>
-                                <a href="https://www.youtube.com/playlist?list=PL6EdTh7l662pdN51LGSQE_5Ags_hofecI" target="_blank" class="youtube-link">
-                                    <i class="fas fa-play-circle"></i> Roadmaps
-                                </a>
+                                <a href="https://www.youtube.com/playlist?list=PLfqMhTWNBTe0b2nM6JHVCnAkhQRGiZMSJ" target="_blank" class="youtube-link"><i class="fas fa-play-circle"></i> C++ Placement Course</a>
+                                <a href="https://www.youtube.com/playlist?list=PLfqMhTWNBTe3LtFWcvwpqTkUSlB32kJop" target="_blank" class="youtube-link"><i class="fas fa-play-circle"></i> Java + DSA + Interview Placement Course</a>
+                                <a href="https://www.youtube.com/playlist?list=PL6EdTh7l662pdN51LGSQE_5Ags_hofecI" target="_blank" class="youtube-link"><i class="fas fa-play-circle"></i> Roadmaps</a>
                             </div>
                         </div>
                     </div>
                     <div class="youtube-card">
-                        <div class="youtube-thumbnail">
-                            <i class="fab fa-youtube"></i>
-                        </div>
+                        <div class="youtube-thumbnail"><i class="fab fa-youtube"></i></div>
                         <div class="youtube-info">
                             <h3>CodeHelp</h3>
                             <p>DSA, system design, and interview preparation content.</p>
                             <div class="youtube-links">
-                                <a href="https://www.youtube.com/playlist?list=PLDzeHZWIZsTryvtXdMr6rPh4IDexB5NIA" target="_blank" class="youtube-link">
-                                    <i class="fas fa-play-circle"></i> C++ DSA Placement Course
-                                </a>
+                                <a href="https://www.youtube.com/playlist?list=PLDzeHZWIZsTryvtXdMr6rPh4IDexB5NIA" target="_blank" class="youtube-link"><i class="fas fa-play-circle"></i> C++ DSA Placement Course</a>
                             </div>
                         </div>
                     </div>
                     <div class="youtube-card">
-                        <div class="youtube-thumbnail">
-                            <i class="fab fa-youtube"></i>
-                        </div>
+                        <div class="youtube-thumbnail"><i class="fab fa-youtube"></i></div>
                         <div class="youtube-info">
                             <h3>Take U Forward</h3>
                             <p>Structured DSA course and coding interview preparation.</p>
                             <div class="youtube-links">
-                                <a href="https://www.youtube.com/playlist?list=PLgUwDviBIf0oF6QL8m22w1hIDC1vJ_BHz" target="_blank" class="youtube-link">
-                                    <i class="fas fa-play-circle"></i> A2Z DSA Course
-                                </a>
-                                <a href="https://www.youtube.com/playlist?list=PLgUwDviBIf0qUlt5H_kiKYaNSqJ81PMMY" target="_blank" class="youtube-link">
-                                    <i class="fas fa-play-circle"></i> Dynamic Programming Series
-                                </a>
-                                <a href="https://www.youtube.com/playlist?list=PLgUwDviBIf0rGEWe64KWas0Nryn7SCRWw" target="_blank" class="youtube-link">
-                                    <i class="fas fa-play-circle"></i> Graph Series
-                                </a>
+                                <a href="https://www.youtube.com/playlist?list=PLgUwDviBIf0oF6QL8m22w1hIDC1vJ_BHz" target="_blank" class="youtube-link"><i class="fas fa-play-circle"></i> A2Z DSA Course</a>
+                                <a href="https://www.youtube.com/playlist?list=PLgUwDviBIf0qUlt5H_kiKYaNSqJ81PMMY" target="_blank" class="youtube-link"><i class="fas fa-play-circle"></i> Dynamic Programming Series</a>
+                                <a href="https://www.youtube.com/playlist?list=PLgUwDviBIf0rGEWe64KWas0Nryn7SCRWw" target="_blank" class="youtube-link"><i class="fas fa-play-circle"></i> Graph Series</a>
                             </div>
                         </div>
                     </div>
                     <div class="youtube-card">
-                        <div class="youtube-thumbnail">
-                            <i class="fab fa-youtube"></i>
-                        </div>
+                        <div class="youtube-thumbnail"><i class="fab fa-youtube"></i></div>
                         <div class="youtube-info">
                             <h3>Gaurav Sen</h3>
                             <p>System design, distributed systems, and software architecture.</p>
                             <div class="youtube-links">
-                                <a href="https://www.youtube.com/playlist?list=PLMCXHnjXnTnvo6alSjVkgxV-VH6EPyvoX" target="_blank" class="youtube-link">
-                                    <i class="fas fa-play-circle"></i> System Design
-                                </a>
-                                <a href="https://www.youtube.com/playlist?list=PLMCXHnjXnTnvQVh7WsgZ8SurU1O2v_UM7" target="_blank" class="youtube-link">
-                                    <i class="fas fa-play-circle"></i> Low Level Design
-                                </a>
+                                <a href="https://www.youtube.com/playlist?list=PLMCXHnjXnTnvo6alSjVkgxV-VH6EPyvoX" target="_blank" class="youtube-link"><i class="fas fa-play-circle"></i> System Design</a>
+                                <a href="https://www.youtube.com/playlist?list=PLMCXHnjXnTnvQVh7WsgZ8SurU1O2v_UM7" target="_blank" class="youtube-link"><i class="fas fa-play-circle"></i> Low Level Design</a>
                             </div>
                         </div>
                     </div>
                     <div class="youtube-card">
-                        <div class="youtube-thumbnail">
-                            <i class="fab fa-youtube"></i>
-                        </div>
+                        <div class="youtube-thumbnail"><i class="fab fa-youtube"></i></div>
                         <div class="youtube-info">
                             <h3>Tech Dummies</h3>
                             <p>System design concepts explained with real-world examples.</p>
                             <div class="youtube-links">
-                                <a href="https://www.youtube.com/playlist?list=PLbpMKvUxX7FoXEAxL472Ezh9LTAgTtTMI" target="_blank" class="youtube-link">
-                                    <i class="fas fa-play-circle"></i> System design & Infra
-                                </a>
-                                <a href="https://www.youtube.com/playlist?list=PLsVmk1FQy-kEoERRnpFpskpJ-H7hBUcjh" target="_blank" class="youtube-link">
-                                    <i class="fas fa-play-circle"></i> System Design
-                                </a>
+                                <a href="https://www.youtube.com/playlist?list=PLbpMKvUxX7FoXEAxL472Ezh9LTAgTtTMI" target="_blank" class="youtube-link"><i class="fas fa-play-circle"></i> System design & Infra</a>
+                                <a href="https://www.youtube.com/playlist?list=PLsVmk1FQy-kEoERRnpFpskpJ-H7hBUcjh" target="_blank" class="youtube-link"><i class="fas fa-play-circle"></i> System Design</a>
                             </div>
                         </div>
                     </div>
                     <div class="youtube-card">
-                        <div class="youtube-thumbnail">
-                            <i class="fab fa-youtube"></i>
-                        </div>
+                        <div class="youtube-thumbnail"><i class="fab fa-youtube"></i></div>
                         <div class="youtube-info">
                             <h3>Exponent</h3>
                             <p>Technical interview preparation and system design content.</p>
                             <div class="youtube-links">
-                                <a href="https://www.youtube.com/playlist?list=PLrtCHHeadkHp92TyPt1Fj452_VGLipJnL" target="_blank" class="youtube-link">
-                                    <i class="fas fa-play-circle"></i> System Design Interview Prep
-                                </a>
+                                <a href="https://www.youtube.com/playlist?list=PLrtCHHeadkHp92TyPt1Fj452_VGLipJnL" target="_blank" class="youtube-link"><i class="fas fa-play-circle"></i> System Design Interview Prep</a>
                             </div>
                         </div>
                     </div>
                     <div class="youtube-card">
-                        <div class="youtube-thumbnail">
-                            <i class="fab fa-youtube"></i>
-                        </div>
+                        <div class="youtube-thumbnail"><i class="fab fa-youtube"></i></div>
                         <div class="youtube-info">
                             <h3>FreeCodeCamp</h3>
                             <p>Free coding tutorials and full courses on various technologies.</p>
                             <div class="youtube-links">
-                                <a href="https://www.youtube.com/watch?v=RBSGKlAvoiM" target="_blank" class="youtube-link">
-                                    <i class="fas fa-play-circle"></i> Data Structures & Algorithms – Full Course
-                                </a>
-                                <a href="https://www.youtube.com/watch?v=8ext9G7xspg" target="_blank" class="youtube-link">
-                                    <i class="fas fa-play-circle"></i> Algorithms in Python – Full Course
-                                </a>
+                                <a href="https://www.youtube.com/watch?v=RBSGKlAvoiM" target="_blank" class="youtube-link"><i class="fas fa-play-circle"></i> Data Structures & Algorithms – Full Course</a>
+                                <a href="https://www.youtube.com/watch?v=8ext9G7xspg" target="_blank" class="youtube-link"><i class="fas fa-play-circle"></i> Algorithms in Python – Full Course</a>
                             </div>
                         </div>
                     </div>
                     <div class="youtube-card">
-                        <div class="youtube-thumbnail">
-                            <i class="fab fa-youtube"></i>
-                        </div>
+                        <div class="youtube-thumbnail"><i class="fab fa-youtube"></i></div>
                         <div class="youtube-info">
                             <h3>Jenny's Lectures</h3>
                             <p>Computer science fundamentals and programming tutorials.</p>
                             <div class="youtube-links">
-                                <a href="https://www.youtube.com/playlist?list=PLdo5W4Nhv31b33kF46f9aFjoJPOkdlsRc" target="_blank" class="youtube-link">
-                                    <i class="fas fa-play-circle"></i> DBMS
-                                </a>
-                                <a href="https://www.youtube.com/playlist?list=PLdo5W4Nhv31a5ucW_S1K3-x6ztBRD-PNa" target="_blank" class="youtube-link">
-                                    <i class="fas fa-play-circle"></i> Operating Systems
-                                </a>
-                                <a href="https://www.youtube.com/playlist?list=PLdo5W4Nhv31bbKJzrsKfMpo_grxuLl8LU" target="_blank" class="youtube-link">
-                                    <i class="fas fa-play-circle"></i> Data Structures & Algorithms
-                                </a>
+                                <a href="https://www.youtube.com/playlist?list=PLdo5W4Nhv31b33kF46f9aFjoJPOkdlsRc" target="_blank" class="youtube-link"><i class="fas fa-play-circle"></i> DBMS</a>
+                                <a href="https://www.youtube.com/playlist?list=PLdo5W4Nhv31a5ucW_S1K3-x6ztBRD-PNa" target="_blank" class="youtube-link"><i class="fas fa-play-circle"></i> Operating Systems</a>
+                                <a href="https://www.youtube.com/playlist?list=PLdo5W4Nhv31bbKJzrsKfMpo_grxuLl8LU" target="_blank" class="youtube-link"><i class="fas fa-play-circle"></i> Data Structures & Algorithms</a>
                             </div>
                         </div>
                     </div>
                     <div class="youtube-card">
-                        <div class="youtube-thumbnail">
-                            <i class="fab fa-youtube"></i>
-                        </div>
+                        <div class="youtube-thumbnail"><i class="fab fa-youtube"></i></div>
                         <div class="youtube-info">
                             <h3>CodeWithHarry</h3>
                             <p>Web development and programming tutorials in Hindi.</p>
                             <div class="youtube-links">
-                                <a href="https://www.youtube.com/playlist?list=PLu0W_9lII9agwh1XjRt242xIpHhPT2llg" target="_blank" class="youtube-link">
-                                    <i class="fas fa-play-circle"></i> Python Course
-                                </a>
-                                <a href="https://www.youtube.com/playlist?list=PLu0W_9lII9agpFUAlPFe_VNSlXW5uE0YL" target="_blank" class="youtube-link">
-                                    <i class="fas fa-play-circle"></i> C++ Course
-                                </a>
-                                <a href="https://www.youtube.com/playlist?list=PLu0W_9lII9agS67Uits0UnJyrYiXhDS6q" target="_blank" class="youtube-link">
-                                    <i class="fas fa-play-circle"></i> Java for Beginners
-                                </a>
+                                <a href="https://www.youtube.com/playlist?list=PLu0W_9lII9agwh1XjRt242xIpHhPT2llg" target="_blank" class="youtube-link"><i class="fas fa-play-circle"></i> Python Course</a>
+                                <a href="https://www.youtube.com/playlist?list=PLu0W_9lII9agpFUAlPFe_VNSlXW5uE0YL" target="_blank" class="youtube-link"><i class="fas fa-play-circle"></i> C++ Course</a>
+                                <a href="https://www.youtube.com/playlist?list=PLu0W_9lII9agS67Uits0UnJyrYiXhDS6q" target="_blank" class="youtube-link"><i class="fas fa-play-circle"></i> Java for Beginners</a>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="carousel-controls">
-                    <button class="carousel-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
-                    <button class="carousel-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+                    <button class="carousel-btn prev-btn" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+                    <button class="carousel-btn next-btn" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Mobile grid (same cards, different layout) -->
+            <div class="youtube-grid-mobile">
+                <div class="youtube-card">
+                    <div class="youtube-thumbnail"><i class="fab fa-youtube"></i></div>
+                    <div class="youtube-info">
+                        <h3>Apna College</h3>
+                        <p>Comprehensive programming tutorials and DSA content in Hindi.</p>
+                        <div class="youtube-links">
+                            <a href="https://www.youtube.com/playlist?list=PLfqMhTWNBTe0b2nM6JHVCnAkhQRGiZMSJ" target="_blank" class="youtube-link"><i class="fas fa-play-circle"></i> C++ Placement Course</a>
+                            <a href="https://www.youtube.com/playlist?list=PLfqMhTWNBTe3LtFWcvwpqTkUSlB32kJop" target="_blank" class="youtube-link"><i class="fas fa-play-circle"></i> Java + DSA + Interview Placement Course</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="youtube-card">
+                    <div class="youtube-thumbnail"><i class="fab fa-youtube"></i></div>
+                    <div class="youtube-info">
+                        <h3>Take U Forward</h3>
+                        <p>Structured DSA course and coding interview preparation.</p>
+                        <div class="youtube-links">
+                            <a href="https://www.youtube.com/playlist?list=PLgUwDviBIf0oF6QL8m22w1hIDC1vJ_BHz" target="_blank" class="youtube-link"><i class="fas fa-play-circle"></i> A2Z DSA Course</a>
+                            <a href="https://www.youtube.com/playlist?list=PLgUwDviBIf0qUlt5H_kiKYaNSqJ81PMMY" target="_blank" class="youtube-link"><i class="fas fa-play-circle"></i> Dynamic Programming Series</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="youtube-card">
+                    <div class="youtube-thumbnail"><i class="fab fa-youtube"></i></div>
+                    <div class="youtube-info">
+                        <h3>Gaurav Sen</h3>
+                        <p>System design, distributed systems, and software architecture.</p>
+                        <div class="youtube-links">
+                            <a href="https://www.youtube.com/playlist?list=PLMCXHnjXnTnvo6alSjVkgxV-VH6EPyvoX" target="_blank" class="youtube-link"><i class="fas fa-play-circle"></i> System Design</a>
+                            <a href="https://www.youtube.com/playlist?list=PLMCXHnjXnTnvQVh7WsgZ8SurU1O2v_UM7" target="_blank" class="youtube-link"><i class="fas fa-play-circle"></i> Low Level Design</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="youtube-card">
+                    <div class="youtube-thumbnail"><i class="fab fa-youtube"></i></div>
+                    <div class="youtube-info">
+                        <h3>FreeCodeCamp</h3>
+                        <p>Free coding tutorials and full courses on various technologies.</p>
+                        <div class="youtube-links">
+                            <a href="https://www.youtube.com/watch?v=RBSGKlAvoiM" target="_blank" class="youtube-link"><i class="fas fa-play-circle"></i> Data Structures & Algorithms – Full Course</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="youtube-card">
+                    <div class="youtube-thumbnail"><i class="fab fa-youtube"></i></div>
+                    <div class="youtube-info">
+                        <h3>CodeWithHarry</h3>
+                        <p>Web development and programming tutorials in Hindi.</p>
+                        <div class="youtube-links">
+                            <a href="https://www.youtube.com/playlist?list=PLu0W_9lII9agwh1XjRt242xIpHhPT2llg" target="_blank" class="youtube-link"><i class="fas fa-play-circle"></i> Python Course</a>
+                            <a href="https://www.youtube.com/playlist?list=PLu0W_9lII9agpFUAlPFe_VNSlXW5uE0YL" target="_blank" class="youtube-link"><i class="fas fa-play-circle"></i> C++ Course</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1604,7 +1703,7 @@
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-content">
-                            <h3><i class="fas fa-laptop-code"></i> Solve 300-400 Coding Problems</h3>
+                            <h3><i class="fas fa-laptop-code"></i> Solve 300–400 Coding Problems</h3>
                             <p>Practice solving problems on platforms like LeetCode and HackerRank to build problem-solving skills and speed.</p>
                         </div>
                     </div>
@@ -1616,7 +1715,7 @@
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-content">
-                            <h3><i class="fas fa-tasks"></i> Build 2-3 Projects</h3>
+                            <h3><i class="fas fa-tasks"></i> Build 2–3 Projects</h3>
                             <p>Develop real-world projects to apply your knowledge, build your portfolio, and gain practical experience.</p>
                         </div>
                     </div>
@@ -1669,12 +1768,12 @@
                     </div>
                     <div class="accordion-content">
                         <ul>
-                            <li><i class="fas fa-code"></i> <a href="https://codeforces.com/" target="_blank">Codeforces</a> - Competitive programming contests and practice problems</li>
-                            <li><i class="fas fa-code"></i> <a href="https://www.topcoder.com/" target="_blank">TopCoder</a> - Algorithm competitions and challenges</li>
-                            <li><i class="fas fa-code"></i> <a href="https://atcoder.jp/" target="_blank">AtCoder</a> - Japanese programming contests</li>
-                            <li><i class="fas fa-code"></i> <a href="https://www.codechef.com/" target="_blank">CodeChef</a> - Monthly programming contests and practice problems</li>
-                            <li><i class="fas fa-code"></i> <a href="https://www.codingame.com/" target="_blank">CodinGame</a> - Learn to code through games and challenges</li>
-                            <li><i class="fas fa-code"></i> <a href="https://projecteuler.net/" target="_blank">Project Euler</a> - Mathematical and computational problems</li>
+                            <li><i class="fas fa-code"></i> <a href="https://codeforces.com/" target="_blank">Codeforces</a> — Competitive programming contests and practice problems</li>
+                            <li><i class="fas fa-code"></i> <a href="https://www.topcoder.com/" target="_blank">TopCoder</a> — Algorithm competitions and challenges</li>
+                            <li><i class="fas fa-code"></i> <a href="https://atcoder.jp/" target="_blank">AtCoder</a> — Japanese programming contests</li>
+                            <li><i class="fas fa-code"></i> <a href="https://www.codechef.com/" target="_blank">CodeChef</a> — Monthly programming contests and practice problems</li>
+                            <li><i class="fas fa-code"></i> <a href="https://www.codingame.com/" target="_blank">CodinGame</a> — Learn to code through games and challenges</li>
+                            <li><i class="fas fa-code"></i> <a href="https://projecteuler.net/" target="_blank">Project Euler</a> — Mathematical and computational problems</li>
                         </ul>
                     </div>
                 </div>
@@ -1685,12 +1784,12 @@
                     </div>
                     <div class="accordion-content">
                         <ul>
-                            <li><i class="fas fa-code-branch"></i> <a href="https://www.firsttimersonly.com/" target="_blank">First Timers Only</a> - Beginner-friendly open source projects</li>
-                            <li><i class="fas fa-code-branch"></i> <a href="https://goodfirstissues.com/" target="_blank">Good First Issues</a> - Find issues labeled "good first issue" on GitHub</li>
-                            <li><i class="fas fa-code-branch"></i> <a href="https://hacktoberfest.digitalocean.com/" target="_blank">Hacktoberfest</a> - Month-long celebration of open source contributions</li>
-                            <li><i class="fas fa-code-branch"></i> <a href="https://up-for-grabs.net/" target="_blank">Up For Grabs</a> - Curated list of projects with beginner-friendly tasks</li>
-                            <li><i class="fas fa-code-branch"></i> <a href="https://24pullrequests.com/" target="_blank">24 Pull Requests</a> - Encourages contributing to open source during December</li>
-                            <li><i class="fas fa-code-branch"></i> <a href="https://opensource.guide/" target="_blank">Open Source Guide</a> - Comprehensive guide to open source contributions</li>
+                            <li><i class="fas fa-code-branch"></i> <a href="https://www.firsttimersonly.com/" target="_blank">First Timers Only</a> — Beginner-friendly open source projects</li>
+                            <li><i class="fas fa-code-branch"></i> <a href="https://goodfirstissues.com/" target="_blank">Good First Issues</a> — Find issues labeled "good first issue" on GitHub</li>
+                            <li><i class="fas fa-code-branch"></i> <a href="https://hacktoberfest.digitalocean.com/" target="_blank">Hacktoberfest</a> — Month-long celebration of open source contributions</li>
+                            <li><i class="fas fa-code-branch"></i> <a href="https://up-for-grabs.net/" target="_blank">Up For Grabs</a> — Curated list of projects with beginner-friendly tasks</li>
+                            <li><i class="fas fa-code-branch"></i> <a href="https://24pullrequests.com/" target="_blank">24 Pull Requests</a> — Encourages contributing to open source during December</li>
+                            <li><i class="fas fa-code-branch"></i> <a href="https://opensource.guide/" target="_blank">Open Source Guide</a> — Comprehensive guide to open source contributions</li>
                         </ul>
                     </div>
                 </div>
@@ -1701,12 +1800,12 @@
                     </div>
                     <div class="accordion-content">
                         <ul>
-                            <li><i class="fab fa-reddit"></i> <a href="https://www.reddit.com/r/cscareerquestions/" target="_blank">r/cscareerquestions</a> - Career advice for CS students and professionals</li>
-                            <li><i class="fab fa-reddit"></i> <a href="https://www.reddit.com/r/learnprogramming/" target="_blank">r/learnprogramming</a> - Community for learning to code</li>
-                            <li><i class="fab fa-stack-overflow"></i> <a href="https://stackoverflow.com/" target="_blank">Stack Overflow</a> - Q&A platform for programmers</li>
-                            <li><i class="fab fa-dev"></i> <a href="https://dev.to/" target="_blank">Dev.to</a> - Community of software developers</li>
-                            <li><i class="fab fa-discord"></i> <a href="https://discord.gg/programming" target="_blank">Programming Discord</a> - Real-time chat with developers</li>
-                            <li><i class="fab fa-slack"></i> <a href="https://hasurahq.slack.com/" target="_blank">Hasura Community</a> - Slack community for developers</li>
+                            <li><i class="fab fa-reddit"></i> <a href="https://www.reddit.com/r/cscareerquestions/" target="_blank">r/cscareerquestions</a> — Career advice for CS students and professionals</li>
+                            <li><i class="fab fa-reddit"></i> <a href="https://www.reddit.com/r/learnprogramming/" target="_blank">r/learnprogramming</a> — Community for learning to code</li>
+                            <li><i class="fab fa-stack-overflow"></i> <a href="https://stackoverflow.com/" target="_blank">Stack Overflow</a> — Q&A platform for programmers</li>
+                            <li><i class="fab fa-dev"></i> <a href="https://dev.to/" target="_blank">Dev.to</a> — Community of software developers</li>
+                            <li><i class="fab fa-discord"></i> <a href="https://discord.gg/programming" target="_blank">Programming Discord</a> — Real-time chat with developers</li>
+                            <li><i class="fab fa-slack"></i> <a href="https://hasurahq.slack.com/" target="_blank">Hasura Community</a> — Slack community for developers</li>
                         </ul>
                     </div>
                 </div>
@@ -1717,12 +1816,12 @@
                     </div>
                     <div class="accordion-content">
                         <ul>
-                            <li><i class="fas fa-podcast"></i> <a href="https://softwareengineeringdaily.com/" target="_blank">Software Engineering Daily</a> - Podcast about software topics</li>
-                            <li><i class="fas fa-podcast"></i> <a href="https://www.codingblocks.net/" target="_blank">Coding Blocks</a> - Podcast about software design and development</li>
-                            <li><i class="fas fa-blog"></i> <a href="https://martinfowler.com/" target="_blank">Martin Fowler's Blog</a> - Software design and architecture insights</li>
-                            <li><i class="fas fa-blog"></i> <a href="https://www.joelonsoftware.com/" target="_blank">Joel on Software</a> - Blog by Stack Overflow co-founder Joel Spolsky</li>
-                            <li><i class="fas fa-blog"></i> <a href="https://blog.pragmaticengineer.com/" target="_blank">The Pragmatic Engineer</a> - Software engineering career advice</li>
-                            <li><i class="fas fa-blog"></i> <a href="https://www.freecodecamp.org/news/" target="_blank">freeCodeCamp News</a> - Programming tutorials and articles</li>
+                            <li><i class="fas fa-podcast"></i> <a href="https://softwareengineeringdaily.com/" target="_blank">Software Engineering Daily</a> — Podcast about software topics</li>
+                            <li><i class="fas fa-podcast"></i> <a href="https://www.codingblocks.net/" target="_blank">Coding Blocks</a> — Podcast about software design and development</li>
+                            <li><i class="fas fa-blog"></i> <a href="https://martinfowler.com/" target="_blank">Martin Fowler's Blog</a> — Software design and architecture insights</li>
+                            <li><i class="fas fa-blog"></i> <a href="https://www.joelonsoftware.com/" target="_blank">Joel on Software</a> — Blog by Stack Overflow co-founder Joel Spolsky</li>
+                            <li><i class="fas fa-blog"></i> <a href="https://blog.pragmaticengineer.com/" target="_blank">The Pragmatic Engineer</a> — Software engineering career advice</li>
+                            <li><i class="fas fa-blog"></i> <a href="https://www.freecodecamp.org/news/" target="_blank">freeCodeCamp News</a> — Programming tutorials and articles</li>
                         </ul>
                     </div>
                 </div>
@@ -1743,10 +1842,10 @@
                 <a href="#supplementary">More</a>
             </div>
             <div class="social-icons">
-                <a href="https://github.com/Syntax-Syndicate-Ltd" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/company/syntax-syndicate/" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="https://www.instagram.com/syntax_syndicate_?igsh=bmF5bDVydzVscHM=" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.youtube.com/@SyntaxSyndicateOfficial" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="https://github.com/Syntax-Syndicate-Ltd" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/company/syntax-syndicate/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.instagram.com/syntax_syndicate_?igsh=bmF5bDVydzVscHM=" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@SyntaxSyndicateOfficial" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
             </div>
             <div class="copyright">
                 <p>&copy; 2025 SYNTAX SYNDICATE. All rights reserved.</p>
@@ -1754,11 +1853,16 @@
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
-<a href="/index.html" class="back-home-btn">
-  <i class="fas fa-home"></i>
-  <span>Back to Home</span>
-</a>
+    <!-- Back to Top Button (was missing from HTML) -->
+    <a href="#" class="back-to-top" id="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Floating Back to Home Button -->
+    <a href="/index.html" class="back-home-btn">
+        <i class="fas fa-home"></i>
+        <span>Back to Home</span>
+    </a>
 
     <script>
         // Loading Screen
@@ -1774,10 +1878,23 @@
 
         // Mobile Menu Toggle
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const navLinks = document.querySelector('.nav-links');
+        const navLinks = document.getElementById('nav-links');
 
         mobileMenuBtn.addEventListener('click', () => {
             navLinks.classList.toggle('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // Close mobile menu when a link is clicked
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                const icon = mobileMenuBtn.querySelector('i');
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+            });
         });
 
         // Theme Toggle
@@ -1785,77 +1902,73 @@
         const themeIcon = themeToggle.querySelector('i');
 
         themeToggle.addEventListener('click', () => {
-            document.body.setAttribute('data-theme', 
-                document.body.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
-            
-            if (document.body.getAttribute('data-theme') === 'light') {
-                themeIcon.classList.remove('fa-moon');
-                themeIcon.classList.add('fa-sun');
-            } else {
-                themeIcon.classList.remove('fa-sun');
-                themeIcon.classList.add('fa-moon');
-            }
+            const isLight = document.body.getAttribute('data-theme') === 'light';
+            document.body.setAttribute('data-theme', isLight ? 'dark' : 'light');
+            themeIcon.classList.toggle('fa-moon', isLight);
+            themeIcon.classList.toggle('fa-sun', !isLight);
         });
 
         // Course Accordion
-        const courseHeaders = document.querySelectorAll('.course-header');
-        
-        courseHeaders.forEach(header => {
+        document.querySelectorAll('.course-header').forEach(header => {
             header.addEventListener('click', () => {
                 const content = header.nextElementSibling;
                 const icon = header.querySelector('.course-icon');
-                
                 content.classList.toggle('active');
                 icon.classList.toggle('fa-chevron-down');
                 icon.classList.toggle('fa-chevron-up');
             });
         });
 
-        // YouTube Carousel
-        const carousel = document.querySelector('.youtube-carousel');
+        // YouTube Carousel (desktop)
+        const carousel = document.getElementById('youtube-carousel');
         const prevBtn = document.querySelector('.prev-btn');
         const nextBtn = document.querySelector('.next-btn');
-        let currentPosition = 0;
         const cardWidth = 320; // 300px card + 20px gap
+        let currentPosition = 0;
+
+        function getMaxScroll() {
+            const visibleCards = Math.floor(carousel.parentElement.offsetWidth / cardWidth) || 1;
+            return -Math.max(0, (carousel.children.length - visibleCards)) * cardWidth;
+        }
 
         nextBtn.addEventListener('click', () => {
-            const maxPosition = -(carousel.children.length - 3) * cardWidth;
-            if (currentPosition > maxPosition) {
-                currentPosition -= cardWidth;
+            const maxScroll = getMaxScroll();
+            if (currentPosition > maxScroll) {
+                currentPosition = Math.max(currentPosition - cardWidth, maxScroll);
                 carousel.style.transform = `translateX(${currentPosition}px)`;
             }
         });
 
         prevBtn.addEventListener('click', () => {
             if (currentPosition < 0) {
-                currentPosition += cardWidth;
+                currentPosition = Math.min(currentPosition + cardWidth, 0);
                 carousel.style.transform = `translateX(${currentPosition}px)`;
             }
         });
 
+        // Reset carousel on resize
+        window.addEventListener('resize', () => {
+            currentPosition = 0;
+            carousel.style.transform = 'translateX(0)';
+        });
+
         // Roadmap Timeline Animation
         const timelineItems = document.querySelectorAll('.timeline-item');
-        
+
         function checkTimelineVisibility() {
-            const triggerBottom = window.innerHeight * 0.8;
-            
+            const triggerBottom = window.innerHeight * 0.85;
             timelineItems.forEach(item => {
-                const itemTop = item.getBoundingClientRect().top;
-                
-                if (itemTop < triggerBottom) {
+                if (item.getBoundingClientRect().top < triggerBottom) {
                     item.classList.add('visible');
                 }
             });
         }
 
         // Accordion for Supplementary Resources
-        const accordionHeaders = document.querySelectorAll('.accordion-header');
-        
-        accordionHeaders.forEach(header => {
+        document.querySelectorAll('.accordion-header').forEach(header => {
             header.addEventListener('click', () => {
                 const content = header.nextElementSibling;
                 const icon = header.querySelector('.accordion-icon');
-                
                 content.classList.toggle('active');
                 icon.classList.toggle('fa-chevron-down');
                 icon.classList.toggle('fa-chevron-up');
@@ -1863,46 +1976,42 @@
         });
 
         // Back to Top Button
-        const backToTopBtn = document.querySelector('.back-to-top');
-        
+        const backToTopBtn = document.getElementById('back-to-top');
+
         window.addEventListener('scroll', () => {
             if (window.pageYOffset > 300) {
                 backToTopBtn.classList.add('visible');
             } else {
                 backToTopBtn.classList.remove('visible');
             }
-            
-            // Check timeline visibility
             checkTimelineVisibility();
+        });
+
+        backToTopBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
         // Smooth Scrolling for Navigation Links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
                 const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
+                if (targetId === '#') {
+                    if (this.id !== 'back-to-top') return;
+                }
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
+                    e.preventDefault();
                     window.scrollTo({
                         top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
                     });
-                    
-                    // Close mobile menu if open
-                    if (navLinks.classList.contains('active')) {
-                        navLinks.classList.remove('active');
-                    }
                 }
             });
         });
 
         // Initialize animations on page load
-        window.addEventListener('DOMContentLoaded', () => {
-            checkTimelineVisibility();
-        });
+        checkTimelineVisibility();
     </script>
 </body>
 </html>
